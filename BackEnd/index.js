@@ -7,6 +7,7 @@ const auth = require("./Routes/auth");
 require("dotenv").config();
 
 app.use(cors());
+// middleware <<
 app.use(express.json());
 
 // getting info from env
