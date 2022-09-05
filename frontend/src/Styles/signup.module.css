@@ -1,0 +1,60 @@
+.signup {
+  height: 500px;
+}
+.cont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.info {
+  margin-top: 1rem;
+  text-align: center;
+}
+.error {
+  background-color: var(--dangerRed);
+  padding: 0.6rem 1.2rem;
+  margin: 15px 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+.status {
+  background-color: var(--successBlue);
+  padding: 0.6rem 1.2rem;
+  margin: 15px 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+.form {
+  margin-top: 50px;
+}
+
+.submitButton {
+  background: var(--successGreen);
+  color: var(--fontPrimary);
+  padding: 0.9rem 1.2rem;
+  font-weight: 600;
+  width: 100%;
+  font-size: 15px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 0px;
+}
+
+/* .submitButton:hover {
+  background: var(--fontPrimary);
+  color: #fff;
+} */
+submitButton:disabled {
+  cursor: not-allowed;
+}
+/* 
+.submitButton:hover span {
+  color: #fff;
+} */

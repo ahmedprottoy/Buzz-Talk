@@ -33,13 +33,14 @@ exports.signUp = async (req, res) => {
       if (err) {
         throw err;
       } else if (result.length !== 0) {
-        connection.release();
         console.log("---User Already Exists---");
         res.json({ msg: "User Already Exists With This Name" });
-      } else if (password !== confirmPassword) {
-        console.log("passwords didn't match");
-        res.json({ msg: "Passwords didn't match'" });
-      } else {
+      }
+      // else if (password !== confirmPassword) {
+      //   console.log("passwords didn't match");
+      //   res.json({ msg: "Passwords didn't match'" });
+      // }
+      else {
         db.query(insertQuery, async (err, result) => {
           if (err) throw err;
 
@@ -70,7 +71,7 @@ exports.logIn = async (req, res) => {
 
       if (result.length == 0) {
         console.log("user doesnt exist", userName);
-        res.json({ msg: "user not found" });
+        res.json({ msg: "User Not Found", next: false });
       } else {
         const hashedPassword = result[0].password;
         const userID = result[0].userID;
@@ -88,10 +89,12 @@ exports.logIn = async (req, res) => {
           res.status(200).json({
             accessToken: token,
             msg: `${userName} is logged in.`,
+            next: true,
+            user: result[0].userName,
           });
         } else {
           console.log("---Password Incorrect----");
-          res.status(404).json({ msg: `Invalid Password` });
+          res.json({ msg: `Invalid Password`, next: false });
         }
       }
     });
