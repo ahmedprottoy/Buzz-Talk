@@ -1,17 +1,9 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const db = require("../config/db");
 const mysql = require("mysql");
 require("dotenv").config();
-
-const db = mysql.createPool({
-  connectionLimit: 100,
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  port: process.env.DB_PORT,
-});
 
 exports.signUp = async (req, res) => {
   const { userName, firstName, lastName, email, password, confirmPassword } =
@@ -33,7 +25,7 @@ exports.signUp = async (req, res) => {
       if (err) {
         throw err;
       } else if (result.length !== 0) {
-        console.log("---User Already Exists---");
+        console.log("---User Already Exists--");
         res.json({ msg: "User Already Exists With This Name" });
       }
       // else if (password !== confirmPassword) {
