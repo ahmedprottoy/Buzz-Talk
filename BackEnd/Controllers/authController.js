@@ -17,21 +17,23 @@ exports.signUp = async (req, res) => {
     );
 
     const insertQuery = mysql.format(
-      "INSERT INTO userInfo VALUES (0,?,?,?,?,?)",
+      "INSERT INTO userInfo (userName, firstName, lastName, email, password) VALUES (?,?,?,?,?)",
       [userName, firstName, lastName, email, hashedPassword]
     );
 
-    db.query(searchQuery, (err, result) => {
+    db.query(searchQuery, async (err, result) => {
       if (err) {
         throw err;
       } else if (result.length !== 0) {
         console.log("---User Already Exists--");
         res.json({ msg: "User Already Exists With This Name" });
-      } else if (password !== confirmPassword) {
-        console.log("passwords didn't match");
-        res.json({ msg: "Passwords didn't match'" });
-      } else {
-        db.query(insertQuery, (err, result) => {
+      }
+      // else if (password !== confirmPassword) {
+      //   console.log("passwords didn't match");
+      //   res.json({ msg: "Passwords didn't match'" });
+      // }
+      else {
+        db.query(insertQuery, async (err, result) => {
           if (err) throw err;
 
           console.log("---New User Created---");
@@ -68,10 +70,10 @@ exports.logIn = async (req, res) => {
         const validPassword = await bcrypt.compare(password, hashedPassword);
 
         if (validPassword) {
-          console.log("---Log In Successful--");
-
+          console.log("---Log In Successful---");
+          const user = { id : userID};
           const token = jwt.sign(
-            { userID },
+            user,
             process.env.ACCESS_TOKEN_SECRET,
             {}
           );
@@ -93,3 +95,5 @@ exports.logIn = async (req, res) => {
     res.status(500).json({ err });
   }
 };
+
+
