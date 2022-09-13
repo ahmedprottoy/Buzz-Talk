@@ -21,19 +21,17 @@ exports.signUp = async (req, res) => {
       [userName, firstName, lastName, email, hashedPassword]
     );
 
-    db.query(searchQuery, async (err, result) => {
+    db.query(searchQuery, (err, result) => {
       if (err) {
         throw err;
       } else if (result.length !== 0) {
         console.log("---User Already Exists--");
         res.json({ msg: "User Already Exists With This Name" });
-      }
-      // else if (password !== confirmPassword) {
-      //   console.log("passwords didn't match");
-      //   res.json({ msg: "Passwords didn't match'" });
-      // }
-      else {
-        db.query(insertQuery, async (err, result) => {
+      } else if (password !== confirmPassword) {
+        console.log("passwords didn't match");
+        res.json({ msg: "Passwords didn't match'" });
+      } else {
+        db.query(insertQuery, (err, result) => {
           if (err) throw err;
 
           console.log("---New User Created---");
@@ -70,7 +68,7 @@ exports.logIn = async (req, res) => {
         const validPassword = await bcrypt.compare(password, hashedPassword);
 
         if (validPassword) {
-          console.log("---Log In Successful---");
+          console.log("---Log In Successful--");
 
           const token = jwt.sign(
             { userID },
