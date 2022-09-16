@@ -4,6 +4,7 @@ const db = require("./config/db");
 const cors = require("cors");
 const auth = require("./Routes/auth");
 const port = process.env.PORT;
+const errorHandler = require("./middleware/errorHandler");
 require("dotenv").config();
 
 const bodyParser = require("body-parser");
@@ -41,7 +42,11 @@ db.getConnection((err, connection) => {
   console.log(`Database connections successful  ${connection.threadId}`);
 });
 
+
 app.use("/auth", auth);
+app.use(errorHandler.handle);
+
+
 
 app.listen(port, () => {
   console.log(`Server Started On Port ${port}`);
