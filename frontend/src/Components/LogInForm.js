@@ -20,6 +20,7 @@ export default function LogInForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     loginCall({ userName, password }, dispatch);
 
     try {
@@ -32,7 +33,11 @@ export default function LogInForm() {
         password,
       }).then((response) => {
         setLoading(false);
-
+        localStorage.setItem(
+          "accessToken",
+          "Bearer " + response.data.accessToken
+          // response.data.accessToken
+        );
         if (response.data.next) {
           setStatus(response.data.msg);
           setTimeout(() => {

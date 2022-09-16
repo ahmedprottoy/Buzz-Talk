@@ -1,8 +1,7 @@
 const express = require("express");
 const authControl = require("../Controllers/authController");
-const userBios = require("../users/userBiosRoute")
-const {authentication} = require("../middleware/authenticateToken");
-const test = require("../users/test");
+const userBios = require("../users/userBiosRoute");
+const { authentication } = require("../middleware/authenticateToken");
 const fileUpload = require("../middleware/fileUpload");
 const imgUpdate = require("../Controllers/imageController");
 const followHandler = require("../Controllers/followController");
@@ -12,6 +11,21 @@ const router = express.Router();
 
 router.post("/signUp", authControl.signUp);
 router.post("/logIn", authControl.logIn);
+router.get("/isLoggedIn", authControl.isLoggedIn);
+router.get("/logout", authControl.logout);
+
+router.post(
+  "/user/bios",
+  authentication,
+  fileUpload.upload.fields([
+    { name: "profile", maxCount: 1 },
+    { name: "cover", maxCount: 1 },
+  ]),
+  userBios.createBios
+);
+
+
+
 router.post("/user/bios",authentication,fileUpload.upload.fields([
     { name:"profile" , maxCount: 1},
     { name: "cover", maxCount: 1}
@@ -32,10 +46,8 @@ router.get("/post/:postID", authentication, postHandler.getPost);
 router.delete("/post/:postID", authentication, postHandler.deletePost);
 router.get("/post/user/:userID", authentication, postHandler.getUsersPost);
 router.get("/follower/post", authentication, postHandler.followingUserPost);
-router.get("/test",authentication, fileUpload.upload.fields([
-    { name:"profile" , maxCount: 1},
-    { name: "cover", maxCount: 1}
-]), test.getapi);
+
+
 
 router.use((req,res) => {
     res.status(404).send("URL doesn't exist.");
