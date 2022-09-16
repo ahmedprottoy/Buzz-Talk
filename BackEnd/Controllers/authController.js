@@ -111,9 +111,7 @@ exports.isLoggedIn = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
-  req.session.destroy();
-  res.json({
-    msg: "user logged out",
-    isloggedin: false,
-  });
+  // req.session.destroy();
+
+  res.cookie("userID", "", { maxAge: 1 }).json({ isloggedin: false });
 };

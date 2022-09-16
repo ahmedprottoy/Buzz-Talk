@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import TextInput from "./TextInput";
 import classes from "../Styles/signup.module.css";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-// import { loginCall } from "../apiCalls";
-// import { AuthContext } from "../Context/AuthContext";
+import { loginCall } from "../apiCalls";
+import { AuthContext } from "../Context/AuthContext";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function LogInForm() {
@@ -15,12 +15,13 @@ export default function LogInForm() {
   const [error, setError] = useState();
   const [status, setStatus] = useState("");
 
-  // const { user, isFetching, err, dispatch } = useContext(AuthContext);
+  const { user, isFetching, err, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // loginCall({ userName, password }, dispatch);
+
+    loginCall({ userName, password }, dispatch);
 
     try {
       setError("");
@@ -76,12 +77,12 @@ export default function LogInForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
-          disabled={loading}
+          disabled={isFetching}
           type="submit"
           className={classes.submitButton}
         >
           <span>
-            {loading ? (
+            {isFetching ? (
               <CircularProgress color="primary" size="18px" />
             ) : (
               "Log In"
