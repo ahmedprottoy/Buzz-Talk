@@ -13,5 +13,6 @@ export default function Home() {
         <Rightbar />
       </div>
     </>
+
   );
 }

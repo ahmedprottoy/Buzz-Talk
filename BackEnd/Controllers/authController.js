@@ -71,12 +71,13 @@ exports.logIn = async (req, res) => {
 
         if (validPassword) {
           console.log("---Log In Successful---");
-          const user = { id : userID};
-          const token = jwt.sign(
-            user,
-            process.env.ACCESS_TOKEN_SECRET,
-            {}
-          );
+          const user = { id: userID };
+          const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: 300,
+          });
+
+          req.session.user = result;
+          // console.log(req.session.user);
 
           res.status(200).json({
             accessToken: token,
@@ -96,4 +97,21 @@ exports.logIn = async (req, res) => {
   }
 };
 
+exports.isLoggedIn = async (req, res) => {
+  if (req.session.user) {
+    res.json({
+      isloggedin: true,
+      user: req.session.user,
+    });
+  } else {
+    res.json({
+      isloggedin: false,
+    });
+  }
+};
 
+exports.logout = async (req, res) => {
+  // req.session.destroy();
+
+  res.cookie("userID", "", { maxAge: 1 }).json({ isloggedin: false });
+};

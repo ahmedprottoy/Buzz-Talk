@@ -1,3 +1,4 @@
+
 import React from "react";
 import classes from "../Styles/profile.module.css";
 import Feed from "./Feed";
@@ -34,4 +35,4 @@ export default function Profile() {
       </div>
     </>
   );
-}
+
