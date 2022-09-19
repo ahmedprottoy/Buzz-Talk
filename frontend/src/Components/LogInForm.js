@@ -40,9 +40,10 @@ export default function LogInForm() {
         );
         if (response.data.next) {
           setStatus(response.data.msg);
-          setTimeout(() => {
-            navigate("/");
-          }, 1500);
+          navigate("/");
+          // setTimeout(() => {
+          //   navigate("/");
+          // }, 1500);
         } else {
           setError(response.data.msg);
         }
