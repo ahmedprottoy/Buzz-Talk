@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Followers from "./Followers";
 import classes from "../Styles/sidebar.module.css";
 import { RssFeed, AccountBox } from "@material-ui/icons";
 
@@ -30,16 +31,11 @@ export default function Sidebar() {
       </ul>
 
       <hr className={classes.sidebarHr} />
+
       <span className={classes.followerTitle}>Followers</span>
+
       <ul className={classes.sidebarFriendList}>
-        <li className={classes.sidebarFriend}>
-          <img
-            className={classes.sidebarFriendImg}
-            src="https://bhaviksarkhedi.com/wp-content/uploads/2017/03/1.jpg"
-            alt=""
-          />
-          <span className={classes.sidebarFriendName}>John Doe</span>
-        </li>
+        <Followers />
       </ul>
     </div>
   );

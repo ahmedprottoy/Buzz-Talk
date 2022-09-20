@@ -33,17 +33,8 @@ router.post(
   userBios.createBios
 );
 
-router.post(
-  "/user/bios",
-  authentication,
-  fileUpload.upload.fields([
-    { name: "profile", maxCount: 1 },
-    { name: "cover", maxCount: 1 },
-  ]),
-  userBios.createBios
-);
 router.put("/user", authentication, userBios.updateProfile);
-router.get("/user", authentication, userBios.getProfile);
+router.get("/user/profile", authentication, userBios.getProfile);
 router.get("/user/:userId", authentication, userBios.searchProfile);
 //
 //
@@ -64,6 +55,8 @@ router.put(
   fileUpload.upload.single("cover"),
   imgUpdate.coverImg
 );
+
+// router.get("/user/getImage", authentication, imgUpdate.getImage);
 router.use("/images", express.static("./images"));
 //
 //

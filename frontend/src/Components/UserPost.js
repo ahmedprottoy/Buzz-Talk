@@ -16,6 +16,9 @@ export default function UserPost() {
       .get("http://localhost:3003/auth/getOwnPost", config)
       .then((response) => {
         const allMyPost = response.data;
+        allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
+        console.log(allMyPost);
+
         setMyPost(allMyPost);
       })
       .catch((error) => {
@@ -24,7 +27,7 @@ export default function UserPost() {
   };
 
   if (myPost) {
-    return myPost.map((myPost, index) => {
+    return myPost.map((Post, index) => {
       return (
         <div className={classes.post}>
           <div className={classes.postWrapper}>
@@ -35,18 +38,18 @@ export default function UserPost() {
                   src="https://res.cloudinary.com/demo/image/facebook/65646572251.jpg"
                   alt=""
                 />
-                <span className={classes.postUsername}>{myPost.Author}</span>
-                <span className={classes.postDate}>{myPost.date_time}</span>
+                <span className={classes.postUsername}>{Post.Author}</span>
+                <span className={classes.postDate}>{Post.date_time}</span>
               </div>
               <div className={classes.postTopRight}>
                 <MoreVert />
               </div>
             </div>
             <div className={classes.postCenter}>
-              <span className={classes.postText}>{myPost.postDet}</span>
+              <span className={classes.postText}>{Post.postDet}</span>
               <img
                 className={classes.postImg}
-                src={`http://localhost:3003/auth/images/${myPost.imgID}`}
+                src={`http://localhost:3003/auth/images/${Post.imgID}`}
                 alt=""
               />
             </div>
