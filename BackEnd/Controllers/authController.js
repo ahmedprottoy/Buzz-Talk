@@ -72,9 +72,7 @@ exports.logIn = async (req, res) => {
         if (validPassword) {
           console.log("---Log In Successful---");
           const user = { id: userID };
-          const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: 300,
-          });
+          const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {});
 
           req.session.user = result;
           // console.log(req.session.user);
@@ -112,6 +110,6 @@ exports.isLoggedIn = async (req, res) => {
 
 exports.logout = async (req, res) => {
   // req.session.destroy();
-
+  // localStorage.removeItem("accessToken");
   res.cookie("userID", "", { maxAge: 1 }).json({ isloggedin: false });
 };

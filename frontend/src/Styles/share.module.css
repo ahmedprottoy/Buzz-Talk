@@ -1,83 +1,145 @@
 .share {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  padding: 10px;
 }
 
 .shareWrapper {
-    padding: 10px;
+  padding: 10px;
 }
 
 .shareTop {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .shareProfileImg {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-
-
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
 .shareInput {
-    border: none;
-    width:86%;
-    height: 100px;
-    background-color: #f2f4f8;
-    border-radius: 10px;
-    resize: none;
-    padding: 20px;
+  border: none;
+  width: 86%;
+  height: 100px;
+  background-color: #f2f4f8;
+  border-radius: 10px;
+  resize: none;
+  padding: 20px;
 }
 
 .shareInput:focus {
-    outline: none;
+  outline: none;
 }
 
 .shareHr {
-    margin: 20px;
+  margin: 20px;
 }
 
 .shareBottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .shareOptions {
-    display: flex;
-    margin-left: 20px;
+  display: flex;
+  margin-left: 20px;
 }
 
 .shareOption {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 .shareIcon {
-    font-size: 18px;
-    margin-right: 3px;
+  font-size: 18px;
+  margin-right: 3px;
 }
 
 .shareOptionText {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 
+/* .shareButton {
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: blueviolet;
+  color: white;
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+} */
+
 .shareButton {
-    border: none;
-    padding: 7px;
-    border-radius: 5px;
-    background-color: blueviolet;
-    color: white;
-    font-weight: 500;
-    margin-right: 20px;
-    cursor: pointer;
+  align-items: center;
+  background-color: #dedede;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  margin-right: 20px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  height: 35px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.shareButton:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 30px;
+  left: 0;
+  width: 98%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform 0.2s ease-out;
+  z-index: -1;
+}
+
+.shareButton:hover:after {
+  transform: translate(0, 0);
+}
+
+.shareButton:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.shareButton:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .shareButton {
+    padding: 0 40px;
+  }
+}
+
+.shareOption input[type="file"] {
+  display: none;
 }
