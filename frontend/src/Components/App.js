@@ -4,7 +4,7 @@ import Home from "./Home";
 import Profile from "./Profile";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
-import Profile from "./Profile";
+// import Profile from "./Profile";
 import "../Styles/app.module.css";
 import { Routes, Route } from "react-router-dom";
 
