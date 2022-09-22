@@ -1,5 +1,6 @@
 .profile {
   display: flex;
+  flex-direction: row;
 }
 
 .profileRight {
@@ -43,15 +44,19 @@
 
 .profileInfoDesc {
   font-weight: 300;
+  font-size: 16px;
+  margin-bottom: 25px;
 }
 
 .profileRightBottom {
   display: flex;
-  flex-direction: column;
-  width: 900px;
+  flex-direction: row;
+  width: auto;
+  margin-right: 30px;
+  
 }
 
-/* .demo {
-  margin-left: 900px;
-  margin-bottom: 500px;
-} */
+.content {
+  margin-right: 30px;
+}
+

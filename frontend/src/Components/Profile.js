@@ -45,19 +45,24 @@ export default function Profile() {
             <ProfileImages />
             <div className={classes.profileInfo}>
               <h4 className={classes.profileInfoName}>{fullName}</h4>
-              <span className={classes.profileInfoDesc}>{userName}</span>
+              <span className={classes.profileInfoDesc}>
+              {userName}
+              </span>
             </div>
             <div className={classes.profileBio}>
-              <UserAbout />
-              <span className={classes.profileBioItem}>lorem</span>
+              {/* <span className={classes.profileBioItem}>lorem</span>
               <span className={classes.profileBioItem}>ipsum</span>
               <span className={classes.profileBioItem}>dolor</span>
-              <span className={classes.profileBioItem}>amet</span>
+              <span className={classes.profileBioItem}>amet</span> */}
             </div>
           </div>
           <div className={classes.profileRightBottom}>
-            <Share />
-            <UserPost />
+            <div className={classes.content}>
+              <Share />
+              <UserPost />
+            </div>
+
+            <UserAbout className={classes.aboutWrapper} />
           </div>
         </div>
       </div>

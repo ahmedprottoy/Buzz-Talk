@@ -5,6 +5,7 @@
   position: sticky;
   top: 50px;
   padding: 20px;
+  /* margin-right: 20px; */
 }
 
 ::-webkit-scrollbar {

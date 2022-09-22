@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "../Styles/rightbar.module.css";
-import { Cake } from "@material-ui/icons";
+// import { Cake } from "@material-ui/icons";
 
 export default function Rightbar() {
   return (
