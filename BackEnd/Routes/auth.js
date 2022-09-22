@@ -56,6 +56,7 @@ router.put(
   imgUpdate.coverImg
 );
 
+router.get("/getImages", authentication, imgUpdate.getImages);
 // router.get("/user/getImage", authentication, imgUpdate.getImage);
 router.use("/images", express.static("./images"));
 //

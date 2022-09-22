@@ -6,6 +6,19 @@ import { MoreVert, ThumbUp, Favorite } from "@material-ui/icons";
 
 export default function UserPost() {
   const [myPost, setMyPost] = useState([]);
+  const [profileImage, setProfileImage] = useState("");
+
+  useEffect(() => {
+    getImages();
+  }, []);
+
+  const getImages = () => {
+    axios
+      .get("http://localhost:3003/auth/getImages", config)
+      .then((response) => {
+        setProfileImage(response.data[0].profileImgId);
+      });
+  };
 
   useEffect(() => {
     getAllMyPost();
@@ -35,7 +48,7 @@ export default function UserPost() {
               <div className={classes.postTopLeft}>
                 <img
                   className={classes.postProfileImg}
-                  src="https://res.cloudinary.com/demo/image/facebook/65646572251.jpg"
+                  src={`http://localhost:3003/auth/images/${profileImage}`}
                   alt=""
                 />
                 <span className={classes.postUsername}>{Post.Author}</span>

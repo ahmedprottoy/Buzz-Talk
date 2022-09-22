@@ -98,7 +98,7 @@ userBios.updateProfile = async (req, res, next) => {
 userBios.getProfile = (req, res, next) => {
   const userId = req.user.id;
   const searchSQL =
-    "SELECT email, location, profession, religion,profileImgId,coverImgId FROM socialmedia.userbios, socialmedia.userinfo where userbios.userId=userinfo.userId and userinfo.userId = ?";
+    "SELECT email, location, profession, religion FROM socialmedia.userbios, socialmedia.userinfo where userbios.userId=userinfo.userId and userinfo.userId = ?";
   db.query(searchSQL, [userId], (err, results) => {
     if (err) {
       next(err);

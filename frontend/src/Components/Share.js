@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "../Styles/share.module.css";
 import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
 import axios from "axios";
@@ -10,7 +10,19 @@ export default function Share() {
   const [image, setImage] = useState({
     file: [],
   });
+  const [profileImage, setProfileImage] = useState("");
 
+  useEffect(() => {
+    getImages();
+  }, []);
+
+  const getImages = () => {
+    axios
+      .get("http://localhost:3003/auth/getImages", config)
+      .then((response) => {
+        setProfileImage(response.data[0].profileImgId);
+      });
+  };
   function handleChange(event) {
     event.preventDefault();
     setPostDet(event.target.value);
@@ -39,7 +51,7 @@ export default function Share() {
       <div className={classes.shareTop}>
         <img
           className={classes.shareProfileImg}
-          src="https://res.cloudinary.com/demo/image/facebook/65646572251.jpg"
+          src={`http://localhost:3003/auth/images/${profileImage}`}
           alt=""
         />
         <textarea

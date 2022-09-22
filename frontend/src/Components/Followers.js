@@ -28,7 +28,6 @@ export default function Followers() {
               {follower.userName}
             </span>
           </li>
-          ;
         </>
       );
     });
