@@ -1,6 +1,6 @@
 const config = {
   headers: {
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "application/json",
     authorization: localStorage.getItem("accessToken"),
   },
 };

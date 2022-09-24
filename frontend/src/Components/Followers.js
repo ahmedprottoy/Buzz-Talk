@@ -21,7 +21,7 @@ export default function Followers() {
           <li className={classes.sidebarFriend}>
             <img
               className={classes.sidebarFriendImg}
-              src="https://bhaviksarkhedi.com/wp-content/uploads/2017/03/1.jpg"
+              src={`http://localhost:3003/auth/images/${follower.profileImgId}`}
               alt=""
             />
             <span className={classes.sidebarFriendName}>

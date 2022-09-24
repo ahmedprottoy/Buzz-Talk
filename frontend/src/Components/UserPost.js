@@ -69,9 +69,9 @@ export default function UserPost() {
             <div className={classes.postBottom}>
               <div className={classes.postBottomLeft}>
                 <ThumbUp className={classes.likeIcon} />
-                <Favorite className={classes.likeIcon} />
+                {/* <Favorite className={classes.likeIcon} /> */}
                 <span className={classes.postLikeCounter}>
-                  69 people liked it
+                  20 people liked it
                 </span>
               </div>
               <div className={classes.postBottomRight}>

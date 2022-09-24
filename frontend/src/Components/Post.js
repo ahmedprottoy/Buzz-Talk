@@ -14,7 +14,7 @@ export default function Post() {
               alt=""
             />
             <span className={classes.postUsername}>John Doe</span>
-            <span className={classes.postDate}>69 minutes ago</span>
+            <span className={classes.postDate}>20 minutes ago</span>
           </div>
           <div className={classes.postTopRight}>
             <MoreVert />
@@ -31,8 +31,8 @@ export default function Post() {
         <div className={classes.postBottom}>
           <div className={classes.postBottomLeft}>
             <ThumbUp className={classes.likeIcon} />
-            <Favorite className={classes.likeIcon} />
-            <span className={classes.postLikeCounter}>69 people liked it</span>
+            {/* <Favorite className={classes.likeIcon} /> */}
+            <span className={classes.postLikeCounter}>20 people liked it</span>
           </div>
           <div className={classes.postBottomRight}>
             <span className={classes.postCommentText}>32 comments</span>

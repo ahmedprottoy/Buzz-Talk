@@ -15,11 +15,11 @@ export default function Rightbar() {
           />
           <span className={classes.birthdayText}>
             {" "}
-            <b>Jalaluddin</b> and <b>69 other friends</b> have a birthday today.
+            <b>Jalaluddin</b> and <b>6 other friends</b> have a birthday today.
           </span>
         </div>
-        <h4 className={classes.rightbarTitle}>Online Friends</h4>
-        <ul className={classes.rightbarFriendList}>
+        {/* <h4 className={classes.rightbarTitle}>Online Friends</h4> */}
+        {/* <ul className={classes.rightbarFriendList}>
           <li className={classes.rightbarFriend}>
             <div className={classes.rightbarProfileImgContainer}>
               <img
@@ -31,7 +31,7 @@ export default function Rightbar() {
             </div>
             <span className={classes.rightbarUsername}> Jalaluddin </span>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

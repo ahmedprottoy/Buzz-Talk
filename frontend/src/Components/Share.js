@@ -3,7 +3,7 @@ import classes from "../Styles/share.module.css";
 import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
 import axios from "axios";
 
-import config from "../config";
+// import config from "../config";
 
 export default function Share() {
   const [postDet, setPostDet] = useState("");
@@ -16,9 +16,16 @@ export default function Share() {
     getImages();
   }, []);
 
+  const configure = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      authorization: localStorage.getItem("accessToken"),
+    },
+  };
+
   const getImages = () => {
     axios
-      .get("http://localhost:3003/auth/getImages", config)
+      .get("http://localhost:3003/auth/getImages", configure)
       .then((response) => {
         setProfileImage(response.data[0].profileImgId);
       });
@@ -40,7 +47,7 @@ export default function Share() {
     formData.append("postDet", postDet);
     console.log(formData);
     axios
-      .post("http://localhost:3003/auth/createPost", formData, config)
+      .post("http://localhost:3003/auth/createPost", formData, configure)
       .then((response) => {
         console.log(response);
       });

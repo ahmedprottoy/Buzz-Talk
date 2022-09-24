@@ -36,8 +36,17 @@ userBios.createBios = (req, res, next) => {
 };
 
 userBios.updateProfile = async (req, res, next) => {
-  let { userName, firstName, lastName, email, password } = req.body;
-  let { location, profession, religion } = req.body;
+  console.log(req.body);
+  let {
+    userName,
+    firstName,
+    lastName,
+    email,
+    password,
+    location,
+    profession,
+    religion,
+  } = req.body;
   const userId = req.user.id;
   let hashedPassword = "";
   const searchSQL =
@@ -83,7 +92,7 @@ userBios.updateProfile = async (req, res, next) => {
                   next(err2);
                 } else {
                   res.status(200).json({
-                    message: "You have successfully updated your profile",
+                    msg: "You have successfully updated your profile",
                   });
                 }
               }
@@ -98,7 +107,7 @@ userBios.updateProfile = async (req, res, next) => {
 userBios.getProfile = (req, res, next) => {
   const userId = req.user.id;
   const searchSQL =
-    "SELECT email, location, profession, religion FROM socialmedia.userbios, socialmedia.userinfo where userbios.userId=userinfo.userId and userinfo.userId = ?";
+    "SELECT userName,firstName,lastName,email, location, profession, religion FROM socialmedia.userbios, socialmedia.userinfo where userbios.userId=userinfo.userId and userinfo.userId = ?";
   db.query(searchSQL, [userId], (err, results) => {
     if (err) {
       next(err);

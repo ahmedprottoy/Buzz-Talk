@@ -33,7 +33,7 @@ router.post(
   userBios.createBios
 );
 
-router.put("/user", authentication, userBios.updateProfile);
+router.put("/profileUpdate", authentication, userBios.updateProfile);
 router.get("/user/profile", authentication, userBios.getProfile);
 router.get("/user/:userId", authentication, userBios.searchProfile);
 //
@@ -44,13 +44,13 @@ router.get("/user/:userId", authentication, userBios.searchProfile);
 //
 //
 router.put(
-  "/profileimg",
+  "/profileImg",
   authentication,
   fileUpload.upload.single("profile"),
   imgUpdate.profileImg
 );
 router.put(
-  "/coverimg",
+  "/coverImg",
   authentication,
   fileUpload.upload.single("cover"),
   imgUpdate.coverImg

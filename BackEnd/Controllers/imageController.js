@@ -3,6 +3,7 @@ const db = require("../config/db");
 const update = {};
 
 update.profileImg = (req, res, next) => {
+  console.log(req.body);
   const userId = req.user.id;
   const profileImgId = req.file.filename;
   const updateSQL = "Update userbios set profileImgId = ? where userId = ?";

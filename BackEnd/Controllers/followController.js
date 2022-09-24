@@ -15,7 +15,7 @@ followHandler.startFollow = (req, res, next) => {
       res
         .status(200)
         .json({ message: `Congrats! You just start following ${userID}` });
-      console.log(results);
+      // console.log(results);
     }
   });
 };
@@ -33,7 +33,7 @@ followHandler.getFollower = (req, res, next) => {
       next(err);
     } else {
       res.status(200).json(results);
-      console.log(results);
+      // console.log(results);
     }
   });
 };
@@ -51,7 +51,7 @@ followHandler.getFollowing = (req, res, next) => {
       next(err);
     } else {
       res.status(200).json(results);
-      console.log(results);
+      // console.log(results);
     }
   });
 };

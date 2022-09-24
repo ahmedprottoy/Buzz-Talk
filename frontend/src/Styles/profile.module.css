@@ -52,11 +52,10 @@
   display: flex;
   flex-direction: row;
   width: auto;
+  justify-content: space-evenly;
   margin-right: 30px;
-  
 }
 
 .content {
   margin-right: 30px;
 }
-

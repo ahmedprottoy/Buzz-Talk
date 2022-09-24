@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../config";
 import classes from "../Styles/userAbout.module.css";
-import { Email, LocationOn, Work } from "@material-ui/icons";
+import { Email, Brightness4, LocationOn, Work } from "@material-ui/icons";
 
 export default function UserAbout() {
   const [info, setInfo] = useState({});
@@ -20,14 +20,25 @@ export default function UserAbout() {
 
   return (
     <div className={classes.UserAbout}>
-      
-      <span className={classes.aboutText}> <Email className={classes.aboutIcon} /> {info.email} </span>
-      
-      <span className={classes.aboutText}> <LocationOn className={classes.aboutIcon} /> {info.location}</span>
-      
-      <span className={classes.aboutText}> <Work className={classes.aboutIcon}/>  {info.profession} </span>
-      {/* <Mosque /> */}
-      <span className={classes.aboutText}><b>Religion: </b>{info.religion}</span>
+      <h2>About User : </h2>
+      <span className={classes.aboutText}>
+        <Email className={classes.aboutIcon} /> EMAIL : {info.email}{" "}
+      </span>
+
+      <span className={classes.aboutText}>
+        {" "}
+        <LocationOn className={classes.aboutIcon} /> FROM : {info.location}
+      </span>
+
+      <span className={classes.aboutText}>
+        {" "}
+        <Work className={classes.aboutIcon} /> PROFESSION : {info.profession}{" "}
+      </span>
+
+      <span className={classes.aboutText}>
+        <Brightness4 className={classes.aboutIcon} />
+        Religion : {info.religion}
+      </span>
     </div>
   );
 }
