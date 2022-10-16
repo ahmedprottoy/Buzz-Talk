@@ -1,17 +1,14 @@
 import React from "react";
 import classes from "../Styles/feed.module.css";
 import Share from "./Share";
-import Post from "./Post";
+import FollowersPost from "./FollowersPost";
 
 export default function Feed() {
   return (
     <div className={classes.feed}>
       <div className={classes.feedWrapper}>
         <Share />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <FollowersPost />
       </div>
     </div>
   );

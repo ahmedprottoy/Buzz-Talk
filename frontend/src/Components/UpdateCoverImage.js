@@ -49,26 +49,32 @@ export default function UpdateProfileImage() {
   };
 
   return (
-    <form className={classes.settingsForm} onSubmit={updateImages}>
-      <div className={classes.settingsPP}>
-        <img src={`http://localhost:3003/auth/images/${coverImage}`} alt="" />
-        <label htmlFor="fileInput">
-          <span className={classes.PPtext}>
-            Click to Choose new Cover Picture
-          </span>
+    <>
+      <span className={classes.settingsTitleUpdate}>Update Your Images</span>
 
-          <CameraAlt className={classes.settingsPPIcon} />
-        </label>
+      <form className={classes.settingsForm} onSubmit={updateImages}>
+        <div className={classes.settingsPP}>
+          <img src={`http://localhost:3003/auth/images/${coverImage}`} alt="" />
+          <label htmlFor="fileInput">
+            <span className={classes.PPtext}>
+              Click to Choose new Cover Picture
+            </span>
 
-        <input
-          id="fileInput"
-          type="file"
-          style={{ display: "none" }}
-          className={classes.settingsPPInput}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Update Profile Picture</button>
-      </div>
-    </form>
+            <CameraAlt className={classes.settingsPPIcon} />
+          </label>
+
+          <input
+            id="fileInput"
+            type="file"
+            style={{ display: "none" }}
+            className={classes.settingsPPInput}
+            onChange={handleInputChange}
+          />
+          <button className={classes.settingsSubmitButton} type="submit">
+            Update Profile Picture
+          </button>
+        </div>
+      </form>
+    </>
   );
 }

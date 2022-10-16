@@ -67,7 +67,9 @@ export default function UpdateProfileImage() {
           className={classes.settingsPPInput}
           onChange={handleInputChange}
         />
-        <button type="submit">Update Profile Picture</button>
+        <button className={classes.settingsSubmitButton} type="submit">
+          Update Profile Picture
+        </button>
       </div>
     </form>
   );

@@ -1,46 +1,32 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import config from "../config";
-import axios from "axios";
 import classes from "../Styles/post.module.css";
 import { MoreVert, ThumbUp } from "@material-ui/icons";
 
-export default function UserPost() {
-  const [myPost, setMyPost] = useState([]);
-  const [profileImage, setProfileImage] = useState("");
+export default function FollowersPost() {
+  const [followerPost, setFollowerPost] = useState([]);
 
   useEffect(() => {
-    getImages();
+    getFollowerPost();
   }, []);
 
-  const getImages = () => {
+  const getFollowerPost = () => {
     axios
-      .get("http://localhost:3003/auth/getImages", config)
-      .then((response) => {
-        setProfileImage(response.data[0].profileImgId);
-      });
-  };
-
-  useEffect(() => {
-    getAllMyPost();
-  }, []);
-
-  const getAllMyPost = () => {
-    axios
-      .get("http://localhost:3003/auth/getOwnPost", config)
+      .get("http://localhost:3003/auth/follower/post", config)
       .then((response) => {
         const allMyPost = response.data;
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
-        console.log(allMyPost);
 
-        setMyPost(allMyPost);
+        setFollowerPost(allMyPost);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  if (myPost) {
-    return myPost.map((Post, index) => {
+  if (followerPost) {
+    return followerPost.map((Post, index) => {
       return (
         <div className={classes.post}>
           <div className={classes.postWrapper}>
@@ -48,10 +34,11 @@ export default function UserPost() {
               <div className={classes.postTopLeft}>
                 <img
                   className={classes.postProfileImg}
-                  src={`http://localhost:3003/auth/images/${profileImage}`}
+                  src="https://res.cloudinary.com/demo/image/facebook/65646572251.jpg"
                   alt=""
                 />
                 <span className={classes.postUsername}>{Post.Author}</span>
+
                 <span className={classes.postDate}>{Post.date_time}</span>
               </div>
               <div className={classes.postTopRight}>
