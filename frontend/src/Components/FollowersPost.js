@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import config from "../config";
 import classes from "../Styles/post.module.css";
 import { MoreVert, ThumbUp } from "@material-ui/icons";
+import parser from "html-react-parser";
 
 export default function FollowersPost() {
   const [followerPost, setFollowerPost] = useState([]);
@@ -17,7 +18,6 @@ export default function FollowersPost() {
       .then((response) => {
         const allMyPost = response.data;
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
-
         setFollowerPost(allMyPost);
       })
       .catch((error) => {
@@ -34,7 +34,7 @@ export default function FollowersPost() {
               <div className={classes.postTopLeft}>
                 <img
                   className={classes.postProfileImg}
-                  src="https://res.cloudinary.com/demo/image/facebook/65646572251.jpg"
+                  src={`http://localhost:3003/auth/images/${Post.profileImgId}`}
                   alt=""
                 />
                 <span className={classes.postUsername}>{Post.Author}</span>
@@ -46,7 +46,9 @@ export default function FollowersPost() {
               </div>
             </div>
             <div className={classes.postCenter}>
-              <span className={classes.postText}>{Post.postDet}</span>
+              <span className={classes.postText}>
+                <div dangerouslySetInnerHTML={{ __html: Post.postDet }} />
+              </span>
               <img
                 className={classes.postImg}
                 src={`http://localhost:3003/auth/images/${Post.imgID}`}

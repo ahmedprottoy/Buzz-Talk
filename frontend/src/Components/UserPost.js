@@ -3,6 +3,7 @@ import config from "../config";
 import axios from "axios";
 import classes from "../Styles/post.module.css";
 import { MoreVert, ThumbUp } from "@material-ui/icons";
+import parser from "html-react-parser";
 
 export default function UserPost() {
   const [myPost, setMyPost] = useState([]);
@@ -59,7 +60,9 @@ export default function UserPost() {
               </div>
             </div>
             <div className={classes.postCenter}>
-              <span className={classes.postText}>{Post.postDet}</span>
+              <span className={classes.postText}>
+                <div dangerouslySetInnerHTML={{ __html: Post.postDet }} />
+              </span>
               <img
                 className={classes.postImg}
                 src={`http://localhost:3003/auth/images/${Post.imgID}`}

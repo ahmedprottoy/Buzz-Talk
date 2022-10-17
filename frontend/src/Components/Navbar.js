@@ -16,8 +16,8 @@ export default function Navbar() {
             /> */}
 
             <Typewriter
-              words={["Social Media"]}
-              loop={5}
+              words={["Social Media..."]}
+              loop="false"
               cursor
               cursorStyle="_"
               typeSpeed={70}

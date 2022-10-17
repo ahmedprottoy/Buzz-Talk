@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import classes from "../Styles/share.module.css";
 import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
 import axios from "axios";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 
 // import config from "../config";
 
@@ -11,6 +13,19 @@ export default function Share() {
     file: [],
   });
   const [profileImage, setProfileImage] = useState("");
+
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: `hellooo...`,
+
+    onUpdate: ({ editor }) => {
+      const html = editor.getHTML();
+      // console.log(html);
+      setPostDet(html);
+    },
+  });
+
+  console.log(postDet);
 
   useEffect(() => {
     getImages();
@@ -30,10 +45,10 @@ export default function Share() {
         setProfileImage(response.data[0].profileImgId);
       });
   };
-  function handleChange(event) {
-    event.preventDefault();
-    setPostDet(event.target.value);
-  }
+  // function handleChange(event) {
+  //   event.preventDefault();
+  //   setPostDet(event.target.value);
+  // }
   const handleInputChange = (event) => {
     setImage({
       ...image,
@@ -61,14 +76,16 @@ export default function Share() {
           src={`http://localhost:3003/auth/images/${profileImage}`}
           alt=""
         />
-        <textarea
+        {/* <textarea
           type="text"
           placeholder="What's in your mind?"
           className={classes.shareInput}
           autoComplete="off"
           name="postDet"
           onChange={handleChange}
-        />
+        /> */}
+
+        <EditorContent className={classes.shareInput} editor={editor} />
       </div>
       <hr className={classes.shareHr} />
       <div className={classes.shareBottom}>
