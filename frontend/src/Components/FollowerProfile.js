@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import classes from "../Styles/profile.module.css";
 import Sidebar from "./Sidebar";
+import FollowerProfilePost from "./FollowerProfilePost";
 import axios from "axios";
 import config from "../config";
 import { Email, Brightness4, LocationOn, Work } from "@material-ui/icons";
@@ -67,7 +68,10 @@ export default function FollowerProfile() {
             </div>
           </div>
           <div className={classes.profileRightBottom}>
-            <div className={classes.content}>{/* <UserPost /> */}</div>
+            <div className={classes.content}>
+              {/* <UserPost /> */}
+              <FollowerProfilePost id={followerID} />
+            </div>
 
             {/* <UserAbout className={classes.aboutWrapper} /> */}
 
