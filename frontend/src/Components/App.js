@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import Settings from "./Settings";
+import FollowerProfile from "./FollowerProfile";
 
 // import Profile from "./Profile";
 
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Settings" element={<Settings />} />
+        <Route path="/FollowerProfile" element={<FollowerProfile />} />
       </Routes>
     </Layout>
   );

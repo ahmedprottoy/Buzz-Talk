@@ -35,6 +35,7 @@ router.post(
 
 router.put("/profileUpdate", authentication, userBios.updateProfile);
 router.get("/user/profile", authentication, userBios.getProfile);
+
 router.get("/user/:userId", authentication, userBios.searchProfile);
 //
 //
@@ -70,6 +71,11 @@ router.post("/follow/:userID", authentication, followHandler.startFollow);
 router.get("/following", authentication, followHandler.getFollowing);
 router.get("/follower", authentication, followHandler.getFollower);
 router.delete("/follow/:userID", authentication, followHandler.unfollow);
+router.get(
+  "/user/getFollowerProfile/:userId",
+  authentication,
+  followHandler.getFollowerProfile
+);
 //
 //
 //

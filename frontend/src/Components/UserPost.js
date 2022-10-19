@@ -3,7 +3,6 @@ import config from "../config";
 import axios from "axios";
 import classes from "../Styles/post.module.css";
 import { MoreVert, ThumbUp } from "@material-ui/icons";
-import parser from "html-react-parser";
 
 export default function UserPost() {
   const [myPost, setMyPost] = useState([]);
