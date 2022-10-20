@@ -6,6 +6,7 @@ errHandler.handle = (err, req, res, next) => {
         next("there was a problem");
     } else{
         if(err.message){
+            console.log(err);
             res.status(500).send(err.message);
         }else{
             res.status(500).send("There was a an error on server side")
