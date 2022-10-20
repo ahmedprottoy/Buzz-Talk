@@ -1,61 +1,39 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import config from "../config";
-import axios from "axios";
 import classes from "../Styles/post.module.css";
-import { MoreVert, ThumbUp } from "@material-ui/icons";
+import { ThumbUp } from "@material-ui/icons";
 
-export default function UserPost() {
-  const [myPost, setMyPost] = useState([]);
-  const [profileImage, setProfileImage] = useState("");
+export default function FollowerProfilePost(id) {
+  const [followerPost, setFollowerPost] = useState([]);
+  const followerID = id;
 
   useEffect(() => {
-    getImages();
-  }, []);
+    getFollowerPost();
+  }, [followerID]);
 
-  const getImages = () => {
+  const getFollowerPost = () => {
     axios
-      .get("http://localhost:3003/auth/getImages", config)
+      .get(`http://localhost:3003/auth//post/user/${followerID.id}`, config)
       .then((response) => {
-        setProfileImage(response.data[0].profileImgId);
+        setFollowerPost(response.data);
       });
   };
 
-  useEffect(() => {
-    getAllMyPost();
-  }, []);
-
-  const getAllMyPost = () => {
-    axios
-      .get("http://localhost:3003/auth/getOwnPost", config)
-      .then((response) => {
-        const allMyPost = response.data;
-        allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
-        console.log(allMyPost);
-
-        setMyPost(allMyPost);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  if (myPost) {
-    return myPost.map((Post, index) => {
+  if (followerPost) {
+    return followerPost.map((Post, index) => {
       return (
         <div className={classes.post}>
           <div className={classes.postWrapper}>
             <div className={classes.postTop}>
               <div className={classes.postTopLeft}>
-                <img
+                {/* <img
                   className={classes.postProfileImg}
                   src={`http://localhost:3003/auth/images/${profileImage}`}
                   alt=""
-                />
+                /> */}
                 <span className={classes.postUsername}>{Post.Author}</span>
                 <span className={classes.postDate}>{Post.date_time}</span>
-              </div>
-              <div className={classes.postTopRight}>
-                <MoreVert />
               </div>
             </div>
             <div className={classes.postCenter}>

@@ -1,5 +1,5 @@
 .share {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
@@ -28,7 +28,7 @@
   border: none;
   width: 86%;
   height: 100px;
-  background-color: #f2f4f8;
+  background-color: #f8f2f3;
   border-radius: 50%;
   resize: none;
   padding: 20px;
@@ -69,17 +69,6 @@
   font-size: 14px;
   font-weight: 500;
 }
-
-/* .shareButton {
-  border: none;
-  padding: 7px;
-  border-radius: 5px;
-  background-color: blueviolet;
-  color: white;
-  font-weight: 500;
-  margin-right: 20px;
-  cursor: pointer;
-} */
 
 .shareButton {
   align-items: center;

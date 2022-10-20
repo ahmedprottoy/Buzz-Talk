@@ -152,3 +152,7 @@ postHandler.followingUserPost = (req, res, next) => {
 };
 
 module.exports = postHandler;
+
+// SELECT userName as Author , postDet , imgID , likenumber , date_time
+//     from socialmedia.userinfo , socialmedia.post_table
+//     where userinfo.userID = post_table.userID and post_table.userId = 6 ;

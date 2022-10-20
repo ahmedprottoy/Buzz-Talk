@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import config from "../config";
 import classes from "../Styles/post.module.css";
 import { MoreVert, ThumbUp } from "@material-ui/icons";
-import parser from "html-react-parser";
 
 export default function FollowersPost() {
   const [followerPost, setFollowerPost] = useState([]);
@@ -37,7 +36,10 @@ export default function FollowersPost() {
                   src={`http://localhost:3003/auth/images/${Post.profileImgId}`}
                   alt=""
                 />
-                <span className={classes.postUsername}>{Post.Author}</span>
+                <span className={classes.postUsername}>
+                  <b>{Post.Author}</b>
+                  <p> </p>
+                </span>
 
                 <span className={classes.postDate}>{Post.date_time}</span>
               </div>
@@ -58,7 +60,6 @@ export default function FollowersPost() {
             <div className={classes.postBottom}>
               <div className={classes.postBottomLeft}>
                 <ThumbUp className={classes.likeIcon} />
-                {/* <Favorite className={classes.likeIcon} /> */}
                 <span className={classes.postLikeCounter}>
                   20 people liked it
                 </span>
