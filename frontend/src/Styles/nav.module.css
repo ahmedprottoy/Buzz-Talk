@@ -33,15 +33,15 @@
 }
 
 .nav .brand h3 {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 19px;
   font-weight: 700;
 }
 
-.nav .brand img {
+/* .nav .brand img {
   width: 32px;
   margin-right: 10px;
-}
+} */
 
 @media only screen and (max-width: 600px) {
   .nav .brand h3 {

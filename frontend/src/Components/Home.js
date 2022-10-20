@@ -1,12 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Feed from "./Feed";
+import Sidebar from "./Sidebar";
+import Rightbar from "./Rightbar";
+import classes from "../Styles/home.module.css";
 
 export default function Home() {
   return (
-    <div>
-      <p>Welcome</p>
-
-      <Link to="/Profile">profile</Link>
-    </div>
+    <>
+      <div className={classes.homeContainer}>
+        <Sidebar />
+        <Feed />
+        <Rightbar />
+      </div>
+    </>
   );
 }
