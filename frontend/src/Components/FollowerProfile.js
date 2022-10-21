@@ -10,12 +10,13 @@ import { Email, Brightness4, LocationOn, Work } from "@material-ui/icons";
 export default function FollowerProfile() {
   const location = useLocation();
   const followerID = location.state.id;
+  const [following, setFollowing] = useState("");
 
   const [followerInfo, setFollowerInfo] = useState([]);
 
   useEffect(() => {
     getInfo();
-    // getFollowerPost();
+    isFollowing();
   }, [followerID]);
 
   const getInfo = () => {
@@ -30,10 +31,21 @@ export default function FollowerProfile() {
       });
   };
 
-  // const getFollowerPost = () => {
+  const isFollowing = () => {
+    axios
+      .get(`http://localhost:3003/auth//user/isFollowing/${followerID}`, config)
+      .then((response) => {
+        setFollowing(response.data);
+      });
+  };
 
-  // }
-
+  const unfollow = (followerID) => {
+    axios
+      .delete(`http://localhost:3003/auth/unfollow/${followerID}`, config)
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
   return (
     <>
       <div className={classes.profile}>
@@ -65,6 +77,24 @@ export default function FollowerProfile() {
               <span className={classes.profileBioItem}>ipsum</span>
               <span className={classes.profileBioItem}>dolor</span>
               <span className={classes.profileBioItem}>amet</span> */}
+            </div>
+
+            <div>
+              {following ? (
+                <>
+                  <button
+                    onClick={() => {
+                      unfollow(followerID);
+                    }}
+                  >
+                    Unfollow
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button>Follow</button>
+                </>
+              )}
             </div>
           </div>
           <div className={classes.profileRightBottom}>

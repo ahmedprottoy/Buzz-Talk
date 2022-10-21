@@ -30,7 +30,6 @@ export default function UserPost() {
       .then((response) => {
         const allMyPost = response.data;
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
-        console.log(allMyPost);
 
         setMyPost(allMyPost);
       })

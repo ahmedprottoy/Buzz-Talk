@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import classes from "../Styles/profile.module.css";
 import UserAbout from "./UserAbout";
 import Sidebar from "./Sidebar";
+import config from "../config";
 
 import { AuthContext } from "../Context/AuthContext";
 import Axios from "axios";
@@ -10,31 +11,17 @@ import UserPost from "./UserPost";
 import ProfileImages from "./ProfileImages";
 
 export default function Profile() {
-  const [userName, setUserName] = useState("");
-  const [fullName, setFullName] = useState("");
-  const { user } = useContext(AuthContext);
+  const [info, setInfo] = useState([]);
 
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get("http://localhost:3003/auth/isLoggedIn").then((response) => {
-      if (response.data.isloggedin) {
-        console.log(response);
-        setTimeout(() => {
-          setUserName(response.data.user[0].userName);
-          setFullName(
-            response.data.user[0].firstName +
-              " " +
-              response.data.user[0].lastName
-          );
-        }, 1000);
+    Axios.get("http://localhost:3003/auth//user/profile", config).then(
+      (response) => {
+        setInfo(response.data[0]);
       }
-    });
+    );
   }, []);
-
-  useEffect(() => {
-    setUserName(user?.user);
-  }, [user]);
 
   return (
     <>
@@ -44,10 +31,10 @@ export default function Profile() {
           <div className={classes.profileRightTop}>
             <ProfileImages />
             <div className={classes.profileInfo}>
-              <h4 className={classes.profileInfoName}>{fullName}</h4>
-              <span className={classes.profileInfoDesc}>
-              {userName}
-              </span>
+              <h4 className={classes.profileInfoName}>
+                {info.firstName} {info.lastName}
+              </h4>
+              <span className={classes.profileInfoDesc}>{info.userName}</span>
             </div>
             <div className={classes.profileBio}>
               {/* <span className={classes.profileBioItem}>lorem</span>

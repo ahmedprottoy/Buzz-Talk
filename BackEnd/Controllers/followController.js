@@ -20,6 +20,7 @@ followHandler.startFollow = (req, res, next) => {
   });
 };
 
+//who following me
 followHandler.getFollower = (req, res, next) => {
   const userID = req.user.id;
   const searchQuery = `select userbios.userId,userName, firstName, lastName, email, profileImgId,coverimgId
@@ -39,13 +40,14 @@ followHandler.getFollower = (req, res, next) => {
 };
 
 followHandler.getFollowerProfile = (req, res, next) => {
-  const userID = req.params.userId;
+  const followerID = req.params.userId;
+
   const searchQuery = `select userName, firstName, lastName,profileImgId,coverImgId,location,profession,religion
     from socialmedia.userbios,socialmedia.userinfo 
     where userbios.userId = userInfo.userID and
     userInfo.userID=?`;
 
-  db.query(searchQuery, [userID], (err, results) => {
+  db.query(searchQuery, [followerID], (err, results) => {
     if (err) {
       next(err);
     } else {
@@ -55,6 +57,24 @@ followHandler.getFollowerProfile = (req, res, next) => {
   });
 };
 
+followHandler.isFollowing = (req, res, next) => {
+  const followerID = req.params.followerID;
+  const userID = req.user.id;
+
+  let isFollowing = false;
+
+  const searchQuery2 = `Select * from socialmedia.follower_table where userID=? and followerID=? `;
+
+  db.query(searchQuery2, [userID, followerID], (err, results) => {
+    if (results.length != 0) {
+      isFollowing = true;
+    }
+
+    res.status(200).json(isFollowing);
+  });
+};
+
+//whom i follow
 followHandler.getFollowing = (req, res, next) => {
   const userID = req.user.id;
   const searchQuery = `select userName, firstName, lastName, email, profileImgId
@@ -76,6 +96,7 @@ followHandler.getFollowing = (req, res, next) => {
 followHandler.unfollow = (req, res, next) => {
   const userID = req.user.id;
   const followeeId = req.params.userID;
+
   const deleteQuery =
     "DELETE FROM socialmedia.follower_table WHERE userID = ? and followerID = ?;";
 
@@ -83,7 +104,7 @@ followHandler.unfollow = (req, res, next) => {
     if (err) {
       next(err);
     } else {
-      res.status(200).json({ message: `You just unfollowed ${followeeId}` });
+      res.status(200).json({ message: `you no longer follow this user` });
     }
   });
 };

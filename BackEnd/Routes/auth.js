@@ -7,7 +7,7 @@ const imgUpdate = require("../Controllers/imageController");
 const followHandler = require("../Controllers/followController");
 const postHandler = require("../Controllers/postController");
 const searchHandler = require("../Controllers/searchController");
-const commentHandler = require("../Controllers/commentController")
+const commentHandler = require("../Controllers/commentController");
 
 const router = express.Router();
 //
@@ -72,11 +72,17 @@ router.use("/images", express.static("./images"));
 router.post("/follow/:userID", authentication, followHandler.startFollow);
 router.get("/following", authentication, followHandler.getFollowing);
 router.get("/follower", authentication, followHandler.getFollower);
-router.delete("/follow/:userID", authentication, followHandler.unfollow);
+router.delete("/unfollow/:userID", authentication, followHandler.unfollow);
 router.get(
   "/user/getFollowerProfile/:userId",
   authentication,
   followHandler.getFollowerProfile
+);
+
+router.get(
+  "/user/isFollowing/:followerID",
+  authentication,
+  followHandler.isFollowing
 );
 //
 //
@@ -106,7 +112,12 @@ router.get("/follower/post", authentication, postHandler.followingUserPost);
 router.get("/search/user/account", authentication, searchHandler.userSearch);
 router.get("/search/user/post", authentication, searchHandler.userPostSearch);
 router.get("/search/post", authentication, searchHandler.postSearch);
-router.post("/comment/:postID",authentication,fileUpload.upload.single("commentImg"),commentHandler.postComment);
+router.post(
+  "/comment/:postID",
+  authentication,
+  fileUpload.upload.single("commentImg"),
+  commentHandler.postComment
+);
 router.get("/comment/:postID", authentication, commentHandler.getComment);
 
 router.use("/images", express.static("images"));
