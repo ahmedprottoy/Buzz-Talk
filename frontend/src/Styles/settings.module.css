@@ -38,36 +38,89 @@
 .settingsForm {
   display: flex;
   flex-direction: column;
+  /* max-width: 500px; */
 }
 
 .settingsPP {
-  display: flex;
+  /* display: flex;
   align-items: center;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 10px; */
+  height: 160px;
+  position: relative;
 }
 
-.settingsPP > img {
+/* .settingsPP > img {
   height: 70px;
   width: 70px;
-  border-radius: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+} */
+
+.settingsCoverImg {
+  width: 100%;
+  height: 250px;
   object-fit: cover;
 }
 
-.settingsPPIcon {
-  width: 25px;
-  height: 25px;
-  padding: 5px;
+.settingsProfileImg {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0px;
+  border: 3px solid white;
+}
+
+
+
+.settingsPPIconProfile {
+  width: 30px;
+  height: auto;
+  padding: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   border-radius: 50%;
-  margin-left: 10px;
+  /* margin-left: 950px; */
+  background-color: rgb(168, 200, 241);
+  cursor: pointer;
+  top: -30px;
+}
+
+.settingsPPIconCover {
+  width: 30px;
+  height: auto;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  /* margin-left: 1700px; */
   color: white;
-  background-color: #573eff;
+  background-color:   rgb(168, 200, 241);
   cursor: pointer;
 }
+
+.cameraIconCover {
+  display: block;
+  position: absolute;
+  margin-left: 1690px;
+}
+
+.cameraIconProfile {
+  display: block;
+  position: absolute;
+  margin-left: 905px;
+  top: 120px;
+}
+
 
 .settingsPPButton:focus {
   outline-style: none;
@@ -81,18 +134,20 @@
   margin-top: 20px;
 }
 
-.settingsPPInput {
+/* .settingsPPInput {
   width: 30%;
-}
+} */
 
-.settingsForm > input {
+/* .settingsForm > input {
   color: gray;
   margin-top: 0px;
   margin-bottom: 10px;
-  height: 30px;
+  height: 10px;
   border: none;
   border-bottom: 1px solid lightgray;
-}
+} */
+
+
 
 .settingsSubmitButton {
   align-self: center;
@@ -121,4 +176,43 @@
   border-radius: 8px;
   display: flex;
   align-items: center;
+}
+
+.infoForm{
+  width:200px;
+}
+
+/* textinput */
+
+textInput {
+  width: 100%;
+  height: 70px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  padding: 2px;
+  margin-bottom: 20px;
+}
+
+textInput input {
+  border: none;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem 0.9rem;
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+textInput span {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
