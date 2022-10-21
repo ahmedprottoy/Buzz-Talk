@@ -50,17 +50,17 @@ export default function UpdateProfileImage() {
 
   return (
     <>
-      <span className={classes.settingsTitleUpdate}>Update Your Images</span>
+      
 
       <form className={classes.settingsForm} onSubmit={updateImages}>
         <div className={classes.settingsPP}>
-          <img src={`http://localhost:3003/auth/images/${coverImage}`} alt="" />
-          <label htmlFor="fileInput">
-            <span className={classes.PPtext}>
+          <img src={`http://localhost:3003/auth/images/${coverImage}`} alt="" className={classes.settingsCoverImg} />
+          <label htmlFor="fileInput" className={classes.cameraIconCover}>
+            {/* <span className={classes.PPtext}>
               Click to Choose new Cover Picture
-            </span>
+            </span> */}
 
-            <CameraAlt className={classes.settingsPPIcon} />
+            <CameraAlt className={classes.settingsPPIconCover} />
           </label>
 
           <input
@@ -71,7 +71,7 @@ export default function UpdateProfileImage() {
             onChange={handleInputChange}
           />
           <button className={classes.settingsSubmitButton} type="submit">
-            Update Profile Picture
+            Update cover Picture
           </button>
         </div>
       </form>

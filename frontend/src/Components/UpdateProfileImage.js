@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "../Styles/settings.module.css";
-import { CameraAlt } from "@material-ui/icons";
+import { CameraAlt}  from "@material-ui/icons";
 import axios from "axios";
 
 export default function UpdateProfileImage() {
@@ -51,14 +51,13 @@ export default function UpdateProfileImage() {
   return (
     <form className={classes.settingsForm} onSubmit={updateImages}>
       <div className={classes.settingsPP}>
-        <img src={`http://localhost:3003/auth/images/${profileImage}`} alt="" />
-        <label htmlFor="fileInput">
-          <span className={classes.PPtext}>
-            Click to Choose new Profile Picture
-          </span>
+        <img src={`http://localhost:3003/auth/images/${profileImage}`} alt="" className={classes.settingsProfileImg} />
+        <label htmlFor="fileInput" className={classes.cameraIconProfile}>
 
-          <CameraAlt className={classes.settingsPPIcon} />
+
+          <CameraAlt style={{ color: "green" }}  className={classes.settingsPPIconProfile}/>
         </label>
+        
 
         <input
           id="fileInput"

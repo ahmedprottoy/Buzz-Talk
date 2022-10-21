@@ -72,6 +72,7 @@ export default function UpdateInfo() {
                 </span>
               </div>
 
+              <div classname={classes.infoForm}>
               <form className={classes.settingsForm} onSubmit={updateProfile}>
                 <label>Username</label>
                 <TextInput
@@ -145,6 +146,8 @@ export default function UpdateInfo() {
                   Update Profile
                 </button>
               </form>
+
+              </div>
 
               {error && <p className={classes.error}>{error}</p>}
               {status && <p className={classes.error}>{status}</p>}
