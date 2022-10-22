@@ -50,13 +50,6 @@
   position: relative;
 }
 
-/* .settingsPP > img {
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-} */
-
 .settingsCoverImg {
   width: 100%;
   height: 250px;
@@ -76,97 +69,75 @@
   border: 3px solid white;
 }
 
-
-
-.settingsPPIconProfile {
-  width: 30px;
-  height: auto;
-  padding: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-radius: 50%;
-  /* margin-left: 950px; */
+.cameraIconProfile {
+  display: block;
+  padding: 9px;
+  position: absolute;
   background-color: rgb(168, 200, 241);
-  cursor: pointer;
-  top: -30px;
-}
-
-.settingsPPIconCover {
-  width: 30px;
-  height: auto;
-  padding: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
   border-radius: 50%;
-  /* margin-left: 1700px; */
-  color: white;
-  background-color:   rgb(168, 200, 241);
-  cursor: pointer;
+  margin-left: 51.5%;
+  top: 70%;
 }
 
 .cameraIconCover {
   display: block;
+  padding: 9px;
   position: absolute;
-  margin-left: 1690px;
+  background-color: rgb(168, 200, 241);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 94%;
+  top: 10%;
 }
-
-.cameraIconProfile {
-  display: block;
-  position: absolute;
-  margin-left: 905px;
-  top: 120px;
-}
-
 
 .settingsPPButton:focus {
   outline-style: none;
 }
 
 .settingsForm > label {
-  font-size: 20px;
-  margin-top: 20px;
+  font-size: 26px;
+  margin: 20px 0 10px 0;
 }
 .settingsForm {
   margin-top: 20px;
 }
 
-/* .settingsPPInput {
-  width: 30%;
-} */
-
-/* .settingsForm > input {
-  color: gray;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  height: 10px;
-  border: none;
-  border-bottom: 1px solid lightgray;
-} */
-
-
-
 .settingsSubmitButton {
-  align-self: center;
-  width: 300px;
+  display: block;
+  padding: 8px;
   border: none;
-  border-radius: 10px;
-  color: white;
-  background-color: #573eff;
-  padding: 20px;
-  /* margin-top: -40px; */
-  margin-left: 40px;
+  position: absolute;
+  background-color: rgb(168, 200, 241);
+  border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 53.7%;
+  top: 70%;
+}
+
+.settingsSubmitButtonCover {
+  display: block;
+  padding: 8px;
+  border: none;
+  position: absolute;
+  background-color: rgb(168, 200, 241);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 97%;
+  top: 10%;
 }
 
 .settingsSubmitButton:hover {
-  background-color: #3b2b9d;
+  background-color: #5bbde7;
+}
+.cameraIconProfile:hover {
+  background-color: #5bbde7;
+}
+
+.cameraIconCover:hover {
+  background-color: #5bbde7;
+}
+.settingsSubmitButtonCover:hover {
+  background-color: #5bbde7;
 }
 
 .error {
@@ -178,8 +149,8 @@
   align-items: center;
 }
 
-.infoForm{
-  width:200px;
+.infoForm {
+  width: 200px;
 }
 
 /* textinput */
