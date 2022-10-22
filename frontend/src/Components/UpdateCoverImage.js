@@ -50,16 +50,14 @@ export default function UpdateProfileImage() {
 
   return (
     <>
-      
-
       <form className={classes.settingsForm} onSubmit={updateImages}>
         <div className={classes.settingsPP}>
-          <img src={`http://localhost:3003/auth/images/${coverImage}`} alt="" className={classes.settingsCoverImg} />
+          <img
+            src={`http://localhost:3003/auth/images/${coverImage}`}
+            alt=""
+            className={classes.settingsCoverImg}
+          />
           <label htmlFor="fileInput" className={classes.cameraIconCover}>
-            {/* <span className={classes.PPtext}>
-              Click to Choose new Cover Picture
-            </span> */}
-
             <CameraAlt className={classes.settingsPPIconCover} />
           </label>
 

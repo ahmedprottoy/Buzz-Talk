@@ -77,12 +77,11 @@ followHandler.isFollowing = (req, res, next) => {
 //whom i follow
 followHandler.getFollowing = (req, res, next) => {
   const userID = req.user.id;
-  const searchQuery = `select userName, firstName, lastName, email, profileImgId
+  const searchQuery = `select userbios.userId as userId,  userName, firstName, lastName, email, profileImgId
     from socialmedia.userbios,(select *
     from socialmedia.userinfo
     where userinfo.userID in  (select userID from socialmedia.follower_table where followerID =?)) as tb
     where userbios.userId = tb.userID`;
-
   db.query(searchQuery, [userID], (err, results) => {
     if (err) {
       next(err);

@@ -141,12 +141,13 @@ postHandler.followingUserPost = (req, res, next) => {
   const searchQuery = `SELECT userName as Author , postDet , imgID , likenumber , date_time , profileImgId
     from socialmedia.userinfo , socialmedia.post_table ,socialmedia.userbios
     where userinfo.userID = post_table.userID and userinfo.userID = userbios.userId and post_table.userID in (select userId from socialmedia.follower_table where followerID = ? );`;
-
+  //console.log("dhukse");
   db.query(searchQuery, [userID], (err, results) => {
     if (err) {
       next(err);
     } else {
       res.status(200).json(results);
+      //console.log(results);
     }
   });
 };

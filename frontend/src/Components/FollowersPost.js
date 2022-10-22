@@ -18,6 +18,7 @@ export default function FollowersPost() {
         const allMyPost = response.data;
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
         setFollowerPost(allMyPost);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

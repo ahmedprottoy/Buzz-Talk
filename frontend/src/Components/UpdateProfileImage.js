@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "../Styles/settings.module.css";
-import { CameraAlt}  from "@material-ui/icons";
+import { CameraAlt } from "@material-ui/icons";
 import axios from "axios";
 
 export default function UpdateProfileImage() {
@@ -30,6 +30,7 @@ export default function UpdateProfileImage() {
   });
 
   const handleInputChange = (event) => {
+    console.log("handleInputChange");
     setUpdatedImage({
       ...updatedImage,
       file: event.target.files[0],
@@ -38,38 +39,49 @@ export default function UpdateProfileImage() {
 
   const updateImages = (e) => {
     e.preventDefault();
+    console.log("updateImages");
     const formData = new FormData();
+
     formData.append("profile", updatedImage.file);
-    console.log(formData);
+
     axios
-      .put("http://localhost:3003/auth/profileimg", formData, configure)
+      .post("http://localhost:3003/auth/profileimg", formData, configure)
       .then((response) => {
         console.log(response);
       });
   };
 
   return (
-    <form className={classes.settingsForm} onSubmit={updateImages}>
-      <div className={classes.settingsPP}>
-        <img src={`http://localhost:3003/auth/images/${profileImage}`} alt="" className={classes.settingsProfileImg} />
+    // <form
+    //   className={classes.settingsForm}
+    //   onSubmit={() => {
+    //     updateImages();
+    //   }}
+    // >
+    <div className={classes.settingsPP}>
+      <img
+        src={`http://localhost:3003/auth/images/${profileImage}`}
+        alt=""
+        className={classes.settingsProfileImg}
+      />
+      <div>
         <label htmlFor="fileInput" className={classes.cameraIconProfile}>
-
-
-          <CameraAlt style={{ color: "green" }}  className={classes.settingsPPIconProfile}/>
+          <CameraAlt className={classes.settingsPPIconProfile} />
+          <input
+            id="file"
+            type="file"
+            name="file"
+            accepts="image/*"
+            // style={{ display: "none" }}
+            className={classes.settingsPPInput}
+            onChange={handleInputChange}
+          />
         </label>
-        
-
-        <input
-          id="fileInput"
-          type="file"
-          style={{ display: "none" }}
-          className={classes.settingsPPInput}
-          onChange={handleInputChange}
-        />
-        <button className={classes.settingsSubmitButton} type="submit">
-          Update Profile Picture
-        </button>
       </div>
-    </form>
+      <button className={classes.settingsSubmitButton} onClick={updateImages}>
+        Update Profile Picture
+      </button>
+    </div>
+    // </form>
   );
 }

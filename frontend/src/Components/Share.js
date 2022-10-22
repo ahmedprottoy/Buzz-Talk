@@ -52,6 +52,9 @@ export default function Share() {
   };
 
   const handleInputChange = (event) => {
+    console.log(
+      ".h..........N...............GEGEEGEG.EG............................G"
+    );
     setImage({
       ...image,
       file: event.target.files[0],
@@ -78,14 +81,7 @@ export default function Share() {
           src={`http://localhost:3003/auth/images/${profileImage}`}
           alt=""
         />
-        {/* <textarea
-          type="text"
-          placeholder="What's in your mind?"
-          className={classes.shareInput}
-          autoComplete="off"
-          name="postDet"
-          onChange={handleChange}
-        /> */}
+
         <div className={classes.textEditor}>
           <EditorContent editor={editor} />
         </div>

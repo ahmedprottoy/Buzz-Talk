@@ -11,6 +11,7 @@ export default function FollowerProfile() {
   const location = useLocation();
   const followerID = location.state.id;
   const [following, setFollowing] = useState("");
+  console.log(location.state);
 
   const [followerInfo, setFollowerInfo] = useState([]);
 

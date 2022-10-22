@@ -46,7 +46,7 @@ router.get("/user/:userId", authentication, userBios.searchProfile);
 //
 //
 //
-router.put(
+router.post(
   "/profileImg",
   authentication,
   fileUpload.upload.single("profile"),
