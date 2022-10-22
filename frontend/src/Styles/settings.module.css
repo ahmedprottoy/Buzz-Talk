@@ -100,6 +100,7 @@
 }
 .settingsForm {
   margin-top: 20px;
+  max-width: 50%;
 }
 
 .settingsSubmitButton {
@@ -110,7 +111,7 @@
   background-color: rgb(168, 200, 241);
   border-radius: 50%;
   cursor: pointer;
-  margin-left: 53.7%;
+  margin-left: 54.5%;
   top: 70%;
 }
 
@@ -125,7 +126,18 @@
   margin-left: 97%;
   top: 10%;
 }
-
+.settingsSubmitButtonInfo {
+  max-width: 30%;
+  padding: 20px;
+  border: none;
+  font-size: 25px;
+  background-color: rgb(168, 200, 241);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.settingsSubmitButtonInfo:hover {
+  background-color: #5bbde7;
+}
 .settingsSubmitButton:hover {
   background-color: #5bbde7;
 }
@@ -151,39 +163,4 @@
 
 .infoForm {
   width: 200px;
-}
-
-/* textinput */
-
-textInput {
-  width: 100%;
-  height: 70px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  margin-bottom: 0px;
-  border-radius: 5px;
-  border: 1px solid #e5e5e5;
-  padding: 2px;
-  margin-bottom: 20px;
-}
-
-textInput input {
-  border: none;
-  outline: none;
-  height: 100%;
-  width: 100%;
-  padding: 0.5rem 0.9rem;
-  background-color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-textInput span {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
 }

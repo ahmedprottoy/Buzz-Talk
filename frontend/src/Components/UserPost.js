@@ -50,8 +50,16 @@ export default function UserPost() {
                   src={`http://localhost:3003/auth/images/${profileImage}`}
                   alt=""
                 />
-                <span className={classes.postUsername}>{Post.Author}</span>
-                <span className={classes.postDate}>{Post.date_time}</span>
+                <div>
+                  <div className={classes.postUsername}>
+                    <b>{Post.Author}</b>
+                  </div>
+
+                  <div className={classes.postDate}>
+                    Posted On {Post.date_time.slice(0, 10)} at{" "}
+                    {Post.date_time.slice(11, 16)}
+                  </div>
+                </div>
               </div>
               <div className={classes.postTopRight}>
                 <MoreVert />

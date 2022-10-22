@@ -52,9 +52,6 @@ export default function Share() {
   };
 
   const handleInputChange = (event) => {
-    console.log(
-      ".h..........N...............GEGEEGEG.EG............................G"
-    );
     setImage({
       ...image,
       file: event.target.files[0],

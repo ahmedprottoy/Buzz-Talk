@@ -73,80 +73,82 @@ export default function UpdateInfo() {
               </div>
 
               <div classname={classes.infoForm}>
-              <form className={classes.settingsForm} onSubmit={updateProfile}>
-                <label>Username</label>
-                <TextInput
-                  type="text"
-                  defaultValue={user.userName}
-                  name="userName"
-                  onChange={handleChange}
-                />
+                <form className={classes.settingsForm} onSubmit={updateProfile}>
+                  <label>Username</label>
+                  <TextInput
+                    type="text"
+                    defaultValue={user.userName}
+                    name="userName"
+                    onChange={handleChange}
+                  />
 
-                <label>First Name</label>
-                <TextInput
-                  type="text"
-                  defaultValue={user.firstName}
-                  name="firstName"
-                  onChange={handleChange}
-                />
+                  <label>First Name</label>
+                  <TextInput
+                    type="text"
+                    defaultValue={user.firstName}
+                    name="firstName"
+                    onChange={handleChange}
+                  />
 
-                <label>Last Name</label>
-                <TextInput
-                  type="text"
-                  defaultValue={user.lastName}
-                  name="lastName"
-                  onChange={handleChange}
-                />
+                  <label>Last Name</label>
+                  <TextInput
+                    type="text"
+                    defaultValue={user.lastName}
+                    name="lastName"
+                    onChange={handleChange}
+                  />
 
-                <label>Email</label>
-                <TextInput
-                  type="email"
-                  defaultValue={user.email}
-                  name="email"
-                  onChange={handleChange}
-                />
+                  <label>Email</label>
+                  <TextInput
+                    type="email"
+                    defaultValue={user.email}
+                    name="email"
+                    onChange={handleChange}
+                  />
 
-                <label>Location</label>
-                <TextInput
-                  type="text"
-                  defaultValue={user.location}
-                  name="location"
-                  onChange={handleChange}
-                />
+                  <label>Location</label>
+                  <TextInput
+                    type="text"
+                    defaultValue={user.location}
+                    name="location"
+                    onChange={handleChange}
+                  />
 
-                <label>Profession</label>
-                <TextInput
-                  type="text"
-                  defaultValue={user.profession}
-                  name="profession"
-                  onChange={handleChange}
-                />
-                <label>Religion</label>
-                <TextInput
-                  type="text"
-                  defaultValue={user.religion}
-                  name="religion"
-                  onChange={handleChange}
-                />
+                  <label>Profession</label>
+                  <TextInput
+                    type="text"
+                    defaultValue={user.profession}
+                    name="profession"
+                    onChange={handleChange}
+                  />
+                  <label>Religion</label>
+                  <TextInput
+                    type="text"
+                    defaultValue={user.religion}
+                    name="religion"
+                    onChange={handleChange}
+                  />
 
-                <label>Password</label>
-                <TextInput
-                  type="password"
-                  placeholder="New Password...."
-                  name="password"
-                  onChange={handleChange}
-                />
-                <TextInput
-                  type="password"
-                  placeholder="Confirm New Password...."
-                  name="confirmPassword"
-                  onChange={handleChange}
-                />
-                <button className={classes.settingsSubmitButton} type="submit">
-                  Update Profile
-                </button>
-              </form>
-
+                  <label>Password</label>
+                  <TextInput
+                    type="password"
+                    placeholder="New Password...."
+                    name="password"
+                    onChange={handleChange}
+                  />
+                  <TextInput
+                    type="password"
+                    placeholder="Confirm New Password...."
+                    name="confirmPassword"
+                    onChange={handleChange}
+                  />
+                  <button
+                    className={classes.settingsSubmitButtonInfo}
+                    type="submit"
+                  >
+                    Update Profile
+                  </button>
+                </form>
               </div>
 
               {error && <p className={classes.error}>{error}</p>}
