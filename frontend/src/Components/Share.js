@@ -6,6 +6,7 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
 import "../Styles/editor.scss";
+import { useNavigate } from "react-router-dom";
 
 // import config from "../config";
 
@@ -14,6 +15,7 @@ export default function Share() {
   const [image, setImage] = useState({
     file: [],
   });
+  const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState("");
 
   const editor = useEditor({
@@ -47,7 +49,11 @@ export default function Share() {
     axios
       .get("http://localhost:3003/auth/getImages", configure)
       .then((response) => {
-        setProfileImage(response.data[0].profileImgId);
+        if (response.data[0].profileImgId != "null") {
+          setProfileImage(response.data[0].profileImgId);
+        } else {
+          setProfileImage("avatar.png");
+        }
       });
   };
 
@@ -68,6 +74,9 @@ export default function Share() {
       .then((response) => {
         console.log(response);
       });
+    setTimeout(() => {
+      navigate("/Profile");
+    }, 1400);
   };
 
   return (

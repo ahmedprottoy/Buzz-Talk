@@ -35,9 +35,22 @@ exports.signUp = async (req, res) => {
       else {
         db.query(insertQuery, async (err, result) => {
           if (err) throw err;
-
-          console.log("---New User Created---");
-          res.json({ msg: "A New User Has Been Created" });
+          const searchQuery = `select userID from socialmedia.userinfo where userName = ?;`;
+          db.query(searchQuery, [userName], (err2, result) => {
+            if (err2) {
+              throw err2;
+            } else {
+              const userId = result[0].userID;
+              const insertQuery2 = `insert into socialmedia.userbios(userId) values(?);`;
+              db.query(insertQuery2, [userId], (err3, result) => {
+                if (err3) throw err3;
+                else {
+                  console.log("---New User Created---");
+                  res.json({ msg: "A New User Has Been Created" });
+                }
+              });
+            }
+          });
         });
       }
     });

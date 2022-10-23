@@ -105,7 +105,7 @@ postHandler.getUsersPost = (req, res, next) => {
 
 postHandler.getOwnPost = (req, res, next) => {
   const userID = req.user.id;
-  const searchQuery = `SELECT userName as Author , postDet , imgID , likenumber , date_time
+  const searchQuery = `SELECT userName as Author ,postId, postDet , imgID , likenumber , date_time
     from socialmedia.userinfo , socialmedia.post_table
     where userinfo.userID = post_table.userID and post_table.userID = ? ;`;
 
@@ -147,13 +147,8 @@ postHandler.followingUserPost = (req, res, next) => {
       next(err);
     } else {
       res.status(200).json(results);
-      //console.log(results);
     }
   });
 };
 
 module.exports = postHandler;
-
-// SELECT userName as Author , postDet , imgID , likenumber , date_time
-//     from socialmedia.userinfo , socialmedia.post_table
-//     where userinfo.userID = post_table.userID and post_table.userId = 6 ;

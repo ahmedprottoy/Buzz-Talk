@@ -5,10 +5,11 @@ import classes from "../Styles/settings.module.css";
 import TextInput from "./TextInput";
 import axios from "axios";
 import config from "../config";
+import { useNavigate } from "react-router-dom";
 
 export default function UpdateInfo() {
   const [userInfo, setUserInfo] = useState([]);
-
+  const navigate = useNavigate();
   const [updatedInfo, setUpdatedInfo] = useState({
     userName: "",
     firstName: "",
@@ -47,7 +48,7 @@ export default function UpdateInfo() {
 
   const updateProfile = (e) => {
     e.preventDefault();
-
+    setError("");
     if (updatedInfo.password !== updatedInfo.confirmPassword) {
       setError("Password Didn't match...");
     } else {
@@ -56,6 +57,9 @@ export default function UpdateInfo() {
         .then((response) => {
           setStatus(response.data.msg);
         });
+      setTimeout(() => {
+        navigate("/Profile");
+      }, 1400);
     }
   };
 
@@ -152,7 +156,7 @@ export default function UpdateInfo() {
               </div>
 
               {error && <p className={classes.error}>{error}</p>}
-              {status && <p className={classes.error}>{status}</p>}
+              {status && <p className={classes.status}>{status}</p>}
             </div>
             {/* <Sidebar /> */}
           </div>

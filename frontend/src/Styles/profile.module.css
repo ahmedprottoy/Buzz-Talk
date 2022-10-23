@@ -72,7 +72,7 @@
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  margin: 0 0 0;
+  margin: 2.6% 0 0 0;
   padding: 20px;
   box-sizing: border-box;
   background-color: #f2f4f8;
@@ -172,4 +172,22 @@
   cursor: pointer;
   border-bottom: 1px dashed blueviolet;
   font-size: 15px;
+}
+.profileButton {
+  display: flex;
+  justify-content: center;
+}
+.FollowingButton {
+  max-width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  border: none;
+  font-size: 20px;
+  background-color: rgb(168, 200, 241);
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.FollowingButton:hover {
+  background-color: #5bbde7;
 }

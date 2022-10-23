@@ -160,6 +160,14 @@
   display: flex;
   align-items: center;
 }
+.status {
+  background-color: #86f3fa;
+  padding: 0.6rem 1.2rem;
+  margin: 15px 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
 
 .infoForm {
   width: 200px;

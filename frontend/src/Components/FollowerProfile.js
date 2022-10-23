@@ -80,10 +80,11 @@ export default function FollowerProfile() {
               <span className={classes.profileBioItem}>amet</span> */}
             </div>
 
-            <div>
+            <div className={classes.profileButton}>
               {following ? (
                 <>
                   <button
+                    className={classes.FollowingButton}
                     onClick={() => {
                       unfollow(followerID);
                     }}
@@ -100,11 +101,8 @@ export default function FollowerProfile() {
           </div>
           <div className={classes.profileRightBottom}>
             <div className={classes.content}>
-              {/* <UserPost /> */}
               <FollowerProfilePost id={followerID} />
             </div>
-
-            {/* <UserAbout className={classes.aboutWrapper} /> */}
 
             <div className={classes.UserAbout}>
               <h2>About User : </h2>

@@ -14,13 +14,11 @@ export default function Followers() {
       .get("http://localhost:3003/auth/following", config)
       .then((response) => {
         setFollowers(response.data);
-        console.log("here");
-        console.log(response.data);
       });
   }, []);
 
   if (followers) {
-    return followers.map((follower) => {
+    return followers.map((follower, index) => {
       return (
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <a
