@@ -15,7 +15,11 @@ export default function ProfileImages() {
     axios
       .get("http://localhost:3003/auth/getImages", config)
       .then((response) => {
-        setProfileImage(response.data[0].profileImgId);
+        if (response.data[0].profileImgId != "null") {
+          setProfileImage(response.data[0].profileImgId);
+        } else {
+          setProfileImage("avatar.png");
+        }
         setCoverImage(response.data[0].coverImgId);
       });
   };

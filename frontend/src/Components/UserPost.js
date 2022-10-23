@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import config from "../config";
 import axios from "axios";
 import classes from "../Styles/post.module.css";
-import { ThumbUp } from "@material-ui/icons";
-
 import Comments from "./Comments";
-
+import { ThumbUp } from "@material-ui/icons";
+import DropDown from "./DropDown";
+import { useNavigate } from "react-router-dom";
+import EditPost from "./EditPost";
 
 export default function UserPost() {
  
@@ -23,6 +24,7 @@ export default function UserPost() {
      // console.log(commentOpen[index])
   }
 
+  const navigate = useNavigate();
   useEffect(() => {
     getImages();
   }, []);
@@ -45,6 +47,7 @@ export default function UserPost() {
       .then((response) => {
         // console.log(response.data);
         const allMyPost = response.data;
+
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
 
         setMyPost(allMyPost);
@@ -81,8 +84,22 @@ export default function UserPost() {
                   </div>
                 </div>
               </div>
-              <div className={classes.postTopRight}>
-                
+              <div
+                className={classes.postTopRight}
+                //onClick={() => {
+                //  console.log(Post.postId);
+                // }}
+              >
+                <DropDown
+                  ClickEdit={() => {
+                    navigate("/EditPost", {
+                      state: {
+                        id: Post.postId,
+                        postDet: Post.postDet,
+                      },
+                    });
+                  }}
+                />
               </div>
             </div>
             

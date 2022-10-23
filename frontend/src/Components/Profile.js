@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "../Styles/profile.module.css";
 import UserAbout from "./UserAbout";
 import Sidebar from "./Sidebar";
 import config from "../config";
-
-import { AuthContext } from "../Context/AuthContext";
 import Axios from "axios";
 import Share from "./Share";
 import UserPost from "./UserPost";
@@ -12,7 +10,7 @@ import ProfileImages from "./ProfileImages";
 
 export default function Profile() {
   const [info, setInfo] = useState([]);
-
+  console.log("first");
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
@@ -35,12 +33,6 @@ export default function Profile() {
                 {info.firstName} {info.lastName}
               </h4>
               <span className={classes.profileInfoDesc}>{info.userName}</span>
-            </div>
-            <div className={classes.profileBio}>
-              {/* <span className={classes.profileBioItem}>lorem</span>
-              <span className={classes.profileBioItem}>ipsum</span>
-              <span className={classes.profileBioItem}>dolor</span>
-              <span className={classes.profileBioItem}>amet</span> */}
             </div>
           </div>
           <div className={classes.profileRightBottom}>

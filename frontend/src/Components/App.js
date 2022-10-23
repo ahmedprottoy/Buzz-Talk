@@ -6,7 +6,8 @@ import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import Settings from "./Settings";
 import FollowerProfile from "./FollowerProfile";
-import Chat from "./Chat";
+import EditPost from "./EditPost";
+
 // import Profile from "./Profile";
 
 import "../Styles/app.module.css";
@@ -23,8 +24,7 @@ export default function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Settings" element={<Settings />} />
         <Route path="/FollowerProfile" element={<FollowerProfile />} />
-        <Route path="/Chat" element={<Chat />} />
-        
+        <Route path="/EditPost" element={<EditPost />} />
       </Routes>
     </Layout>
   );

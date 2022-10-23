@@ -115,16 +115,6 @@ export default function SignUpFrom() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-
-        <TextInput
-          type="New field"
-          required
-          placeholder="new field"
-          minLength="6"
-          icon="lock_clock"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
         <button
           disabled={loading}
           type="submit"
