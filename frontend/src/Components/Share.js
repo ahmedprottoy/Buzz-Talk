@@ -52,16 +52,15 @@ export default function Share() {
   };
 
   const handleInputChange = (event) => {
-    console.log(
-      ".h..........N...............GEGEEGEG.EG............................G"
-    );
+
     setImage({
       ...image,
       file: event.target.files[0],
     });
   };
 
-  const CreatePost = () => {
+  const CreatePost = (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("image", image.file);
     formData.append("postDet", postDet);

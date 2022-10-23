@@ -2,7 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Followers from "./Followers";
 import classes from "../Styles/sidebar.module.css";
-import { RssFeed, AccountBox, SettingsSharp } from "@material-ui/icons";
+import {
+  RssFeed,
+  AccountBox,
+  SettingsSharp,
+  
+} from "@material-ui/icons";
+import ChatBubbleRoundedIcon from '@material-ui/icons/ChatBubbleRounded';
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -36,6 +42,15 @@ export default function Sidebar() {
         >
           <SettingsSharp className={classes.sidebarIcon} />
           <span className={classes.sidebarListItemText}>Account Settings</span>
+        </li>
+        <li
+          className={classes.sidebarListItem}
+          onClick={() => {
+            navigate("/Chat");
+          }}
+        >
+          <ChatBubbleRoundedIcon className={classes.sidebarIcon} />
+          <span className={classes.sidebarListItemText}>Chat</span>
         </li>
       </ul>
 

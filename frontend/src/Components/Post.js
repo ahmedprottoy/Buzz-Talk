@@ -17,7 +17,7 @@ export default function Post() {
             <span className={classes.postDate}>20 minutes ago</span>
           </div>
           <div className={classes.postTopRight}>
-            <MoreVert />
+            {/* <MoreVert /> */}
           </div>
         </div>
         <div className={classes.postCenter}>

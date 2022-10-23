@@ -52,7 +52,9 @@
   display: flex;
   margin-left: 20px;
 }
-
+label {
+  cursor: pointer;
+}
 .shareOption {
   display: flex;
   align-items: center;

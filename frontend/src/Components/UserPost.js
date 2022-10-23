@@ -2,11 +2,26 @@ import React, { useState, useEffect } from "react";
 import config from "../config";
 import axios from "axios";
 import classes from "../Styles/post.module.css";
-import { MoreVert, ThumbUp } from "@material-ui/icons";
+import { ThumbUp } from "@material-ui/icons";
+
+import Comments from "./Comments";
+
 
 export default function UserPost() {
+ 
+  const [commentOpen, setCommentOpen] = useState([]);
   const [myPost, setMyPost] = useState([]);
   const [profileImage, setProfileImage] = useState("");
+  const [cnt,setCnt]=useState(0);
+  
+  const handleCommentOpen = (evnt, index) => {
+     //if(!commentOpen[index])
+     console.log("handle comment")
+      const commentStatus = commentOpen;
+      commentStatus[index] = !commentStatus[index];
+      setCommentOpen(commentStatus);
+     // console.log(commentOpen[index])
+  }
 
   useEffect(() => {
     getImages();
@@ -20,23 +35,28 @@ export default function UserPost() {
       });
   };
 
-  useEffect(() => {
+ useEffect(() => {
     getAllMyPost();
-  }, []);
+  },[]);
 
   const getAllMyPost = () => {
     axios
       .get("http://localhost:3003/auth/getOwnPost", config)
       .then((response) => {
+        // console.log(response.data);
         const allMyPost = response.data;
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
 
         setMyPost(allMyPost);
+
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+
+  
 
   if (myPost) {
     return myPost.map((Post, index) => {
@@ -54,9 +74,10 @@ export default function UserPost() {
                 <span className={classes.postDate}>{Post.date_time}</span>
               </div>
               <div className={classes.postTopRight}>
-                <MoreVert />
+                
               </div>
             </div>
+            
             <div className={classes.postCenter}>
               <span className={classes.postText}>
                 <div dangerouslySetInnerHTML={{ __html: Post.postDet }} />
@@ -76,9 +97,18 @@ export default function UserPost() {
                 </span>
               </div>
               <div className={classes.postBottomRight}>
-                <span className={classes.postCommentText}>32 comments</span>
+                <span className={classes.postCommentText} onClick={(evnt)=>{
+                  
+                  handleCommentOpen(evnt, index)
+                  setCnt(cnt+1);
+
+                  
+                }}>comments</span>
               </div>
             </div>
+          
+            {  commentOpen[index] && <Comments postId={myPost[index].postId}/>}
+            
           </div>
         </div>
       );

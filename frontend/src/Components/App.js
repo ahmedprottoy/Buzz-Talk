@@ -6,11 +6,12 @@ import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import Settings from "./Settings";
 import FollowerProfile from "./FollowerProfile";
-
+import Chat from "./Chat";
 // import Profile from "./Profile";
 
 import "../Styles/app.module.css";
 import { Routes, Route } from "react-router-dom";
+
 
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Settings" element={<Settings />} />
         <Route path="/FollowerProfile" element={<FollowerProfile />} />
+        <Route path="/Chat" element={<Chat />} />
+        
       </Routes>
     </Layout>
   );

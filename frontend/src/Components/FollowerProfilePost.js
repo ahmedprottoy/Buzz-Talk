@@ -55,7 +55,7 @@ export default function FollowerProfilePost(id) {
                 </span>
               </div>
               <div className={classes.postBottomRight}>
-                <span className={classes.postCommentText}>32 comments</span>
+                <span className={classes.postCommentText}>comments</span>
               </div>
             </div>
           </div>

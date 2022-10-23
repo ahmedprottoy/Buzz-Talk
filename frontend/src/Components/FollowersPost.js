@@ -2,10 +2,19 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import config from "../config";
 import classes from "../Styles/post.module.css";
-import { MoreVert, ThumbUp } from "@material-ui/icons";
+import { ThumbUp } from "@material-ui/icons";
+import Comments from "./Comments";
 
 export default function FollowersPost() {
   const [followerPost, setFollowerPost] = useState([]);
+  const[commentOpen,setCommentOpen]=useState([]);
+  const [cnt,setCnt]=useState(0);
+
+  const handleCommentOpen = (evnt, index) => {
+    const commentStatus = commentOpen;
+    commentStatus[index] = !commentStatus[index];
+    setCommentOpen(commentStatus);
+  }
 
   useEffect(() => {
     getFollowerPost();
@@ -24,6 +33,8 @@ export default function FollowersPost() {
         console.log(error);
       });
   };
+
+  console.log(followerPost);
 
   if (followerPost) {
     return followerPost.map((Post, index) => {
@@ -44,9 +55,7 @@ export default function FollowersPost() {
 
                 <span className={classes.postDate}>{Post.date_time}</span>
               </div>
-              <div className={classes.postTopRight}>
-                <MoreVert />
-              </div>
+
             </div>
             <div className={classes.postCenter}>
               <span className={classes.postText}>
@@ -66,9 +75,15 @@ export default function FollowersPost() {
                 </span>
               </div>
               <div className={classes.postBottomRight}>
-                <span className={classes.postCommentText}>32 comments</span>
+                <span className={classes.postCommentText} onClick={
+                  (evnt)=>{
+                    handleCommentOpen(evnt, index)
+                    setCnt(cnt+1);
+                  }
+                }>comments</span>
               </div>
             </div>
+            {commentOpen[index] && <Comments postId={followerPost[index].postId}/>}
           </div>
         </div>
       );

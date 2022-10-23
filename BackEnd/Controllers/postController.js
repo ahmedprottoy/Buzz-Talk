@@ -105,9 +105,10 @@ postHandler.getUsersPost = (req, res, next) => {
 
 postHandler.getOwnPost = (req, res, next) => {
   const userID = req.user.id;
-  const searchQuery = `SELECT userName as Author , postDet , imgID , likenumber , date_time
+  const searchQuery = `SELECT postId,userName as Author , postDet , imgID , likenumber , date_time
     from socialmedia.userinfo , socialmedia.post_table
     where userinfo.userID = post_table.userID and post_table.userID = ? ;`;
+    console.log("test")
 
   db.query(searchQuery, [userID], (err, results) => {
     if (err) {
@@ -138,7 +139,7 @@ postHandler.deletePost = (req, res, next) => {
 
 postHandler.followingUserPost = (req, res, next) => {
   const userID = req.user.id;
-  const searchQuery = `SELECT userName as Author , postDet , imgID , likenumber , date_time , profileImgId
+  const searchQuery = `SELECT userName as Author , postId,postDet , imgID , likenumber , date_time , profileImgId
     from socialmedia.userinfo , socialmedia.post_table ,socialmedia.userbios
     where userinfo.userID = post_table.userID and userinfo.userID = userbios.userId and post_table.userID in (select userId from socialmedia.follower_table where followerID = ? );`;
   //console.log("dhukse");

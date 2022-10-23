@@ -38,6 +38,13 @@
   font-size: 12px;
 }
 
+.dropDownButton {
+  color: black;
+  border: none;
+  outline: none;
+}
+
+
 .postCenter {
   margin: 20px 0;
 }
