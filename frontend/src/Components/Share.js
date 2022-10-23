@@ -52,7 +52,6 @@ export default function Share() {
   };
 
   const handleInputChange = (event) => {
-
     setImage({
       ...image,
       file: event.target.files[0],

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import classes from "../Styles/settings.module.css";
-import { CameraAlt } from "@material-ui/icons";
 import axios from "axios";
+import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
+import CloudDoneOutlinedIcon from "@mui/icons-material/CloudDoneOutlined";
 
 export default function UpdateProfileImage() {
   const [coverImage, setCoverImage] = useState("");
-
+  const [count, setCount] = useState();
   const configure = {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -15,7 +16,7 @@ export default function UpdateProfileImage() {
 
   useEffect(() => {
     getImages();
-  }, []);
+  }, [count]);
 
   const getImages = () => {
     axios
@@ -44,35 +45,42 @@ export default function UpdateProfileImage() {
     axios
       .put("http://localhost:3003/auth/coverImg", formData, configure)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        setCount(response.data.message);
       });
   };
 
   return (
     <>
-      <form className={classes.settingsForm} onSubmit={updateImages}>
-        <div className={classes.settingsPP}>
-          <img
-            src={`http://localhost:3003/auth/images/${coverImage}`}
-            alt=""
-            className={classes.settingsCoverImg}
-          />
-          <label htmlFor="fileInput" className={classes.cameraIconCover}>
-            <CameraAlt className={classes.settingsPPIconCover} />
+      <div className={classes.settingsPP}>
+        <img
+          src={`http://localhost:3003/auth/images/${coverImage}`}
+          alt=""
+          className={classes.settingsCoverImg}
+        />
+
+        <div className={classes.cameraIconCover}>
+          <label htmlFor="file1">
+            <AddAPhotoOutlinedIcon sx={{ fontSize: 30, cursor: "pointer" }} />
           </label>
 
           <input
-            id="fileInput"
+            id="file1"
             type="file"
+            name="file"
+            accepts="image/*"
             style={{ display: "none" }}
-            className={classes.settingsPPInput}
             onChange={handleInputChange}
           />
-          <button className={classes.settingsSubmitButton} type="submit">
-            Update cover Picture
-          </button>
         </div>
-      </form>
+
+        <button
+          className={classes.settingsSubmitButtonCover}
+          onClick={updateImages}
+        >
+          <CloudDoneOutlinedIcon sx={{ fontSize: 30 }} />
+        </button>
+      </div>
     </>
   );
 }

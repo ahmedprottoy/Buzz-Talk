@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import classes from "../Styles/settings.module.css";
-import { CameraAlt } from "@material-ui/icons";
 import axios from "axios";
+import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
+import CloudDoneOutlinedIcon from "@mui/icons-material/CloudDoneOutlined";
 
 export default function UpdateProfileImage() {
   const [profileImage, setProfileImage] = useState("");
+  const [count, setCount] = useState();
 
   const configure = {
     headers: {
@@ -15,7 +17,7 @@ export default function UpdateProfileImage() {
 
   useEffect(() => {
     getImages();
-  }, []);
+  }, [count]);
 
   const getImages = () => {
     axios
@@ -30,7 +32,7 @@ export default function UpdateProfileImage() {
   });
 
   const handleInputChange = (event) => {
-    console.log("handleInputChange");
+    console.log("handle");
     setUpdatedImage({
       ...updatedImage,
       file: event.target.files[0],
@@ -47,41 +49,35 @@ export default function UpdateProfileImage() {
     axios
       .post("http://localhost:3003/auth/profileimg", formData, configure)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        setCount(response.data.message);
       });
   };
 
   return (
-    // <form
-    //   className={classes.settingsForm}
-    //   onSubmit={() => {
-    //     updateImages();
-    //   }}
-    // >
     <div className={classes.settingsPP}>
       <img
         src={`http://localhost:3003/auth/images/${profileImage}`}
         alt=""
         className={classes.settingsProfileImg}
       />
-      <div>
-        <label htmlFor="fileInput" className={classes.cameraIconProfile}>
-          <CameraAlt className={classes.settingsPPIconProfile} />
-          <input
-            id="file"
-            type="file"
-            name="file"
-            accepts="image/*"
-            // style={{ display: "none" }}
-            className={classes.settingsPPInput}
-            onChange={handleInputChange}
-          />
+      <div className={classes.cameraIconProfile}>
+        <label htmlFor="file">
+          <AddAPhotoOutlinedIcon sx={{ fontSize: 30, cursor: "pointer" }} />
         </label>
+        <input
+          id="file"
+          type="file"
+          name="file"
+          accepts="image/*"
+          multiple
+          style={{ display: "none" }}
+          onChange={handleInputChange}
+        />
       </div>
       <button className={classes.settingsSubmitButton} onClick={updateImages}>
-        Update Profile Picture
+        <CloudDoneOutlinedIcon sx={{ fontSize: 30 }} />
       </button>
     </div>
-    // </form>
   );
 }

@@ -18,7 +18,6 @@
 
 .postTopLeft {
   display: flex;
-  align-items: center;
 }
 
 .postProfileImg {
@@ -36,6 +35,7 @@
 
 .postDate {
   font-size: 12px;
+  margin: 10px 10px;
 }
 
 .dropDownButton {
