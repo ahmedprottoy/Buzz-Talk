@@ -40,6 +40,7 @@ followHandler.getFollower = (req, res, next) => {
 
 followHandler.getFollowerProfile = (req, res, next) => {
   const userID = req.params.userId;
+
   const searchQuery = `select userName, firstName, lastName,profileImgId,coverImgId,location,profession,religion
     from socialmedia.userbios,socialmedia.userinfo 
     where userbios.userId = userInfo.userID and

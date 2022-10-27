@@ -1,6 +1,7 @@
 const db = require("../config/db");
 
 const update = {};
+let cnt = 0;
 
 update.profileImg = (req, res, next) => {
   console.log(req.body);
@@ -12,8 +13,9 @@ update.profileImg = (req, res, next) => {
     if (err) {
       next(err);
     } else {
+      cnt = cnt+1;
       res.status(200).json({
-        message: "You have successfully updated your profile picture",
+        message: cnt,
       });
     }
   });

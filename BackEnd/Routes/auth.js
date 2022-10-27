@@ -7,7 +7,8 @@ const imgUpdate = require("../Controllers/imageController");
 const followHandler = require("../Controllers/followController");
 const postHandler = require("../Controllers/postController");
 const searchHandler = require("../Controllers/searchController");
-const commentHandler = require("../Controllers/commentController")
+const commentHandler = require("../Controllers/commentController");
+const chatHandler = require("../Controllers/chatController");
 
 const router = express.Router();
 //
@@ -108,6 +109,9 @@ router.get("/search/user/post", authentication, searchHandler.userPostSearch);
 router.get("/search/post", authentication, searchHandler.postSearch);
 router.post("/comment/:postID",authentication,fileUpload.upload.single("commentImg"),commentHandler.postComment);
 router.get("/comment/:postID", authentication, commentHandler.getComment);
+router.get("/getconvo",authentication,chatHandler.getConversations);
+router.post("/getconvo/:userID",authentication,chatHandler.createConversation);
+router.get("/getmessage/:userID",authentication,chatHandler.getMessages);
 
 router.use("/images", express.static("images"));
 
