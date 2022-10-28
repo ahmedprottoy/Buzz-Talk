@@ -23,7 +23,11 @@ export default function UpdateProfileImage() {
     axios
       .get("http://localhost:3003/auth/getImages", configure)
       .then((response) => {
-        setProfileImage(response.data[0].profileImgId);
+        if (response.data[0].profileImgId !== "null") {
+          setProfileImage(response.data[0].profileImgId);
+        } else {
+          setProfileImage("avatar.png");
+        }
       });
   };
 

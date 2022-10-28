@@ -3,6 +3,7 @@ const db = require("../config/db");
 const followHandler = {};
 
 followHandler.startFollow = (req, res, next) => {
+  console.log("object");
   const followerID = req.user.id;
   const userID = req.params.userID;
   const insertQuery =
@@ -65,7 +66,7 @@ followHandler.isFollowing = (req, res, next) => {
 
   const searchQuery2 = `Select * from socialmedia.follower_table where userID=? and followerID=? `;
 
-  db.query(searchQuery2, [userID, followerID], (err, results) => {
+  db.query(searchQuery2, [followerID, userID], (err, results) => {
     if (results.length != 0) {
       isFollowing = true;
     }

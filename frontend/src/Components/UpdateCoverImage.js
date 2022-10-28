@@ -22,7 +22,11 @@ export default function UpdateProfileImage() {
     axios
       .get("http://localhost:3003/auth/getImages", configure)
       .then((response) => {
-        setCoverImage(response.data[0].coverImgId);
+        if (response.data[0].coverImgId !== "null") {
+          setCoverImage(response.data[0].coverImgId);
+        } else {
+          setCoverImage("cover.jpg");
+        }
       });
   };
 

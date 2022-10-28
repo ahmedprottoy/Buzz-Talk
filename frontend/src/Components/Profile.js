@@ -10,7 +10,6 @@ import ProfileImages from "./ProfileImages";
 
 export default function Profile() {
   const [info, setInfo] = useState([]);
-  console.log("first");
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
@@ -24,7 +23,9 @@ export default function Profile() {
   return (
     <>
       <div className={classes.profile}>
-        <Sidebar />
+        <div className={classes.side}>
+          <Sidebar />
+        </div>
         <div className={classes.profileRight}>
           <div className={classes.profileRightTop}>
             <ProfileImages />

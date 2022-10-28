@@ -11,7 +11,6 @@ export default function FollowerProfile() {
   const location = useLocation();
   const followerID = location.state.id;
   const [following, setFollowing] = useState("");
-  console.log(location.state);
 
   const [followerInfo, setFollowerInfo] = useState([]);
 
@@ -28,13 +27,13 @@ export default function FollowerProfile() {
       )
       .then((response) => {
         setFollowerInfo(response.data[0]);
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
       });
   };
 
   const isFollowing = () => {
     axios
-      .get(`http://localhost:3003/auth//user/isFollowing/${followerID}`, config)
+      .get(`http://localhost:3003/auth/user/isFollowing/${followerID}`, config)
       .then((response) => {
         setFollowing(response.data);
       });
@@ -46,7 +45,25 @@ export default function FollowerProfile() {
       .then((response) => {
         console.log(response.data);
       });
+    window.location.reload(false);
   };
+
+  const follow = (followerID) => {
+    axios
+      .post(`http://localhost:3003/auth/follow/${followerID}`, {}, config)
+      .then((response) => {
+        console.log(response.data);
+      });
+    window.location.reload(false);
+  };
+
+  if (followerInfo.coverImgId === "null") {
+    followerInfo.coverImgId = "cover.jpg";
+  }
+  if (followerInfo.profileImgId === "null") {
+    followerInfo.profileImgId = "avatar.png";
+  }
+
   return (
     <>
       <div className={classes.profile}>
@@ -94,7 +111,14 @@ export default function FollowerProfile() {
                 </>
               ) : (
                 <>
-                  <button>Follow</button>
+                  <button
+                    className={classes.FollowingButton}
+                    onClick={() => {
+                      follow(followerID);
+                    }}
+                  >
+                    Follow
+                  </button>
                 </>
               )}
             </div>

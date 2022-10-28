@@ -41,7 +41,7 @@ exports.signUp = async (req, res) => {
               throw err2;
             } else {
               const userId = result[0].userID;
-              const insertQuery2 = `insert into socialmedia.userbios(userId) values(?);`;
+              const insertQuery2 = `insert into socialmedia.userbios(userId, profileImgId,coverImgId) values(?, "null", "null");`;
               db.query(insertQuery2, [userId], (err3, result) => {
                 if (err3) throw err3;
                 else {

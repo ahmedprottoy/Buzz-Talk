@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import config from "../config";
 import classes from "../Styles/post.module.css";
-import { MoreVert, ThumbUp } from "@material-ui/icons";
+import { ThumbUp } from "@material-ui/icons";
 
 export default function FollowersPost() {
   const [followerPost, setFollowerPost] = useState([]);
@@ -10,7 +10,7 @@ export default function FollowersPost() {
   useEffect(() => {
     getFollowerPost();
   }, []);
-
+  console.log(followerPost);
   const getFollowerPost = () => {
     axios
       .get("http://localhost:3003/auth/follower/post", config)
@@ -27,6 +27,9 @@ export default function FollowersPost() {
 
   if (followerPost) {
     return followerPost.map((Post, index) => {
+      if (Post.profileImgId === "null") {
+        Post.profileImgId = "avatar.png";
+      }
       return (
         <div className={classes.post}>
           <div className={classes.postWrapper}>
