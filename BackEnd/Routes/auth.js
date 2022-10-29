@@ -9,6 +9,9 @@ const postHandler = require("../Controllers/postController");
 const searchHandler = require("../Controllers/searchController");
 const commentHandler = require("../Controllers/commentController");
 
+const chatHandler = require("../Controllers/chatController");
+
+
 const router = express.Router();
 //
 //
@@ -119,6 +122,9 @@ router.post(
   commentHandler.postComment
 );
 router.get("/comment/:postID", authentication, commentHandler.getComment);
+router.get("/getconvo",authentication,chatHandler.getConversations);
+router.post("/getconvo/:userID",authentication,chatHandler.createConversation);
+router.get("/getmessage/:userID",authentication,chatHandler.getMessages);
 
 router.use("/images", express.static("images"));
 

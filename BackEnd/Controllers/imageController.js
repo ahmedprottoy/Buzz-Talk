@@ -2,6 +2,7 @@ const db = require("../config/db");
 
 const update = {};
 let cnt = 0;
+
 update.profileImg = (req, res, next) => {
   console.log(req.body);
   const userId = req.user.id;
@@ -12,7 +13,7 @@ update.profileImg = (req, res, next) => {
     if (err) {
       next(err);
     } else {
-      cnt++;
+      cnt = cnt+1;
       res.status(200).json({
         message: cnt,
       });
