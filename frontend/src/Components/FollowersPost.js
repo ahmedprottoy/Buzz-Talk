@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import config from "../config";
 import classes from "../Styles/post.module.css";
 import { ThumbUp } from "@material-ui/icons";
+import Comments from "./Comments";
 
 export default function FollowersPost() {
   const [followerPost, setFollowerPost] = useState([]);

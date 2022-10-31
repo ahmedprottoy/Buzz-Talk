@@ -10,6 +10,8 @@ import EditPost from "./EditPost";
 import Modal from "./modal";
 import SearchResult from "./SearchResult";
 // import Profile from "./Profile";
+import ChatBox from "./ChatBox";
+import Chat from "./Chat";
 
 import "../Styles/app.module.css";
 import { Routes, Route } from "react-router-dom";
@@ -29,6 +31,7 @@ export default function App() {
         <Route path="/Modals" element={<Modal />} />
         <Route path="/SearchResult" element={<SearchResult />} />
         <Route path="/Chat" element={<Chat />} />
+        <Route path="/ChatBox" element={<ChatBox />} />
       </Routes>
     </Layout>
   );
