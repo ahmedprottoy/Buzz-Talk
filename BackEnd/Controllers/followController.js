@@ -21,26 +21,26 @@ followHandler.startFollow = (req, res, next) => {
 };
 
 //who following me
-followHandler.getFollower = (req, res, next) => {
-  const userID = req.user.id;
-  const searchQuery = `select userbios.userId,userName, firstName, lastName, email, profileImgId,coverimgId
-    from socialmedia.userbios,(select *
-    from socialmedia.userinfo
-    where userinfo.userID in  (select followerID from socialmedia.follower_table where userID = ?)) as tb
-    where userbios.userId = tb.userID`;
+// followHandler.getFollower = (req, res, next) => {
+//   const userID = req.user.id;
+//   const searchQuery = `select userbios.userId,userName, firstName, lastName, email, profileImgId,coverimgId
+//     from socialmedia.userbios,(select *
+//     from socialmedia.userinfo
+//     where userinfo.userID in  (select followerID from socialmedia.follower_table where userID = ?)) as tb
+//     where userbios.userId = tb.userID`;
 
-  db.query(searchQuery, [userID], (err, results) => {
-    if (err) {
-      next(err);
-    } else {
-      res.status(200).json(results);
-      // console.log(results);
-    }
-  });
-};
+//   db.query(searchQuery, [userID], (err, results) => {
+//     if (err) {
+//       next(err);
+//     } else {
+//       res.status(200).json(results);
+//       // console.log(results);
+//     }
+//   });
+// };
 
 followHandler.getFollowerProfile = (req, res, next) => {
-  const userID = req.params.userId;
+  const followerID = req.params.userId;
 
   const searchQuery = `select userName, firstName, lastName,profileImgId,coverImgId,location,profession,religion
     from socialmedia.userbios,socialmedia.userinfo 

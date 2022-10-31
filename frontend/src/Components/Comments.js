@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Comments(props) {
   const postId = props.postId;
+  
   const navigate = useNavigate();
   const [commentList, setCommentList] = useState([]);
 

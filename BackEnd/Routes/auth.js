@@ -74,7 +74,7 @@ router.use("/images", express.static("./images"));
 //
 router.post("/follow/:userID", authentication, followHandler.startFollow);
 router.get("/following", authentication, followHandler.getFollowing);
-router.get("/follower", authentication, followHandler.getFollower);
+//router.get("/follower", authentication, followHandler.getFollower);(eitar dorkar apatoto nai)
 router.delete("/unfollow/:userID", authentication, followHandler.unfollow);
 router.get(
   "/user/getFollowerProfile/:userId",
