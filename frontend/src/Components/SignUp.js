@@ -5,12 +5,14 @@ import SignUpForm from "./SignUpForm";
 
 export default function SignUp() {
   return (
-    <>
-      <h1>Create an account</h1>
-      <div className={classes.cont}>
+    <div className={classes.cont}>
+      <div className={classes.left}>
+        <h1>Create an account</h1>
         <Illustration />
+      </div>
+      <div className={classes.right}>
         <SignUpForm />
       </div>
-    </>
+    </div>
   );
 }

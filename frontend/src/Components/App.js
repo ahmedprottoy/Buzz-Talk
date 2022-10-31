@@ -10,12 +10,12 @@ import EditPost from "./EditPost";
 import Modal from "./modal";
 import SearchResult from "./SearchResult";
 // import Profile from "./Profile";
-import ChatBox from "./ChatBox";
 import Chat from "./Chat";
+import ChatBox from "./ChatBox";
+
 
 import "../Styles/app.module.css";
 import { Routes, Route } from "react-router-dom";
-
 
 export default function App() {
   return (

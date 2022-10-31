@@ -5,13 +5,14 @@ import LogInForm from "./LogInForm";
 
 export default function SignUp() {
   return (
-    <>
-      <h1>Login to your account</h1>
-      <div className={classes.cont}>
+    <div className={classes.cont}>
+      <div className={classes.left}>
+        <h1>Login to your account</h1>
         <Illustration2 />
-
+      </div>
+      <div className={classes.right}>
         <LogInForm />
       </div>
-    </>
+    </div>
   );
 }

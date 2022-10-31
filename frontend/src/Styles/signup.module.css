@@ -1,11 +1,15 @@
-.signup {
-  height: 500px;
-}
 .cont {
   display: flex;
-  flex: 7;
-  /* grid-template-columns: 1fr 1fr;
-  gap: 1rem; */
+  width: 100%;
+  justify-content: space-around;
+  margin: 0 10rem;
+}
+.left {
+  width: 40%;
+  margin-top: 3rem;
+}
+.right {
+  width: 40%;
 }
 .info {
   margin-top: 1rem;
