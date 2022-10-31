@@ -15,6 +15,9 @@ function EditPost() {
   const postID = location.state.id;
   const prevPost = location.state.postDet;
 
+  // console.log(postID);
+  // console.log(prevPost);
+
   const [post, setPost] = useState();
   const [profileImage, setProfileImage] = useState("");
 
@@ -55,10 +58,12 @@ function EditPost() {
   };
 
   const getPost = () => {
+    console.log("first");
     axios
       .get(`http://localhost:3003/auth/post/${postID}`, config)
       .then((response) => {
         setPost(response.data[0]);
+        console.log(response.data[0]);
       });
   };
 
