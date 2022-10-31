@@ -9,22 +9,39 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Modal } from "react-responsive-modal";
+import classes from "../Styles/modals.module.css";
+import axios from "axios";
+import config from "../config";
+import { useNavigate } from "react-router-dom";
 
 export default function MenuListComposition(props) {
-  const [postId, setPostID] = useState();
+  // const [postId, setPostID] = useState();
+  const [deletePostID, setDeletePostID] = useState(null);
+
+  const navigate = useNavigate();
+
+  //dd
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  // console.log(props);
+
+  //modal
+  const [opens, setOpens] = useState(false);
+  const onOpenModal = () => {
+    setOpens(true);
+  };
+  console.log(deletePostID);
+  const onCloseModal = () => setOpens(false);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
+    setDeletePostID(props.postId);
   };
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -43,10 +60,18 @@ export default function MenuListComposition(props) {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
     }
-
     prevOpen.current = open;
   }, [open]);
 
+  const deletePost = () => {
+    axios
+      .delete(`http://localhost:3003/auth/post/${deletePostID}`, config)
+      .then((response) => {
+        console.log(response.data);
+        setDeletePostID(null);
+      });
+    window.location.reload(false);
+  };
   return (
     <Stack direction="row" spacing={2}>
       <div>
@@ -85,13 +110,51 @@ export default function MenuListComposition(props) {
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={props.ClickEdit}>Edit</MenuItem>
-                    <MenuItem onClick={handleClose}>Delete</MenuItem>
+                    <MenuItem onClick={onOpenModal}>Delete</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
             </Grow>
           )}
         </Popper>
+
+        {/* <button onClick={onOpenModal}>Open modal</button> */}
+        <Modal
+          open={opens}
+          onClose={onCloseModal}
+          center
+          classNames={{
+            modal: "button",
+            closeIcon: "closeIcon",
+          }}
+        >
+          <h2>DELETE?</h2>
+          <p>Sure You Want To Delete This Post?</p>
+
+          <button
+            onClick={deletePost}
+            style={{
+              width: "35%",
+              padding: 10,
+              margin: 20,
+              backgroundColor: "#ff9696",
+              cursor: "pointer",
+            }}
+          >
+            Yes
+          </button>
+          <button
+            onClick={onCloseModal}
+            style={{
+              width: "35%",
+              padding: 10,
+              margin: 20,
+              cursor: "pointer",
+            }}
+          >
+            Cancel
+          </button>
+        </Modal>
       </div>
     </Stack>
   );

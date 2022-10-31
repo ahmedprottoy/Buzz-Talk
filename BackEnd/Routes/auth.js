@@ -112,7 +112,11 @@ router.get("/post/:postID", authentication, postHandler.getPost);
 router.delete("/post/:postID", authentication, postHandler.deletePost);
 router.get("/post/user/:userID", authentication, postHandler.getUsersPost);
 router.get("/follower/post", authentication, postHandler.followingUserPost);
-router.get("/search/user/account", authentication, searchHandler.userSearch);
+router.get(
+  "/search/user/account/:userName",
+  authentication,
+  searchHandler.userSearch
+);
 router.get("/search/user/post", authentication, searchHandler.userPostSearch);
 router.get("/search/post", authentication, searchHandler.postSearch);
 router.post(

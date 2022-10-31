@@ -1,14 +1,18 @@
 .main {
   width: 100%;
-  padding: 4rem 0;
+  /* padding: 4rem 0; */
 }
 
 .container {
-  width: 90%;
-  margin: 2rem auto;
+  width: 95%;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .homeContainer {
+  height: auto;
+  margin: 4rem auto;
   display: flex;
-  width: 100%;
+  width: 95%;
 }

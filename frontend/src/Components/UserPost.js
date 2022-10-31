@@ -33,7 +33,11 @@ export default function UserPost() {
     axios
       .get("http://localhost:3003/auth/getImages", config)
       .then((response) => {
-        setProfileImage(response.data[0].profileImgId);
+        if (response.data[0].profileImgId !== "null") {
+          setProfileImage(response.data[0].profileImgId);
+        } else {
+          setProfileImage("avatar.png");
+        }
       });
   };
 
@@ -99,6 +103,7 @@ export default function UserPost() {
                       },
                     });
                   }}
+                  postId={Post.postId}
                 />
               </div>
             </div>

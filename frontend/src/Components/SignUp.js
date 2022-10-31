@@ -9,7 +9,6 @@ export default function SignUp() {
       <h1>Create an account</h1>
       <div className={classes.cont}>
         <Illustration />
-
         <SignUpForm />
       </div>
     </>

@@ -14,24 +14,27 @@ export default function FollowerProfilePost(id) {
 
   const getFollowerPost = () => {
     axios
-      .get(`http://localhost:3003/auth//post/user/${followerID.id}`, config)
+      .get(`http://localhost:3003/auth/post/user/${followerID.id}`, config)
       .then((response) => {
         setFollowerPost(response.data);
       });
   };
-
+  console.log(followerPost);
   if (followerPost) {
     return followerPost.map((Post, index) => {
+      if (Post.profileImgId === "null") {
+        Post.profileImgId = "avatar.png";
+      }
       return (
         <div className={classes.post}>
           <div className={classes.postWrapper}>
             <div className={classes.postTop}>
               <div className={classes.postTopLeft}>
-                {/* <img
+                <img
                   className={classes.postProfileImg}
-                  src={`http://localhost:3003/auth/images/${profileImage}`}
+                  src={`http://localhost:3003/auth/images/${Post.profileImgId}`}
                   alt=""
-                /> */}
+                />
                 <div>
                   <div className={classes.postUsername}>
                     <b>{Post.Author}</b>

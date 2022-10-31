@@ -1,0 +1,16 @@
+.SearchResult {
+  display: flex;
+  flex: 7;
+}
+.searchContent {
+  width: 50%;
+}
+
+.searchusers {
+  width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0 0 20px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}

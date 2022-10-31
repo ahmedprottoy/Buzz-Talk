@@ -2,16 +2,15 @@ const db = require("../config/db");
 
 const searchHandler = {};
 
-searchHandler.userSearch = (req, res, next) =>{
-    const {userName} = req.body;
+searchHandler.userSearch = (req, res, next) => {
+  const { userName } = req.params;
 
-    const searchQuery =
-    `SELECT userName , firstName , lastName , profileImgId , profession 
+  const searchQuery = `SELECT userinfo.userID,userName , firstName , lastName , profileImgId 
 FROM socialmedia.userbios ,socialmedia.userinfo
 where userbios.userId = userinfo.userID and userName like '%${userName}%'
-;`
+;`;
 
-if (userName == undefined) {
+  if (userName == undefined) {
     res.json({ msg: " PLease insert something" });
   } else {
     db.query(searchQuery, [userName], (err, results) => {
@@ -22,19 +21,17 @@ if (userName == undefined) {
       }
     });
   }
+};
 
-}
+searchHandler.postSearch = (req, res, next) => {
+  const { postDet } = req.body;
 
-searchHandler.postSearch = (req, res, next) =>{
-    const {postDet} = req.body;
-
-    const searchQuery =
-    `SELECT postID, userName , profileImgId , postDet, imgId, likenumber, date_time 
+  const searchQuery = `SELECT postID, userName , profileImgId , postDet, imgId, likenumber, date_time 
     FROM socialmedia.userbios ,socialmedia.userinfo, socialmeadia.post_table
     where userbios.userId = userinfo.userID and userinfo.userID = post_table.userID and postDet like '%${postDet}%';
-;`
+;`;
 
-if (postDet == undefined) {
+  if (postDet == undefined) {
     res.json({ msg: " PLease insert something" });
   } else {
     db.query(searchQuery, [postDet], (err, results) => {
@@ -45,20 +42,17 @@ if (postDet == undefined) {
       }
     });
   }
+};
 
-}
+searchHandler.userPostSearch = (req, res, next) => {
+  const { userName } = req.body;
 
-
-searchHandler.userPostSearch = (req, res, next) =>{
-    const {userName} = req.body;
-
-    const searchQuery =
-    `SELECT postID, userName , profileImgId , postDet, imgId, likenumber, date_time 
+  const searchQuery = `SELECT postID, userName , profileImgId , postDet, imgId, likenumber, date_time 
     FROM socialmedia.userbios ,socialmedia.userinfo, socialmedia.post_table
     where userbios.userId = userinfo.userID and userinfo.userID = post_table.userID and userName like '%${userName}%';
-;`
+;`;
 
-if (userName == undefined) {
+  if (userName == undefined) {
     res.json({ msg: " PLease insert something" });
   } else {
     db.query(searchQuery, [userName], (err, results) => {
@@ -69,8 +63,6 @@ if (userName == undefined) {
       }
     });
   }
-
-}
-
+};
 
 module.exports = searchHandler;

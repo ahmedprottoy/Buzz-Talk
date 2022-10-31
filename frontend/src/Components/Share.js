@@ -75,9 +75,7 @@ export default function Share() {
       .then((response) => {
         console.log(response);
       });
-    setTimeout(() => {
-      navigate("/Profile");
-    }, 1400);
+    window.location.reload(false);
   };
 
   return (

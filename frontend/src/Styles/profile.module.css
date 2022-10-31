@@ -1,10 +1,13 @@
 .profile {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: column; */
 }
 
 .profileRight {
-  flex: 9;
+  flex: 5;
+}
+.side {
+  flex: 4;
 }
 
 .profileCover {

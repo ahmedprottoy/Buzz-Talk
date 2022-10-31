@@ -8,9 +8,13 @@ export default function Home() {
   return (
     <>
       <div className={classes.homeContainer}>
-        <Sidebar />
-        <Feed />
-        <Rightbar />
+        {/* <Rightbar /> */}
+        <div className={classes.side}>
+          <Sidebar />
+        </div>
+        <div className={classes.feed}>
+          <Feed />
+        </div>
       </div>
     </>
   );

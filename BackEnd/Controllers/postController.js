@@ -71,7 +71,7 @@ postHandler.updatePost = (req, res, next) => {
 
 postHandler.getPost = (req, res, next) => {
   const postID = req.params.postID;
-  const searchQuery = `SELECT userName as Author , postDet , imgID , likenumber , date_time
+  const searchQuery = `SELECT userName as Author ,profileImgId, postDet , imgID , likenumber , date_time
     from socialmedia.userinfo , socialmedia.post_table
     where userinfo.userID = post_table.userID and postID = ? ;`;
 
@@ -88,9 +88,9 @@ postHandler.getPost = (req, res, next) => {
 
 postHandler.getUsersPost = (req, res, next) => {
   const userID = req.params.userID;
-  const searchQuery = `SELECT userName as Author , postDet , imgID , likenumber , date_time
-    from socialmedia.userinfo , socialmedia.post_table
-    where userinfo.userID = post_table.userID and post_table.userID = ? ;`;
+  const searchQuery = `SELECT userName as Author ,profileImgId, postDet , imgID , likenumber , date_time
+    from socialmedia.userinfo , socialmedia.post_table,socialmedia.userbios
+    where userinfo.userID = post_table.userID and userinfo.userID = userbios.userID and post_table.userID = ? ;`;
 
   db.query(searchQuery, [userID], (err, results) => {
     if (err) {

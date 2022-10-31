@@ -1,9 +1,15 @@
 .settings {
   display: flex;
 }
+.settingsContent {
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+  flex: 12;
+}
 
 .settingsWrapper {
-  flex: 9;
+  flex: 12;
   padding: 20px;
 }
 
@@ -29,16 +35,10 @@
   justify-content: center;
 }
 
-.settingsTitleDelete {
-  color: red;
-  font-size: 12px;
-  cursor: pointer;
-}
-
 .settingsForm {
   display: flex;
   flex-direction: column;
-  /* max-width: 500px; */
+  max-width: 500px;
 }
 
 .settingsPP {
@@ -127,7 +127,7 @@
   top: 10%;
 }
 .settingsSubmitButtonInfo {
-  max-width: 30%;
+  max-width: 100%;
   padding: 20px;
   border: none;
   font-size: 25px;
@@ -161,14 +161,13 @@
   align-items: center;
 }
 .status {
-  background-color: #86f3fa;
+  background-color: rgb(168, 200, 241);
   padding: 0.6rem 1.2rem;
   margin: 15px 0;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
+  max-width: 50%;
 }
 
 .infoForm {
-  width: 200px;
+  width: 100%;
 }

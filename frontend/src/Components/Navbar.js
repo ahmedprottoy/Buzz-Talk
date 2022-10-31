@@ -2,19 +2,13 @@ import React from "react";
 import classes from "../Styles/nav.module.css";
 import Account from "./Account";
 import { Typewriter } from "react-simple-typewriter";
-
+import SearchBar from "./SearchBar";
 export default function Navbar() {
   return (
     <nav className={classes.nav}>
       <ul>
         <li>
           <a href="/" className={classes.brand}>
-            {/* <Typewriter
-              onInit={(typewriter) => {
-                typewriter.typeString("Social Media").pauseFor(1500).start();
-              }}
-            /> */}
-
             <Typewriter
               words={["Social Media..."]}
               loop="false"
@@ -28,6 +22,7 @@ export default function Navbar() {
         </li>
       </ul>
 
+      <SearchBar />
       <Account />
     </nav>
   );

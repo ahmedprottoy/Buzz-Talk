@@ -30,7 +30,8 @@ export default function Account() {
     Axios.get("http://localhost:3003/auth/logout").then((response) => {
       // eslint-disable-next-line no-const-assign
       setTimeout(() => {
-        localStorage.removeItem("accessToken");
+        localStorage.clear();
+        // delete Axios.defaults.headers["authorization"];
         setUserName(null);
         navigate("/login");
       }, 1000);

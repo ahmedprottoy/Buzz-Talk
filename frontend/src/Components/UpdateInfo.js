@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "../Styles/settings.module.css";
-// import Sidebar from "./Sidebar";
-// import { CameraAlt } from "@material-ui/icons";
+
 import TextInput from "./TextInput";
 import axios from "axios";
 import config from "../config";
@@ -67,7 +66,6 @@ export default function UpdateInfo() {
     return userInfo.map((user) => {
       return (
         <>
-          {/* <Sidebar/> */}
           <div className={classes.settings}>
             <div className={classes.settingsWrapper}>
               <div className={classes.settingsTitle}>
@@ -158,7 +156,6 @@ export default function UpdateInfo() {
               {error && <p className={classes.error}>{error}</p>}
               {status && <p className={classes.status}>{status}</p>}
             </div>
-            {/* <Sidebar /> */}
           </div>
         </>
       );

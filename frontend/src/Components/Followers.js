@@ -19,6 +19,9 @@ export default function Followers() {
 
   if (followers) {
     return followers.map((follower, index) => {
+      if (follower.profileImgId === "null") {
+        follower.profileImgId = "avatar.png";
+      }
       return (
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <a
