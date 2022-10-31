@@ -7,14 +7,11 @@ import classes from "../Styles/home.module.css";
 export default function Home() {
   return (
     <>
-      <div className={classes.homeContainer}>
-        {/* <Rightbar /> */}
-        <div className={classes.side}>
-          <Sidebar />
-        </div>
-        <div className={classes.feed}>
-          <Feed />
-        </div>
+      <div className={classes.side}>
+        <Sidebar />
+      </div>
+      <div className={classes.feed}>
+        <Feed />
       </div>
     </>
   );
