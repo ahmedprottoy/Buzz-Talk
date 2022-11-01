@@ -51,7 +51,7 @@ function EditPost() {
 
   const getImages = () => {
     axios
-      .get("http://localhost:3003/auth/getImages", config)
+      .get("http://localhost:3003/auth/getImages", config())
       .then((response) => {
         setProfileImage(response.data[0].profileImgId);
       });
@@ -60,7 +60,7 @@ function EditPost() {
   const getPost = () => {
     console.log("first");
     axios
-      .get(`http://localhost:3003/auth/post/${postID}`, config)
+      .get(`http://localhost:3003/auth/post/${postID}`, config())
       .then((response) => {
         setPost(response.data[0]);
         console.log(response.data[0]);

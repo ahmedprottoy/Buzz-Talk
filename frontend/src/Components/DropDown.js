@@ -67,7 +67,7 @@ export default function MenuListComposition(props) {
   const deletePost = () => {
     console.log("object");
     axios
-      .delete(`http://localhost:3003/auth/post/${deletePostID}`, config)
+      .delete(`http://localhost:3003/auth/post/${deletePostID}`, config())
       .then((response) => {
         console.log(response.data);
         setDeletePostID(null);

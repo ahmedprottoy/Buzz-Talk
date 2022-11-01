@@ -31,7 +31,6 @@ export default function Account() {
       // eslint-disable-next-line no-const-assign
       setTimeout(() => {
         localStorage.clear();
-        // delete Axios.defaults.headers["authorization"];
         setUserName(null);
         navigate("/login");
       }, 1000);
