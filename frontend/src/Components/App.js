@@ -10,7 +10,7 @@ import EditPost from "./EditPost";
 import Modal from "./modal";
 import SearchResult from "./SearchResult";
 import Chat from "./Chat";
-import ChatBox from "./ChatBox";
+// import ChatBox from "./ChatBox";
 
 // import Profile from "./Profile";
 
@@ -34,7 +34,7 @@ export default function App() {
         <Route path="/Modals" element={<Modal />} />
         <Route path="/SearchResult" element={<SearchResult />} />
         <Route path="/Chat" element={<Chat />} />
-        <Route path="/ChatBox" element={<ChatBox />} />
+        {/* <Route path="/ChatBox" element={<ChatBox />} /> */}
       </Routes>
     </Layout>
   );
