@@ -13,29 +13,25 @@ export default function FollowersPost() {
   const handleCommentOpen = (evnt, index) => {
     const commentStatus = commentOpen;
     commentStatus[index] = !commentStatus[index];
-
     setCommentOpen(commentStatus);
   };
 
   useEffect(() => {
     getFollowerPost();
   }, []);
-  console.log(followerPost);
+
   const getFollowerPost = () => {
     axios
-      .get("http://localhost:3003/auth/follower/post", config)
+      .get("http://localhost:3003/auth/follower/post", config())
       .then((response) => {
         const allMyPost = response.data;
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
         setFollowerPost(allMyPost);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  console.log(followerPost);
 
   if (followerPost) {
     return followerPost.map((Post, index) => {
@@ -82,27 +78,15 @@ export default function FollowersPost() {
                 </span>
               </div>
               <div className={classes.postBottomRight}>
-                {Post.commentNumber === null ? (
-                  <span
-                    className={classes.postCommentText}
-                    onClick={(evnt) => {
-                      handleCommentOpen(evnt, index);
-                      setCnt(cnt + 1);
-                    }}
-                  >
-                    no comments yet
-                  </span>
-                ) : (
-                  <span
-                    className={classes.postCommentText}
-                    onClick={(evnt) => {
-                      handleCommentOpen(evnt, index);
-                      setCnt(cnt + 1);
-                    }}
-                  >
-                    {Post.commentNumber} comments
-                  </span>
-                )}
+                <span
+                  className={classes.postCommentText}
+                  onClick={(evnt) => {
+                    handleCommentOpen(evnt, index);
+                    setCnt(cnt + 1);
+                  }}
+                >
+                  comments
+                </span>
               </div>
             </div>
             {commentOpen[index] && (

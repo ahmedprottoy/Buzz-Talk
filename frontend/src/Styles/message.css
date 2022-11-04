@@ -19,7 +19,7 @@
 .messageText {
     padding: 10px;
     border-radius: 20px;
-    background-color: #5dceff;
+    background-color: rgb(243, 228, 228);
     color: black;
     max-width:600px;
 }
@@ -31,14 +31,10 @@
 
 /* own message design */
 .message.own {
-    display: flex;
     align-items: flex-end;
-}
-.message.own.messageTop{
-    flex-direction: reverse;
 }
 
 .message.own .messageText {
-    background-color: rgb(255, 255, 255) ;
-    color:rgb(0, 0, 0);
+    background-color: #00B2FF ;
+    color:whitesmoke;
 }

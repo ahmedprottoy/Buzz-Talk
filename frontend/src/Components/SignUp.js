@@ -5,14 +5,18 @@ import SignUpForm from "./SignUpForm";
 
 export default function SignUp() {
   return (
-    <div className={classes.cont}>
-      <div className={classes.left}>
-        <h1>Create an account</h1>
-        <Illustration />
+    <main className={classes.main}>
+      <div className={classes.container}>
+        <div className={classes.cont}>
+          <div className={classes.left}>
+            <h1>Create an account</h1>
+            <Illustration />
+          </div>
+          <div className={classes.right}>
+            <SignUpForm />
+          </div>
+        </div>
       </div>
-      <div className={classes.right}>
-        <SignUpForm />
-      </div>
-    </div>
+    </main>
   );
 }
