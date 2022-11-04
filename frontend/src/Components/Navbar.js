@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav className={classes.nav}>
       <ul>
         <li>
-          <a href="/" className={classes.brand}>
+          <a href="/home" className={classes.brand}>
             <Typewriter
               words={["Social Media..."]}
               loop="false"

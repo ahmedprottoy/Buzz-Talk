@@ -2,7 +2,7 @@ import React from "react";
 import Illustration2 from "./Illustration2";
 import classes from "../Styles/signup.module.css";
 import LogInForm from "./LogInForm";
-import config from "../config";
+
 
 export default function SignUp() {
   return (

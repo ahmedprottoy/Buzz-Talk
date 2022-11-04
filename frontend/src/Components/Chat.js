@@ -59,7 +59,7 @@ export default function Chat() {
 
   const getMsgs = () => {
     // console.log("hi")
-    axios.get(`http://localhost:3003/auth/getmessage/${userID}`,config)
+    axios.get(`http://localhost:3003/auth/getmessage/${userID}`,config())
     .then((response)=>{
       // console.log(response.data);
       getMessage(response.data);

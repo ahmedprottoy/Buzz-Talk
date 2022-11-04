@@ -19,7 +19,7 @@ export default function Comments(props) {
   },[commentList]);
 
   const getAllComments= () => {
-    axios.get(`http://localhost:3003/auth/comment/${postId}`,config)
+    axios.get(`http://localhost:3003/auth/comment/${postId}`,config())
     .then((response)=>{
       const allComment = response.data;
       // setCnt(cnt+1);
@@ -54,7 +54,7 @@ export default function Comments(props) {
         {
           commentText: commentData.commentText,
         },
-        config
+        config()
       )
       .then((response) => {
         console.log(response);

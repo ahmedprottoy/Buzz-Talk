@@ -3,9 +3,9 @@ import Feed from "./Feed";
 import Sidebar from "./Sidebar";
 import Rightbar from "./Rightbar";
 import classes from "../Styles/home.module.css";
-import { useNavigate } from "react-router-dom";
-import config from "../config";
-import axios from "axios";
+
+
+
 
 export default function Home() {
 

@@ -23,7 +23,7 @@ export default function FollowersPost() {
   console.log(followerPost);
   const getFollowerPost = () => {
     axios
-      .get("http://localhost:3003/auth/follower/post", config)
+      .get("http://localhost:3003/auth/follower/post", config())
       .then((response) => {
         const allMyPost = response.data;
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));

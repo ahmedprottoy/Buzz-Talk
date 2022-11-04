@@ -41,15 +41,6 @@ export default function Sidebar() {
           <SettingsSharp className={classes.sidebarIcon} />
           <span className={classes.sidebarListItemText}>Account Settings</span>
         </li>
-        <li
-          className={classes.sidebarListItem}
-          onClick={() => {
-            navigate("/Chat");
-          }}
-        >
-          <ChatBubbleRoundedIcon className={classes.sidebarIcon} />
-          <span className={classes.sidebarListItemText}>Chat</span>
-        </li>
       </ul>
 
       <hr className={classes.sidebarHr} />
