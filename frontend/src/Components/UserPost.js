@@ -57,7 +57,7 @@ export default function UserPost() {
         console.log(error);
       });
   };
-
+console.log(myPost);
   if (myPost) {
     return myPost.map((Post, index) => {
       return (
@@ -120,15 +120,27 @@ export default function UserPost() {
                 </span>
               </div>
               <div className={classes.postBottomRight}>
-                <span
-                  className={classes.postCommentText}
-                  onClick={(evnt) => {
-                    handleCommentOpen(evnt, index);
-                    setCnt(cnt + 1);
-                  }}
-                >
-                  comments
-                </span>
+              {Post.commentNumber === null ? (
+                  <span
+                    className={classes.postCommentText}
+                    onClick={(evnt) => {
+                      handleCommentOpen(evnt, index);
+                      setCnt(cnt + 1);
+                    }}
+                  >
+                    no comments yet
+                  </span>
+                ) : (
+                  <span
+                    className={classes.postCommentText}
+                    onClick={(evnt) => {
+                      handleCommentOpen(evnt, index);
+                      setCnt(cnt + 1);
+                    }}
+                  >
+                    {Post.commentNumber} comments
+                  </span>
+                )}
               </div>
             </div>
 

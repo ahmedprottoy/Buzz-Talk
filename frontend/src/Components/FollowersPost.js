@@ -13,7 +13,7 @@ export default function FollowersPost() {
   const handleCommentOpen = (evnt, index) => {
     const commentStatus = commentOpen;
     commentStatus[index] = !commentStatus[index];
-
+    evnt.preventDefault();
     setCommentOpen(commentStatus);
   };
 

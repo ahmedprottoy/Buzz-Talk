@@ -38,7 +38,10 @@ export default function LogInForm() {
         "accessToken",
         "Bearer " + response.data.accessToken
         // response.data.accessToken
+
       );
+      localStorage.setItem("id", response.data.id);
+      
 
       if (response.data.next) {
         setStatus(response.data.msg);

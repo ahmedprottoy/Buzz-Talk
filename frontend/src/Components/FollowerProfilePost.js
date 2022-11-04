@@ -3,10 +3,20 @@ import React, { useState, useEffect } from "react";
 import config from "../config";
 import classes from "../Styles/post.module.css";
 import { ThumbUp } from "@material-ui/icons";
+import Comments from "./Comments";
 
 export default function FollowerProfilePost(id) {
   const [followerPost, setFollowerPost] = useState([]);
   const followerID = id;
+  const [commentOpen, setCommentOpen] = useState([]);
+  const [cnt, setCnt] = useState(0);
+
+  const handleCommentOpen = (evnt, index) => {
+    const commentStatus = commentOpen;
+    commentStatus[index] = !commentStatus[index];
+
+    setCommentOpen(commentStatus);
+  }
 
   useEffect(() => {
     getFollowerPost();
@@ -17,6 +27,7 @@ export default function FollowerProfilePost(id) {
       .get(`http://localhost:3003/auth/post/user/${followerID.id}`, config())
       .then((response) => {
         setFollowerPost(response.data);
+        console.log(response.data);
       });
   };
   console.log(followerPost);
@@ -66,9 +77,18 @@ export default function FollowerProfilePost(id) {
                 </span>
               </div>
               <div className={classes.postBottomRight}>
-                <span className={classes.postCommentText}>comments</span>
+                <span className={classes.postCommentText}
+                onClick={
+                  (evnt) => {
+                    handleCommentOpen(evnt, index);
+                    setCnt(cnt + 1);
+                  }
+                }>comments</span>
               </div>
             </div>
+            {commentOpen[index]&& (
+                <Comments postId={followerPost[index].postID}/>
+              )}
           </div>
         </div>
       );
