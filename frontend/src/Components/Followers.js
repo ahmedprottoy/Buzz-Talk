@@ -11,7 +11,7 @@ export default function Followers() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3003/auth/following", config())
+      .get("http://localhost:3003/auth/following", config)
       .then((response) => {
         setFollowers(response.data);
       });

@@ -13,7 +13,7 @@ export default function Profile() {
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get("http://localhost:3003/auth//user/profile", config()).then(
+    Axios.get("http://localhost:3003/auth//user/profile", config).then(
       (response) => {
         setInfo(response.data[0]);
       }

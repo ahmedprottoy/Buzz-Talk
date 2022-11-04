@@ -28,24 +28,31 @@ export default function LogInForm() {
       setLoading(true);
       setStatus("");
 
-      const response = await Axios.post("http://localhost:3003/auth/logIn", {
+      await Axios.post("http://localhost:3003/auth/logIn", {
         userName,
         password,
+      }).then((response) => {
+        setLoading(false);
+        localStorage.setItem(
+          "accessToken",
+          "Bearer " + response.data.accessToken
+          // response.data.accessToken
+        );
+        localStorage.setItem(
+          "id",
+           response.data.id
+          // response.data.accessToken
+        );
+        if (response.data.next) {
+          setStatus(response.data.msg);
+          navigate("/");
+          // setTimeout(() => {
+          //   navigate("/");
+          // }, 1500);
+        } else {
+          setError(response.data.msg);
+        }
       });
-
-      setLoading(false);
-      localStorage.setItem(
-        "accessToken",
-        "Bearer " + response.data.accessToken
-        // response.data.accessToken
-      );
-
-      if (response.data.next) {
-        setStatus(response.data.msg);
-        navigate("/Home");
-      } else {
-        setError(response.data.msg);
-      }
     } catch (err) {
       console.log(err);
       setLoading(false);

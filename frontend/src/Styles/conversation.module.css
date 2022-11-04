@@ -7,7 +7,7 @@
 }
 
 .conversation:hover {
-    background-color: gray;
+    background-color: rgb(218, 217, 217);
 }
 
 .conversationImg {
@@ -19,5 +19,11 @@
 }
 
 .conversationName {
+    font-weight: 500;
+}
+
+.convoTime {
+    font-size: 10px;
+    margin-left: 20px;
     font-weight: 500;
 }
