@@ -15,7 +15,7 @@ export default function UserPost() {
   const [profileImage, setProfileImage] = useState("");
   const [cnt,setCnt]=useState(0);
   
-  const handleCommentOpen = (evnt, index) => {
+  const handleCommentOpen = (event, index) => {
      //if(!commentOpen[index])
      console.log("handle comment")
       const commentStatus = commentOpen;

@@ -13,6 +13,7 @@ export default function FollowersPost() {
   const handleCommentOpen = (evnt, index) => {
     const commentStatus = commentOpen;
     commentStatus[index] = !commentStatus[index];
+
     setCommentOpen(commentStatus);
   };
 
@@ -81,15 +82,27 @@ export default function FollowersPost() {
                 </span>
               </div>
               <div className={classes.postBottomRight}>
-                <span
-                  className={classes.postCommentText}
-                  onClick={(evnt) => {
-                    handleCommentOpen(evnt, index);
-                    setCnt(cnt + 1);
-                  }}
-                >
-                  comments
-                </span>
+                {Post.commentNumber === null ? (
+                  <span
+                    className={classes.postCommentText}
+                    onClick={(evnt) => {
+                      handleCommentOpen(evnt, index);
+                      setCnt(cnt + 1);
+                    }}
+                  >
+                    no comments yet
+                  </span>
+                ) : (
+                  <span
+                    className={classes.postCommentText}
+                    onClick={(evnt) => {
+                      handleCommentOpen(evnt, index);
+                      setCnt(cnt + 1);
+                    }}
+                  >
+                    {Post.commentNumber} comments
+                  </span>
+                )}
               </div>
             </div>
             {commentOpen[index] && (

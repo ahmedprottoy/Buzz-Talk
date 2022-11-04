@@ -139,9 +139,13 @@ postHandler.deletePost = (req, res, next) => {
 
 postHandler.followingUserPost = (req, res, next) => {
   const userID = req.user.id;
-  const searchQuery = `SELECT userName as Author , postId,postDet , imgID , likenumber , date_time , profileImgId
-    from socialmedia.userinfo , socialmedia.post_table ,socialmedia.userbios
-    where userinfo.userID = post_table.userID and userinfo.userID = userbios.userId and post_table.userID in (select userId from socialmedia.follower_table where followerID = ? );`;
+  const searchQuery = `select Author , initi_table.postId , postDet , imgID , likenumber , date_time , profileImgId,commentNumber from
+  (SELECT userName as Author , postId,postDet , imgID , likenumber , date_time , profileImgId
+      from socialmedia.userinfo , socialmedia.post_table ,socialmedia.userbios
+      where userinfo.userID = post_table.userID and userinfo.userID = userbios.userId and post_table.userID in (select userId from socialmedia.follower_table where followerID = ?
+   ) ) as initi_table Left join (select postID ,count(commentID) commentNumber from (SELECT post_table.postID, commentID FROM socialmedia.post_table, socialmedia.comment_table where post_table.postID = comment_table.postID) as temp group by temp.postID
+  ) as temp on initi_table.postID = temp.postID
+   ;`;
   //console.log("dhukse");
   db.query(searchQuery, [userID], (err, results) => {
     if (err) {

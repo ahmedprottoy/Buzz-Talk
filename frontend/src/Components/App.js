@@ -9,9 +9,12 @@ import FollowerProfile from "./FollowerProfile";
 import EditPost from "./EditPost";
 import Modal from "./modal";
 import SearchResult from "./SearchResult";
-// import Profile from "./Profile";
 import Chat from "./Chat";
 import ChatBox from "./ChatBox";
+
+// import Profile from "./Profile";
+
+
 
 
 import "../Styles/app.module.css";

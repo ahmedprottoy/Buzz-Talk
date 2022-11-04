@@ -9,25 +9,26 @@ export default function Comments(props) {
   
   const navigate = useNavigate();
   const [commentList, setCommentList] = useState([]);
-
+  const [cnt,setCnt]=useState(false);
   //image of current user
   
   // console.log(postId);
   useEffect(()=>{
     getAllComments();
+    // setCnt(!cnt);
   },[commentList]);
 
   const getAllComments= () => {
     axios.get(`http://localhost:3003/auth/comment/${postId}`,config)
     .then((response)=>{
       const allComment = response.data;
+      // setCnt(cnt+1);
+      console.log('cdi');
       setCommentList(allComment);
     }).catch((error)=>{
       console.log(error)
     })
   }
-
-
 
 
   const [commentData, setCommentData] = useState({
@@ -40,6 +41,7 @@ export default function Comments(props) {
       return {
         ...prevCommentData,
         [event.target.name]: event.target.value,
+        commentStatus: "",
       };
     });
   };
@@ -57,7 +59,7 @@ export default function Comments(props) {
       .then((response) => {
         console.log(response);
         setCommentStatus(response.data);
-        // navigate("/Profile");
+        setCommentList("");
       });
   };
 

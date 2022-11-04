@@ -94,6 +94,7 @@ exports.logIn = async (req, res) => {
             accessToken: token,
             msg: `${userName} is logged in.`,
             next: true,
+            id: userID,
             user: result[0].userName,
           });
         } else {

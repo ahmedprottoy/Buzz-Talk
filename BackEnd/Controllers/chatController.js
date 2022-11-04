@@ -6,7 +6,7 @@ const chatHandler = {};
 chatHandler.getConversations = (req, res, next) => {
     const userID = req.user.id;
 
-    const searchQuery = `select userName , profileImgId , lastUpdate
+    const searchQuery = `select convolist.userID,userName , profileImgId , lastUpdate
     from socialmedia.userinfo, socialmedia.userbios, (SELECT participant1 as userID, lastUpdate FROM socialmedia.conversation_table
         where participant2 = ${userID} 
         union
@@ -55,21 +55,32 @@ chatHandler.getMessages = (req, res, next) => {
     const participantsID = req.params.userID;
 
     const conversationID = Math.max(userID,participantsID).toString() +"_" +Math.min(userID,participantsID).toString();
-    const searcQuery = `select messageID, messageFrom, senderImg, messageTo,userName, receiverImg, messageText, date_time, conversationID   
-    from socialmedia.message_table ,(select userId, profileImgId as senderImg from socialmedia.userbios where userId = ?) as sender,
-    (select userinfo.userID as userID, userName ,profileImgId as receiverImg from socialmeadia.userinfo, socialmedia.userbios where userinfo.userID = userbios.userId and userinfo.userID = ?) as receiver
-    where message_table.messageFrom = sender.userId and message_table.messageTo = receiver.userId and conversationID = ?
-    order by messageID desc`;
+    console.log(conversationID+" "+userID+" "+participantsID);
+    const searcQuery = `(select messageID, messageFrom, senderImg, messageTo,userName, receiverImg, messageText, date_time, conversationID   
+        from socialmedia.message_table ,(select userId, profileImgId as senderImg from socialmedia.userbios where userId = ${userID}) as sender,
+        (select userinfo.userID as userID, userName ,profileImgId as receiverImg from socialmedia.userinfo, socialmedia.userbios where userinfo.userID = userbios.userId and userinfo.userID = ${participantsID}) as receiver
+        where message_table.messageFrom = sender.userId and message_table.messageTo = receiver.userId and conversationID = ?)
+        
+    union 
+    (select messageID, messageFrom, senderImg, messageTo,userName, receiverImg, messageText, date_time, conversationID   
+        from socialmedia.message_table ,(select userId, profileImgId as senderImg from socialmedia.userbios where userId = ${participantsID}) as sender,
+        (select userinfo.userID as userID, userName ,profileImgId as receiverImg from socialmedia.userinfo, socialmedia.userbios where userinfo.userID = userbios.userId and userinfo.userID = ${userID}) as receiver
+        where message_table.messageFrom = sender.userId and message_table.messageTo = receiver.userId and conversationID = ?)
+        
+        order by messageID desc;`;
 
-    db.query(searcQuery, [userID, participantsID, conversationID], (err,results) => {
-        if(results[0].length == 0){
-            req.json({message: "You havn't started chatting yet"})
-        }
+    db.query(searcQuery, [conversationID, conversationID], (err,results) => {
         if(err){
-            next(err);
-        } else{
+            console.log(err);
+        } 
+        // console.log(results);
+        if(results){
+            //req.json({message: "You havn't started chatting yet"})
             res.json(results);
+        } else{
+            res.json({message: "You havn't started chatting yet"})
         }
+        
     })
     
 }
