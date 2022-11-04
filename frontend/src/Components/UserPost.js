@@ -15,12 +15,10 @@ export default function UserPost() {
   const [cnt, setCnt] = useState(0);
 
   const handleCommentOpen = (evnt, index) => {
-    //if(!commentOpen[index])
     console.log("handle comment");
     const commentStatus = commentOpen;
     commentStatus[index] = !commentStatus[index];
     setCommentOpen(commentStatus);
-    // console.log(commentOpen[index])
   };
 
   const navigate = useNavigate();

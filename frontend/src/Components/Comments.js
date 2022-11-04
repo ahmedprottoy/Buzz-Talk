@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 export default function Comments(props) {
   const postId = props.postId;
 
-  const navigate = useNavigate();
   const [commentList, setCommentList] = useState([]);
+  const [cnt, setCnt] = useState(0);
+  console.log("cnt" + cnt);
   console.log(commentList);
-  //image of current user
 
-  // console.log(postId);
   useEffect(() => {
+    console.log(" calling");
     getAllComments();
   }, []);
 
@@ -32,7 +32,6 @@ export default function Comments(props) {
   const [commentData, setCommentData] = useState({
     commentText: "",
   });
-  const [commentStatus, setCommentStatus] = useState("");
 
   const handleCommentChange = (event) => {
     setCommentData((prevCommentData) => {
@@ -54,8 +53,7 @@ export default function Comments(props) {
         config()
       )
       .then((response) => {
-        console.log(response);
-        setCommentStatus(response.data);
+        // console.log(response);
       });
   };
 
@@ -88,7 +86,6 @@ export default function Comments(props) {
               </span>
               <p className={classes.commentDesc}>{comment.commentText}</p>
             </div>
-            <span className={classes.date}>68 minutes ago</span>
           </div>
         ))}
       </div>
