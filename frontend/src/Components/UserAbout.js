@@ -12,7 +12,7 @@ export default function UserAbout() {
 
   const getInfo = () => {
     axios
-      .get("http://localhost:3003/auth/user/profile", config)
+      .get("http://localhost:3003/auth/user/profile", config())
       .then((response) => {
         setInfo(response.data[0]);
       });

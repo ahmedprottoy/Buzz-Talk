@@ -28,7 +28,7 @@ export default function LogInForm() {
       setLoading(true);
       setStatus("");
 
-      await Axios.post("http://localhost:3003/auth/logIn", {
+      const response = await Axios.post("http://localhost:3003/auth/logIn", {
         userName,
         password,
       }).then((response) => {
@@ -45,7 +45,7 @@ export default function LogInForm() {
         );
         if (response.data.next) {
           setStatus(response.data.msg);
-          navigate("/");
+          navigate("/Home");
           // setTimeout(() => {
           //   navigate("/");
           // }, 1500);

@@ -13,7 +13,7 @@ export default function ProfileImages() {
 
   const getImages = () => {
     axios
-      .get("http://localhost:3003/auth/getImages", config)
+      .get("http://localhost:3003/auth/getImages", config())
       .then((response) => {
         if (response.data[0].profileImgId !== "null") {
           setProfileImage(response.data[0].profileImgId);

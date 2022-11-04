@@ -1,48 +1,88 @@
 .commentImg {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .currentUserImg {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .write {
-   display: flex;
-   align-items: center;
-   justify-content: space-between; 
-   gap: 20px;
-   margin: 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 20px 0px;
 }
 
 .commentInput {
-    flex: 5;
-    padding: 10px;
-    border: 1px solid aqua;
-    background-color: transparent;
-    color: teal;
-    border-radius: 5px;
+  flex: 5;
+  padding: 10px;
+  border: 1px solid rgb(147, 147, 147);
+  background-color: transparent;
+  color: rgb(5, 5, 5);
+  border-radius: 5px;
 }
 
-.commentBtn {
+/* .commentBtn {
     border: none;
     background-color: #5271ff;
     color: white;
     padding: 10px;
     cursor: pointer;
     border-radius: 5px;
+} */
+
+.commentBtn {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 12px;
+  outline: none;
+  padding: 0.75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.commentBtn:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.commentBtn:focus {
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
 }
 
 .comment {
-    display: flex;
-    margin: 30px 0px;
-    justify-content: space-between;
-    gap: 20px;
+  display: flex;
+  margin: 30px 0px;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .info {
@@ -55,17 +95,16 @@
 }
 
 .commentUsername {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .commentDesc {
-    color: teal;
+  color: rgb(41, 41, 41);
 }
 
 .date {
-    flex:1;
-    align-self: center;
-    color: brown;
-    font-size: 12px;
+  flex: 1;
+  align-self: center;
+  color: rgb(169, 169, 169);
+  font-size: 12px;
 }
-
