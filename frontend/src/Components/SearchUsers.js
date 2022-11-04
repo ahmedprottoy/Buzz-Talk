@@ -16,12 +16,14 @@ function SearchUsers(props) {
 
   const searchedUser = () => {
     axios
-      .get(`http://localhost:3003/auth/search/user/account/${UserName}`, config)
+      .get(
+        `http://localhost:3003/auth/search/user/account/${UserName}`,
+        config()
+      )
       .then((response) => {
         setUsers(response.data);
       });
   };
-  console.log(users);
 
   if (users) {
     return users.map((user, index) => {

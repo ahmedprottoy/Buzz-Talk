@@ -10,32 +10,29 @@ import EditPost from "./EditPost";
 import Modal from "./modal";
 import SearchResult from "./SearchResult";
 import Chat from "./Chat";
-// import ChatBox from "./ChatBox";
-
-// import Profile from "./Profile";
-
-
-
-
 import "../Styles/app.module.css";
 import { Routes, Route } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export default function App() {
   return (
-    <Layout>
+    <>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/LogIn" element={<LogIn />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/Settings" element={<Settings />} />
-        <Route path="/FollowerProfile" element={<FollowerProfile />} />
-        <Route path="/EditPost" element={<EditPost />} />
-        <Route path="/Modals" element={<Modal />} />
-        <Route path="/SearchResult" element={<SearchResult />} />
-        <Route path="/Chat" element={<Chat />} />
-        {/* <Route path="/ChatBox" element={<ChatBox />} /> */}
+
+        <Route path="/*" element={<Layout />}>
+          <Route path="home" element={<Home />} />
+          <Route path="Profile" element={<Profile />} />
+          <Route path="Settings" element={<Settings />} />
+          <Route path="FollowerProfile" element={<FollowerProfile />} />
+          <Route path="EditPost" element={<EditPost />} />
+          <Route path="Modals" element={<Modal />} />
+          <Route path="SearchResult" element={<SearchResult />} />
+          <Route path="Chat" element={<Chat />} />
+        </Route>
       </Routes>
-    </Layout>
+    </>
   );
 }
