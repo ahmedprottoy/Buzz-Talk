@@ -1,7 +1,8 @@
+import React from "react";
 import classes from "../Styles/nav.module.css";
 import Account from "./Account";
 import { Typewriter } from "react-simple-typewriter";
-
+import SearchBar from "./SearchBar";
 export default function Navbar() {
   return (
     <nav className={classes.nav}>
@@ -12,7 +13,7 @@ export default function Navbar() {
               words={["Social Media..."]}
               loop="false"
               cursor
-              cursorStyle="|"
+              cursorStyle="_"
               typeSpeed={70}
               deleteSpeed={50}
               delaySpeed={1000}
@@ -21,6 +22,7 @@ export default function Navbar() {
         </li>
       </ul>
 
+      <SearchBar />
       <Account />
     </nav>
   );

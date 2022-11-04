@@ -71,11 +71,9 @@ postHandler.updatePost = (req, res, next) => {
 
 postHandler.getPost = (req, res, next) => {
   const postID = req.params.postID;
-  console.log("hitting");
-  console.log(postID);
   const searchQuery = `SELECT userName as Author ,profileImgId, postDet , imgID , likenumber , date_time
-    from socialmedia.userinfo , socialmedia.post_table,socialmedia.userbios
-    where userinfo.userID = post_table.userID and userinfo.userID = userbios.userID and postID = ? ;`;
+    from socialmedia.userinfo , socialmedia.post_table
+    where userinfo.userID = post_table.userID and postID = ? ;`;
 
   db.query(searchQuery, [postID], (err, results) => {
     if (err) {
@@ -110,7 +108,7 @@ postHandler.getOwnPost = (req, res, next) => {
   const searchQuery = `SELECT userName as Author ,postId, postDet , imgID , likenumber , date_time
     from socialmedia.userinfo , socialmedia.post_table
     where userinfo.userID = post_table.userID and post_table.userID = ? ;`;
-  console.log("test");
+    console.log("test")
 
   db.query(searchQuery, [userID], (err, results) => {
     if (err) {
@@ -126,23 +124,15 @@ postHandler.getOwnPost = (req, res, next) => {
 postHandler.deletePost = (req, res, next) => {
   const postID = req.params.postID;
   const userID = req.user.id;
-  const deleteQueryComment =
-    "DELETE FROM socialmedia.comment_table WHERE postID = ?;";
 
-  db.query(deleteQueryComment, [postID], (error, results1) => {
-    if (error) {
-      next(error);
+  const deleteQuery =
+    "DELETE FROM socialmedia.post_table WHERE userID = ? and postID = ?;";
+
+  db.query(deleteQuery, [userID, postID], (err, results) => {
+    if (err) {
+      next(err);
     } else {
-      const deleteQueryPost =
-        "DELETE FROM socialmedia.post_table WHERE userID = ? and postID = ?;";
-
-      db.query(deleteQueryPost, [userID, postID], (err, results2) => {
-        if (err) {
-          next(err);
-        } else {
-          res.json({ message: "Delete successfull " });
-        }
-      });
+      res.json({ message: "Delete successfull " });
     }
   });
 };

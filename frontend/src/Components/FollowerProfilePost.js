@@ -14,7 +14,7 @@ export default function FollowerProfilePost(id) {
 
   const getFollowerPost = () => {
     axios
-      .get(`http://localhost:3003/auth/post/user/${followerID.id}`, config())
+      .get(`http://localhost:3003/auth/post/user/${followerID.id}`, config)
       .then((response) => {
         setFollowerPost(response.data);
       });

@@ -23,7 +23,7 @@ export default function FollowerProfile() {
     axios
       .get(
         `http://localhost:3003/auth/user/getFollowerProfile/${followerID}`,
-        config()
+        config
       )
       .then((response) => {
         setFollowerInfo(response.data[0]);
@@ -33,10 +33,7 @@ export default function FollowerProfile() {
 
   const isFollowing = () => {
     axios
-      .get(
-        `http://localhost:3003/auth/user/isFollowing/${followerID}`,
-        config()
-      )
+      .get(`http://localhost:3003/auth/user/isFollowing/${followerID}`, config)
       .then((response) => {
         setFollowing(response.data);
       });
@@ -44,7 +41,7 @@ export default function FollowerProfile() {
 
   const unfollow = (followerID) => {
     axios
-      .delete(`http://localhost:3003/auth/unfollow/${followerID}`, config())
+      .delete(`http://localhost:3003/auth/unfollow/${followerID}`, config)
       .then((response) => {
         console.log(response.data);
       });
@@ -53,7 +50,7 @@ export default function FollowerProfile() {
 
   const follow = (followerID) => {
     axios
-      .post(`http://localhost:3003/auth/follow/${followerID}`, {}, config())
+      .post(`http://localhost:3003/auth/follow/${followerID}`, {}, config)
       .then((response) => {
         console.log(response.data);
       });

@@ -39,7 +39,7 @@ export default function UpdateInfo() {
 
   const getData = () => {
     axios
-      .get("http://localhost:3003/auth/user/profile", config())
+      .get("http://localhost:3003/auth/user/profile", config)
       .then((response) => {
         setUserInfo(response.data);
       });
@@ -52,7 +52,7 @@ export default function UpdateInfo() {
       setError("Password Didn't match...");
     } else {
       axios
-        .put("http://localhost:3003/auth/profileUpdate", updatedInfo, config())
+        .put("http://localhost:3003/auth/profileUpdate", updatedInfo, config)
         .then((response) => {
           setStatus(response.data.msg);
         });

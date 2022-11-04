@@ -2,21 +2,24 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Followers from "./Followers";
 import classes from "../Styles/sidebar.module.css";
-import { RssFeed, AccountBox, SettingsSharp } from "@material-ui/icons";
-import SearchBar from "./SearchBar";
-import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
+import {
+  RssFeed,
+  AccountBox,
+  SettingsSharp,
+  
+} from "@material-ui/icons";
+import ChatBubbleRoundedIcon from '@material-ui/icons/ChatBubbleRounded';
+
 
 export default function Sidebar() {
   const navigate = useNavigate();
   return (
     <div className={classes.sidebar}>
-      <SearchBar />
       <ul className={classes.sidebarList}>
-        <li className={classes.sidebarListItem}></li>
         <li
           className={classes.sidebarListItem}
           onClick={() => {
-            navigate("/Home");
+            navigate("/");
           }}
         >
           <RssFeed className={classes.sidebarIcon} />

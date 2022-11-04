@@ -30,13 +30,12 @@ export default function MenuListComposition(props) {
   const onOpenModal = () => {
     setOpens(true);
   };
-  // console.log(deletePostID);
+  console.log(deletePostID);
   const onCloseModal = () => setOpens(false);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
     setDeletePostID(props.postId);
-    console.log(props.postId);
   };
 
   const handleClose = (event) => {
@@ -65,9 +64,8 @@ export default function MenuListComposition(props) {
   }, [open]);
 
   const deletePost = () => {
-    console.log("object");
     axios
-      .delete(`http://localhost:3003/auth/post/${deletePostID}`, config())
+      .delete(`http://localhost:3003/auth/post/${deletePostID}`, config)
       .then((response) => {
         console.log(response.data);
         setDeletePostID(null);
