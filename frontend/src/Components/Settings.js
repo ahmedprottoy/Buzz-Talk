@@ -13,9 +13,9 @@ export default function Settings() {
       <>
         <UpdateProfileImage />
       </>
-      <>
+      <div className={classes.infoUpdate}>
         <UpdateInfo />
-      </>
+      </div>
     </div>
   );
 }

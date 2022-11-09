@@ -9,7 +9,9 @@
 }
 
 .settingsWrapper {
-  flex: 12;
+  display: flex;
+  flex-direction: column;
+  flex: 10;
   padding: 20px;
 }
 

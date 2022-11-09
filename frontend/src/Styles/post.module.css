@@ -1,5 +1,5 @@
 .post {
-  width: 80%;
+  width: 100%;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
@@ -43,7 +43,6 @@
   border: none;
   outline: none;
 }
-
 
 .postCenter {
   margin: 20px 0;

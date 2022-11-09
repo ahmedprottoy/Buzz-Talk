@@ -1,5 +1,6 @@
 .main {
-  width: 100%;
+  width: 95%;
+  display: flex;
 }
 
 .container {
@@ -7,11 +8,23 @@
   margin: 6rem auto;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
-/* .homeContainer {
-  height: auto;
-  margin: 4rem;
-  display: flex;
-  width: 95%;
-} */
+.side {
+  flex: 2.5;
+  margin-right: 50px;
+}
+
+.feed {
+  flex: 7;
+}
+
+.right {
+  border: 1px solid #333;
+  margin-left: 20px;
+  flex: 2;
+  padding: 10px;
+  border-radius: 4px;
+  height: 600px;
+}

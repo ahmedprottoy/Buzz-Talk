@@ -1,24 +1,24 @@
 .conversation {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    margin-top: 20px;
-    border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 .conversation:hover {
-    background-color: rgb(206, 206, 206);
+  background-color: rgb(206, 206, 206);
 }
 
 .conversationImg {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
 }
 
 .conversationName {
-    font-weight: 500;
+  font-weight: 500;
 }

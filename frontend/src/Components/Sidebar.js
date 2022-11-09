@@ -4,7 +4,6 @@ import Followers from "./Followers";
 import classes from "../Styles/sidebar.module.css";
 import { RssFeed, AccountBox, SettingsSharp } from "@material-ui/icons";
 import SearchBar from "./SearchBar";
-import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
 
 export default function Sidebar() {
   const navigate = useNavigate();
