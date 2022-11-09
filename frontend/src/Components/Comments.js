@@ -6,30 +6,31 @@ import { useNavigate } from "react-router-dom";
 
 export default function Comments(props) {
   const postId = props.postId;
-  
+
   const navigate = useNavigate();
   const [commentList, setCommentList] = useState([]);
-  const [cnt,setCnt]=useState(false);
+  const [cnt, setCnt] = useState(false);
   //image of current user
-  
+
   // console.log(postId);
-  useEffect(()=>{
+  useEffect(() => {
     getAllComments();
     // setCnt(!cnt);
-  },[commentList]);
+  }, [commentList]);
 
-  const getAllComments= () => {
-    axios.get(`http://localhost:3003/auth/comment/${postId}`,config())
-    .then((response)=>{
-      const allComment = response.data;
-      // setCnt(cnt+1);
-      console.log('cdi');
-      setCommentList(allComment);
-    }).catch((error)=>{
-      console.log(error)
-    })
-  }
-
+  const getAllComments = () => {
+    axios
+      .get(`http://localhost:3003/auth/comment/${postId}`, config())
+      .then((response) => {
+        const allComment = response.data;
+        // setCnt(cnt+1);
+        console.log("cdi");
+        setCommentList(allComment);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const [commentData, setCommentData] = useState({
     commentText: "",
@@ -63,43 +64,43 @@ export default function Comments(props) {
       });
   };
 
-  if(commentList){
+  if (commentList) {
     return (
       <div className={classes.comments}>
-      <div className={classes.write}>
-        <img
-          className={classes.currentUserImg}
-          src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=300"
-          alt=""
-        />
-        <input
-          type="text"
-          placeholder="Write a comment..."
-          className={classes.commentInput}
-          name="commentText"
-          autoFocus={true}
-          onChange={handleCommentChange}
-        />
-        <button className={classes.commentBtn} onClick={handleCommentSubmit}>
-          Comment
-        </button>
-      </div>
-      {commentList.map((comment,index) => (
-        <div className={classes.comment}>
+        <div className={classes.write}>
           <img
+            className={classes.currentUserImg}
             src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=300"
             alt=""
-            className={classes.commentImg}
           />
-          <div className={classes.info}>
-            <span className={classes.commentUsername}>{comment.userName}</span>
-            <p className={classes.commentDesc}>{comment.commentText}</p>
-          </div>
-          <span className={classes.date}>68 minutes ago</span>
+          <input
+            type="text"
+            placeholder="Write a comment..."
+            className={classes.commentInput}
+            name="commentText"
+            autoFocus={true}
+            onChange={handleCommentChange}
+          />
+          <button className={classes.commentBtn} onClick={handleCommentSubmit}>
+            Comment
+          </button>
         </div>
-      ))}
-    </div>
-    )
-  } 
-
+        {commentList.map((comment, index) => (
+          <div className={classes.comment}>
+            <img
+              src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=300"
+              alt=""
+              className={classes.commentImg}
+            />
+            <div className={classes.info}>
+              <span className={classes.commentUsername}>
+                {comment.userName}
+              </span>
+              <p className={classes.commentDesc}>{comment.commentText}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }

@@ -21,31 +21,29 @@ export default function Profile() {
   }, []);
 
   return (
-    <>
-      <div className={classes.profile}>
-        <div className={classes.side}>
-          <Sidebar />
+    <div className={classes.profile}>
+      <div className={classes.side}>
+        <Sidebar />
+      </div>
+      <div className={classes.profileRight}>
+        <div className={classes.profileRightTop}>
+          <ProfileImages />
+          <div className={classes.profileInfo}>
+            <h4 className={classes.profileInfoName}>
+              {info.firstName} {info.lastName}
+            </h4>
+            <span className={classes.profileInfoDesc}>{info.userName}</span>
+          </div>
         </div>
-        <div className={classes.profileRight}>
-          <div className={classes.profileRightTop}>
-            <ProfileImages />
-            <div className={classes.profileInfo}>
-              <h4 className={classes.profileInfoName}>
-                {info.firstName} {info.lastName}
-              </h4>
-              <span className={classes.profileInfoDesc}>{info.userName}</span>
-            </div>
+        <div className={classes.profileRightBottom}>
+          <div className={classes.content}>
+            <Share />
+            <UserPost />
           </div>
-          <div className={classes.profileRightBottom}>
-            <div className={classes.content}>
-              <Share />
-              <UserPost />
-            </div>
 
-            <UserAbout className={classes.aboutWrapper} />
-          </div>
+          <UserAbout className={classes.aboutWrapper} />
         </div>
       </div>
-    </>
+    </div>
   );
 }

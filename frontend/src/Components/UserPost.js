@@ -7,7 +7,6 @@ import { ThumbUp } from "@material-ui/icons";
 import DropDown from "./DropDown";
 import { useNavigate } from "react-router-dom";
 
-
 export default function UserPost() {
   const [commentOpen, setCommentOpen] = useState([]);
   const [myPost, setMyPost] = useState([]);
@@ -57,7 +56,51 @@ export default function UserPost() {
         console.log(error);
       });
   };
-console.log(myPost);
+  console.log(myPost);
+
+  async function isThePostLiked(postID) {
+    console.log(postID);
+    console.log("clicked is post liked");
+    const response = await axios.get(
+      `http://localhost:3003/auth/isLike/${postID}`,
+      config()
+    );
+
+    if (response.data.isLiking === true) {
+      handleUnLike(postID);
+    } else {
+      handleLike(postID);
+    }
+  }
+
+  const handleLike = (postid) => {
+    console.log("clicked like");
+    // clicked = true;
+    console.log(postid);
+    //  setLikeNumber(likeNumber+1);
+    axios
+      .post(`http://localhost:3003/auth/like/${postid}`, {}, config())
+      .then((response) => {
+        console.log(response);
+        // liked = true;
+      });
+    window.location.reload(false);
+  };
+
+  const handleUnLike = (postid) => {
+    console.log("clicked unlike");
+    // clicked = true;
+    console.log(postid);
+    // setLikeNumber(likeNumber-1);
+    axios
+      .delete(`http://localhost:3003/auth/unlike/${postid}`, config())
+      .then((response) => {
+        console.log(response);
+        // liked = false;
+      });
+    window.location.reload(false);
+  };
+
   if (myPost) {
     return myPost.map((Post, index) => {
       return (
@@ -113,18 +156,24 @@ console.log(myPost);
             </div>
             <div className={classes.postBottom}>
               <div className={classes.postBottomLeft}>
-                <ThumbUp className={classes.likeIcon} />
-                
+                <ThumbUp
+                  className={classes.likeIcon}
+                  onClick={() => {
+                    console.log("click thumb");
+                    isThePostLiked(myPost[index].postID);
+                  }}
+                />
+
                 {Post.likenumber === null ? (
-                  <span className={classes.postLikeCounter}></span>
+                  <span className={classes.postLikeCounter}>No Likes Yet</span>
                 ) : (
                   <span className={classes.postLikeCounter}>
-                    {Post.likenumber} people likes it
+                    {Post.likenumber} people liked it
                   </span>
                 )}
               </div>
               <div className={classes.postBottomRight}>
-              {Post.commentNumber === null ? (
+                {Post.commentNumber === null ? (
                   <span
                     className={classes.postCommentText}
                     onClick={(evnt) => {
@@ -148,7 +197,7 @@ console.log(myPost);
               </div>
             </div>
 
-            {commentOpen[index] && <Comments postId={myPost[index].postId} />}
+            {commentOpen[index] && <Comments postId={myPost[index].postID} />}
           </div>
         </div>
       );

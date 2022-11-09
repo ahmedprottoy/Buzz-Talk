@@ -4,6 +4,7 @@ import config from "../config";
 import classes from "../Styles/post.module.css";
 import { ThumbUp } from "@material-ui/icons";
 import Comments from "./Comments";
+import noData from "../images/no.svg";
 
 export default function FollowerProfilePost(id) {
   const [followerPost, setFollowerPost] = useState([]);
@@ -16,7 +17,7 @@ export default function FollowerProfilePost(id) {
     commentStatus[index] = !commentStatus[index];
 
     setCommentOpen(commentStatus);
-  }
+  };
 
   useEffect(() => {
     getFollowerPost();
@@ -30,6 +31,48 @@ export default function FollowerProfilePost(id) {
         console.log(response.data);
       });
   };
+
+  async function isThePostLiked(postid, likenumber) {
+    const response = await axios.get(
+      `http://localhost:3003/auth/isLike/${postid}`,
+      config()
+    );
+
+    if (response.data.isLiking === true) {
+      handleUnLike(postid);
+    } else {
+      handleLike(postid);
+    }
+  }
+
+  const handleLike = (postid) => {
+    console.log("clicked like");
+    // clicked = true;
+    console.log(postid);
+    //  setLikeNumber(likeNumber+1);
+    axios
+      .post(`http://localhost:3003/auth/like/${postid}`, {}, config())
+      .then((response) => {
+        console.log(response);
+        // liked = true;
+      });
+    window.location.reload(false);
+  };
+
+  const handleUnLike = (postid) => {
+    console.log("clicked unlike");
+    // clicked = true;
+    console.log(postid);
+    // setLikeNumber(likeNumber-1);
+    axios
+      .delete(`http://localhost:3003/auth/unlike/${postid}`, config())
+      .then((response) => {
+        console.log(response);
+        // liked = false;
+      });
+    window.location.reload(false);
+  };
+
   console.log(followerPost);
   if (!followerPost.message) {
     return followerPost.map((Post, index) => {
@@ -70,17 +113,25 @@ export default function FollowerProfilePost(id) {
             </div>
             <div className={classes.postBottom}>
               <div className={classes.postBottomLeft}>
-                <ThumbUp className={classes.likeIcon} />
+                <ThumbUp
+                  className={classes.likeIcon}
+                  onClick={() => {
+                    // setLikeNumber(Post.likenumber);
+                    // handleUnLike(followerPost[index].postId, Post.likenumber);
+
+                    isThePostLiked(followerPost[index].postID, Post.likenumber);
+                  }}
+                />
                 {Post.likenumber === null ? (
-                  <span className={classes.postLikeCounter}></span>
+                  <span className={classes.postLikeCounter}>No Likes Yet</span>
                 ) : (
                   <span className={classes.postLikeCounter}>
-                    {Post.likenumber} people likes it
+                    {Post.likenumber} people liked it
                   </span>
                 )}
               </div>
               <div className={classes.postBottomRight}>
-              {Post.commentNumber === null ? (
+                {Post.commentNumber === null ? (
                   <span
                     className={classes.postCommentText}
                     onClick={(evnt) => {
@@ -103,17 +154,21 @@ export default function FollowerProfilePost(id) {
                 )}
               </div>
             </div>
-            {commentOpen[index]&& (
-                <Comments postId={followerPost[index].postID}/>
-              )}
+            {commentOpen[index] && (
+              <Comments postId={followerPost[index].postID} />
+            )}
           </div>
         </div>
       );
     });
-  }
-  else{
-    return(
-      <div><p>no post yet</p></div>
-    )
+  } else {
+    return (
+      <div className={classes.noPost}>
+        <div className={classes.postWrapper}>
+          <h2>No Post by This User</h2>
+          <img className={classes.imageNoData} src={noData} alt=" " />
+        </div>
+      </div>
+    );
   }
 }
