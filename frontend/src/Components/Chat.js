@@ -72,6 +72,7 @@ export default function Chat() {
   };
 
   const handleSubmit = (e) => {
+    console.log(conversationID);
     socket.emit("send-chat-message", {
       message: newMessage,
       sender: localStorage.getItem("id"),
