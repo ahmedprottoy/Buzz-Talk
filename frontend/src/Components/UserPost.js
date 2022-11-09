@@ -6,7 +6,7 @@ import Comments from "./Comments";
 import { ThumbUp } from "@material-ui/icons";
 import DropDown from "./DropDown";
 import { useNavigate } from "react-router-dom";
-import EditPost from "./EditPost";
+
 
 export default function UserPost() {
   const [commentOpen, setCommentOpen] = useState([]);
@@ -50,7 +50,7 @@ export default function UserPost() {
         const allMyPost = response.data;
 
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
-
+        console.log(allMyPost);
         setMyPost(allMyPost);
       })
       .catch((error) => {
@@ -91,12 +91,12 @@ console.log(myPost);
                   ClickEdit={() => {
                     navigate("/EditPost", {
                       state: {
-                        id: Post.postId,
+                        id: Post.postID,
                         postDet: Post.postDet,
                       },
                     });
                   }}
-                  postId={Post.postId}
+                  postId={Post.postID}
                 />
               </div>
             </div>
@@ -114,10 +114,14 @@ console.log(myPost);
             <div className={classes.postBottom}>
               <div className={classes.postBottomLeft}>
                 <ThumbUp className={classes.likeIcon} />
-                {/* <Favorite className={classes.likeIcon} /> */}
-                <span className={classes.postLikeCounter}>
-                  20 people liked it
-                </span>
+                
+                {Post.likenumber === null ? (
+                  <span className={classes.postLikeCounter}></span>
+                ) : (
+                  <span className={classes.postLikeCounter}>
+                    {Post.likenumber} people likes it
+                  </span>
+                )}
               </div>
               <div className={classes.postBottomRight}>
               {Post.commentNumber === null ? (

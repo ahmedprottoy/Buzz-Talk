@@ -6,6 +6,12 @@ import { ThumbUp } from "@material-ui/icons";
 import Comments from "./Comments";
 
 export default function FollowersPost() {
+  let numberOfLikes;
+  let liked = false;
+  let clicked = false;
+  // const [likeNumber, setLikeNumber] = useState(0);
+  // const [likeNumber, setLikeNumber] = useState(0);
+  
   const [followerPost, setFollowerPost] = useState([]);
   const [commentOpen, setCommentOpen] = useState([]);
   const [cnt, setCnt] = useState(0);
@@ -35,12 +41,57 @@ export default function FollowersPost() {
       });
   };
 
+  async function isThePostLiked(postid, likenumber) {
+    const response = await axios.get(
+      `http://localhost:3003/auth/isLike/${postid}`,
+      config()
+    );
+
+    if (response.data.isLiking === true) {
+      handleUnLike(postid);
+      
+    } else {
+      handleLike(postid);
+      
+    }
+  }
+
+  const handleLike = (postid) => {
+    console.log("clicked like");
+    clicked = true;
+    console.log(postid);
+    //  setLikeNumber(likeNumber+1);
+    axios
+      .post(`http://localhost:3003/auth/like/${postid}`, {}, config())
+      .then((response) => {
+        console.log(response);
+        liked = true;
+      });
+      window.location.reload(false);
+    };
+
+  const handleUnLike = (postid) => {
+    console.log("clicked unlike");
+    clicked = true;
+    console.log(postid);
+    // setLikeNumber(likeNumber-1);
+    axios
+      .delete(`http://localhost:3003/auth/unlike/${postid}`, config())
+      .then((response) => {
+        console.log(response);
+        liked = false;
+      });
+      window.location.reload(false);
+  };
+
   console.log(followerPost);
+ 
 
   if (followerPost) {
     return followerPost.map((Post, index) => {
       if (Post.profileImgId === "null") {
         Post.profileImgId = "avatar.png";
+        numberOfLikes = Post.likenumber;
       }
       return (
         <div className={classes.post}>
@@ -76,10 +127,23 @@ export default function FollowersPost() {
             </div>
             <div className={classes.postBottom}>
               <div className={classes.postBottomLeft}>
-                <ThumbUp className={classes.likeIcon} />
+                <ThumbUp
+                  className={classes.likeIcon}
+                  onClick={() => {
+                    // setLikeNumber(Post.likenumber);
+                    // handleUnLike(followerPost[index].postId, Post.likenumber);
+                    
+                    isThePostLiked(followerPost[index].postId, Post.likenumber);
+
+     
+                  }}
+                />
+                {Post.likenumber === null ? (
+                <span className={classes.postLikeCounter}>No likes yet</span>) : (
                 <span className={classes.postLikeCounter}>
-                  20 people liked it
+                  {Post.likenumber} people liked it
                 </span>
+                )}
               </div>
               <div className={classes.postBottomRight}>
                 {Post.commentNumber === null ? (

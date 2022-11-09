@@ -4,10 +4,11 @@
     padding: 10px;
     cursor: pointer;
     margin-top: 20px;
+    border-radius: 10px;
 }
 
 .conversation:hover {
-    background-color: gray;
+    background-color: rgb(206, 206, 206);
 }
 
 .conversationImg {

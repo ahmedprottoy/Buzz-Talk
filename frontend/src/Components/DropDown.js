@@ -16,7 +16,7 @@ import config from "../config";
 import { useNavigate } from "react-router-dom";
 
 export default function MenuListComposition(props) {
-  // const [postId, setPostID] = useState();
+  
   const [deletePostID, setDeletePostID] = useState(null);
 
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function MenuListComposition(props) {
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
     setDeletePostID(props.postId);
-    console.log(props.postId);
+    console.log(props.postId)
   };
 
   const handleClose = (event) => {

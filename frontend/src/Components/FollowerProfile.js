@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import classes from "../Styles/profile.module.css";
 import Sidebar from "./Sidebar";
 import FollowerProfilePost from "./FollowerProfilePost";
@@ -8,6 +8,7 @@ import config from "../config";
 import { Email, Brightness4, LocationOn, Work } from "@material-ui/icons";
 
 export default function FollowerProfile() {
+  const navigate = useNavigate();
   const location = useLocation();
   const followerID = location.state.id;
   const [following, setFollowing] = useState("");
@@ -18,6 +19,22 @@ export default function FollowerProfile() {
     getInfo();
     isFollowing();
   }, [followerID]);
+
+  const handleChat = () => {
+    axios.get(`http://localhost:3003/auth/findConvoersation/${followerID}`, config()).then((response) => {
+      if(response.data.length===0) {
+        axios
+        .post(`http://localhost:3003/auth/getconvo/${followerID}`,{}, config())
+        .then((res) => {
+          console.log(res);
+          navigate("/Chat",{ state: { id: followerID,img: followerInfo.profileImgId,userName : followerInfo.userName } });
+        });
+      } else {
+        navigate("/Chat",{ state: { id: followerID,img: followerInfo.profileImgId,userName : followerInfo.userName } });
+      }
+    });
+   
+  };
 
   const getInfo = () => {
     axios
@@ -93,12 +110,6 @@ export default function FollowerProfile() {
                 {followerInfo.userName}
               </span>
             </div>
-            <div className={classes.profileBio}>
-              {/* <span className={classes.profileBioItem}>lorem</span>
-              <span className={classes.profileBioItem}>ipsum</span>
-              <span className={classes.profileBioItem}>dolor</span>
-              <span className={classes.profileBioItem}>amet</span> */}
-            </div>
 
             <div className={classes.profileButton}>
               {following ? (
@@ -111,6 +122,12 @@ export default function FollowerProfile() {
                   >
                     Unfollow
                   </button>
+                  <button
+                    className={classes.chatButtonBtn}
+                    onClick={handleChat}
+                  >
+                    Message
+                  </button>
                 </>
               ) : (
                 <>
@@ -121,6 +138,12 @@ export default function FollowerProfile() {
                     }}
                   >
                     Follow
+                  </button>
+                  <button
+                    className={classes.chatButtonBtn}
+                    onClick={handleChat}
+                  >
+                    Message
                   </button>
                 </>
               )}

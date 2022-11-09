@@ -73,7 +73,7 @@ postHandler.getPost = (req, res, next) => {
   const postID = req.params.postID;
   console.log("hitting");
   console.log(postID);
-  const searchQuery = `SELECT userName as Author ,profileImgId, postDet , imgID , likenumber , date_time
+  const searchQuery = `SELECT userName as Author ,profileImgId, postDet , imgID , date_time
     from socialmedia.userinfo , socialmedia.post_table,socialmedia.userbios
     where userinfo.userID = post_table.userID and userinfo.userID = userbios.userID and postID = ? ;`;
 
@@ -90,9 +90,11 @@ postHandler.getPost = (req, res, next) => {
 
 postHandler.getUsersPost = (req, res, next) => {
   const userID = req.params.userID;
-  const searchQuery = `SELECT postID, userName as Author ,profileImgId, postDet , imgID , likenumber , date_time
-    from socialmedia.userinfo , socialmedia.post_table,socialmedia.userbios
-    where userinfo.userID = post_table.userID and userinfo.userID = userbios.userID and post_table.userID = ? ;`;
+  const searchQuery = `SELECT init_table.postID as postID, Author ,profileImgId, postDet , imgID , date_time, commentNumber, likenumber from
+  (SELECT postID, userName as Author ,profileImgId, postDet , imgID , date_time
+      from socialmedia.userinfo , socialmedia.post_table,socialmedia.userbios
+      where userinfo.userID = post_table.userID and userinfo.userID = userbios.userID and post_table.userID = ?) as init_table left join (Select postID , count(commentID) as commentNumber from (SELECT post_table.postID, commentID FROM socialmedia.post_table, socialmedia.comment_table where post_table.postID = comment_table.postID) as temp
+  group by postID) as commentCount on init_table.postID = commentCount.postID left join (select postID, count(userID) as likenumber from socialmedia.like_table group by postID) as likeCount on init_table.postID = likeCount.postID;`;
 
   db.query(searchQuery, [userID], (err, results) => {
     if (err) {
@@ -107,9 +109,11 @@ postHandler.getUsersPost = (req, res, next) => {
 
 postHandler.getOwnPost = (req, res, next) => {
   const userID = req.user.id;
-  const searchQuery = `SELECT userName as Author ,postId, postDet , imgID , likenumber , date_time
-    from socialmedia.userinfo , socialmedia.post_table
-    where userinfo.userID = post_table.userID and post_table.userID = ? ;`;
+  const searchQuery = `SELECT init_table.postID as postID, Author ,imgId, postDet , imgID ,  date_time,likenumber, commentNumber from
+  (SELECT userName as Author ,postId, postDet , imgID , date_time
+      from socialmedia.userinfo , socialmedia.post_table
+      where userinfo.userID = post_table.userID and post_table.userID = ? ) as init_table left join (Select postID , count(commentID) as commentNumber from (SELECT post_table.postID, commentID FROM socialmedia.post_table, socialmedia.comment_table where post_table.postID = comment_table.postID) as temp
+  group by postID) as commentCount on init_table.postID = commentCount.postID left join (select postID, count(userID) as likenumber from socialmedia.like_table group by postID) as likeCount on init_table.postID = likeCount.postID;`;
   console.log("test");
 
   db.query(searchQuery, [userID], (err, results) => {
@@ -133,29 +137,34 @@ postHandler.deletePost = (req, res, next) => {
     if (error) {
       next(error);
     } else {
-      const deleteQueryPost =
-        "DELETE FROM socialmedia.post_table WHERE userID = ? and postID = ?;";
-
-      db.query(deleteQueryPost, [userID, postID], (err, results2) => {
-        if (err) {
-          next(err);
-        } else {
-          res.json({ message: "Delete successfull " });
+        const likeID = Math.max(postID,userID)+"_"+Math.min(postID,userID);
+        const deleteQueryLike = "DELETE FROM socialmedia.like_table WHERE likeID = ?;";
+        db.query(deleteQueryLike, [likeID], (errorLike, results2) => {
+          if(errorLike){
+            next(errorLike);
+          }else{
+            const deleteQueryPost = "DELETE FROM socialmedia.post_table WHERE userID = ? and postID = ?;";
+            db.query(deleteQueryPost, [userID, postID], (err, results2) => {
+                    if (err) {
+                      next(err);
+                    } else {
+                      res.json({ message: "Delete successfull " });
+                    }
+           });
         }
-      });
-    }
-  });
+
+    });
+  }});
 };
 
 postHandler.followingUserPost = (req, res, next) => {
   const userID = req.user.id;
-  const searchQuery = `select Author , initi_table.postId , postDet , imgID , likenumber , date_time , profileImgId,commentNumber from
-  (SELECT userName as Author , postId,postDet , imgID , likenumber , date_time , profileImgId
+  const searchQuery = `select Author , initi_table.postId , postDet , imgID ,  date_time , profileImgId,commentNumber, likenumber from
+  (SELECT userName as Author , postId,postDet , imgID ,  date_time , profileImgId
       from socialmedia.userinfo , socialmedia.post_table ,socialmedia.userbios
       where userinfo.userID = post_table.userID and userinfo.userID = userbios.userId and post_table.userID in (select userId from socialmedia.follower_table where followerID = ?
    ) ) as initi_table Left join (select postID ,count(commentID) commentNumber from (SELECT post_table.postID, commentID FROM socialmedia.post_table, socialmedia.comment_table where post_table.postID = comment_table.postID) as temp group by temp.postID
-  ) as temp on initi_table.postID = temp.postID
-   ;`;
+  ) as temp on initi_table.postID = temp.postID left join (select postID, count(userID) as likenumber from socialmedia.like_table group by postID) as likeCount on initi_table.postID = likeCount.postID;`;
   //console.log("dhukse");
   db.query(searchQuery, [userID], (err, results) => {
     if (err) {

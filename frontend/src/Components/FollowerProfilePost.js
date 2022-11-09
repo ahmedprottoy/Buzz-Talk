@@ -31,7 +31,7 @@ export default function FollowerProfilePost(id) {
       });
   };
   console.log(followerPost);
-  if (followerPost) {
+  if (!followerPost.message) {
     return followerPost.map((Post, index) => {
       if (Post.profileImgId === "null") {
         Post.profileImgId = "avatar.png";
@@ -71,19 +71,36 @@ export default function FollowerProfilePost(id) {
             <div className={classes.postBottom}>
               <div className={classes.postBottomLeft}>
                 <ThumbUp className={classes.likeIcon} />
-                {/* <Favorite className={classes.likeIcon} /> */}
-                <span className={classes.postLikeCounter}>
-                  20 people liked it
-                </span>
+                {Post.likenumber === null ? (
+                  <span className={classes.postLikeCounter}></span>
+                ) : (
+                  <span className={classes.postLikeCounter}>
+                    {Post.likenumber} people likes it
+                  </span>
+                )}
               </div>
               <div className={classes.postBottomRight}>
-                <span className={classes.postCommentText}
-                onClick={
-                  (evnt) => {
-                    handleCommentOpen(evnt, index);
-                    setCnt(cnt + 1);
-                  }
-                }>comments</span>
+              {Post.commentNumber === null ? (
+                  <span
+                    className={classes.postCommentText}
+                    onClick={(evnt) => {
+                      handleCommentOpen(evnt, index);
+                      setCnt(cnt + 1);
+                    }}
+                  >
+                    no comments yet
+                  </span>
+                ) : (
+                  <span
+                    className={classes.postCommentText}
+                    onClick={(evnt) => {
+                      handleCommentOpen(evnt, index);
+                      setCnt(cnt + 1);
+                    }}
+                  >
+                    {Post.commentNumber} comments
+                  </span>
+                )}
               </div>
             </div>
             {commentOpen[index]&& (
@@ -93,5 +110,10 @@ export default function FollowerProfilePost(id) {
         </div>
       );
     });
+  }
+  else{
+    return(
+      <div><p>no post yet</p></div>
+    )
   }
 }
