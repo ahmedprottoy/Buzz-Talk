@@ -10,6 +10,7 @@ const searchHandler = require("../Controllers/searchController");
 const commentHandler = require("../Controllers/commentController");
 
 const chatHandler = require("../Controllers/chatController");
+const likeHandler = require("../Controllers/likeController");
 
 
 const router = express.Router();
@@ -129,6 +130,10 @@ router.get("/comment/:postID", authentication, commentHandler.getComment);
 router.get("/getconvo",authentication,chatHandler.getConversations);
 router.post("/getconvo/:userID",authentication,chatHandler.createConversation);
 router.get("/getmessage/:userID",authentication,chatHandler.getMessages);
+router.post("/like/:postID",authentication,likeHandler.likePost);
+router.delete("/unlike/:postID",authentication,likeHandler.unlikePost);
+router.get("/isLike/:postID",authentication,likeHandler.isLiking);
+router.get("/findConvoersation/:userID",authentication,chatHandler.findConversation);
 
 router.use("/images", express.static("images"));
 

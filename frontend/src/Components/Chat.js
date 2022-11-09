@@ -60,6 +60,7 @@ export default function Chat() {
         } else {
           setMyImg(response.data[0].receiverImg);
           setConversationID(response.data[0].conversationID);
+          console.log(response.data[0].conversationID)
         }
         // console.log(response.data);
         // let allMsg = response.data;
@@ -76,7 +77,7 @@ export default function Chat() {
       message: newMessage,
       sender: localStorage.getItem("id"),
       receiver: userID.toString(),
-      conversationID: conversationID,
+      conversationID: Math.max(localStorage.getItem("id"),userID.toString())+"_"+Math.min(localStorage.getItem("id"),userID.toString()),
     });
 
     const msg = {
@@ -120,11 +121,20 @@ export default function Chat() {
       <div className={classes.chatUserInfo}>
         <div className={classes.chatUserInfoWrapper}>
           <h1>You are Chatting With...</h1>
-          <img
-            src={`http://localhost:3003/auth/images/${img}`}
-            alt=""
-            className={classes.chatUserImg}
-          />
+          {(img==="null") ? (
+            <img
+              src={`http://localhost:3003/auth/images/avatar.png`}
+              alt=""
+              className={classes.chatUserImg}
+            />
+          ) : (
+            <img
+              src={`http://localhost:3003/auth/images/${img}`}
+              alt=""
+              className={classes.chatUserImg}
+            />
+          )}
+
           <h2>{userName}</h2>
           <button className={classes.chatUserButton}>View Profile</button>
         </div>

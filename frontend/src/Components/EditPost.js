@@ -15,7 +15,7 @@ function EditPost() {
   const postID = location.state.id;
   const prevPost = location.state.postDet;
 
-  // console.log(postID);
+  console.log(postID);
   // console.log(prevPost);
 
   const [post, setPost] = useState();

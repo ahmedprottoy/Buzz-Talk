@@ -3,6 +3,23 @@ const { use } = require("../Routes/auth");
 
 const chatHandler = {};
 
+chatHandler.findConversation = (req, res, next) => {
+    const participantsID = req.params.userID;
+    const userID = req.user.id;
+    const conversationID = Math.max(userID,participantsID).toString() +"_" +Math.min(userID,participantsID);
+
+    const searchQuery = "SELECT conversationID FROM socialmedia.conversation_table where conversationID = ?;";
+
+    db.query(searchQuery, [conversationID], (err, results) => {
+        if(err){
+            next(err);
+        } else{
+           res.status(200).json(results);
+        }
+        });
+
+};
+
 chatHandler.getConversations = (req, res, next) => {
     const userID = req.user.id;
 
@@ -41,9 +58,18 @@ chatHandler.createConversation = (req,res, next) => {
         if(err){
             next(err);
         } else{
-            res.json({
-                msg: "convo is created ! ",
-              });
+            const insertQueryMsgTable = `insert into socialmedia.message_table(messageFrom, messageTo, messageText, date_time, conversationID)
+            values(?,?,"dont_show",now(),?);`
+            db.query(insertQueryMsgTable,[userID,participantsID,conversationID],(errMsg,resultsMsg) => {
+                if(errMsg){
+                    next(errMsg);
+                } else{
+                    res.json({
+                        msg: "convo is created ! ",
+                      });
+                }
+            })
+            
         }
     })
 

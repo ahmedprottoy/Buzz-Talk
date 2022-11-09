@@ -36,7 +36,12 @@ function ChatList() {
                 navigate("/Chat", { state: { id: convo.userID,img: convo.profileImgId,userName : convo.userName } })
                 // getMsgs();
             }}>
+              {(convo.profileImgId==="null")?(
+                <img className={classes.conversationImg} src={`http://localhost:3003/auth/images/avatar.png`} alt=""/>
+              ):(
                 <img className={classes.conversationImg} src={`http://localhost:3003/auth/images/${convo.profileImgId}`} alt=""/>
+              )}
+                
                 <span className={classes.conversationName}>{convo.userName}</span>
                
             </div>
