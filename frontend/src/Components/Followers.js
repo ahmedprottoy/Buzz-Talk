@@ -24,22 +24,24 @@ export default function Followers() {
       }
       return (
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        <a
-          onClick={() =>
-            navigate("/FollowerProfile", { state: { id: follower.userId } })
-          }
-        >
-          <li className={classes.sidebarFriend}>
-            <img
-              className={classes.sidebarFriendImg}
-              src={`http://localhost:3003/auth/images/${follower.profileImgId}`}
-              alt=""
-            />
-            <span className={classes.sidebarFriendName}>
-              {follower.userName}
-            </span>
-          </li>
-        </a>
+        <div key={index}>
+          <a
+            onClick={() =>
+              navigate("/FollowerProfile", { state: { id: follower.userId } })
+            }
+          >
+            <li className={classes.sidebarFriend}>
+              <img
+                className={classes.sidebarFriendImg}
+                src={`http://localhost:3003/auth/images/${follower.profileImgId}`}
+                alt=""
+              />
+              <span className={classes.sidebarFriendName}>
+                {follower.userName}
+              </span>
+            </li>
+          </a>
+        </div>
       );
     });
   }

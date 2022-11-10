@@ -13,7 +13,7 @@ export default function Message(props) {
   if (message) {
     return message.map((msg, index) => {
       return (
-        <>
+        <div key={index}>
           {msg.messageText === "dont_show" ? (
             <div></div>
           ) : (
@@ -38,7 +38,7 @@ export default function Message(props) {
               </div>
             </div>
           )}
-        </>
+        </div>
       );
     });
   }

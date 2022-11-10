@@ -28,7 +28,7 @@ export default function FollowerProfilePost(id) {
       .get(`http://localhost:3003/auth/post/user/${followerID.id}`, config())
       .then((response) => {
         setFollowerPost(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       });
   };
 
@@ -73,14 +73,14 @@ export default function FollowerProfilePost(id) {
     window.location.reload(false);
   };
 
-  console.log(followerPost);
+  // console.log(followerPost);
   if (!followerPost.message) {
     return followerPost.map((Post, index) => {
       if (Post.profileImgId === "null") {
         Post.profileImgId = "avatar.png";
       }
       return (
-        <div className={classes.post}>
+        <div key={index} className={classes.post}>
           <div className={classes.postWrapper}>
             <div className={classes.postTop}>
               <div className={classes.postTopLeft}>

@@ -11,7 +11,7 @@ export default function FollowersPost() {
   let clicked = false;
   // const [likeNumber, setLikeNumber] = useState(0);
   // const [likeNumber, setLikeNumber] = useState(0);
-  
+
   const [followerPost, setFollowerPost] = useState([]);
   const [commentOpen, setCommentOpen] = useState([]);
   const [cnt, setCnt] = useState(0);
@@ -26,7 +26,7 @@ export default function FollowersPost() {
   useEffect(() => {
     getFollowerPost();
   }, []);
-  console.log(followerPost);
+  // console.log(followerPost);
   const getFollowerPost = () => {
     axios
       .get("http://localhost:3003/auth/follower/post", config())
@@ -34,7 +34,7 @@ export default function FollowersPost() {
         const allMyPost = response.data;
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
         setFollowerPost(allMyPost);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -49,10 +49,8 @@ export default function FollowersPost() {
 
     if (response.data.isLiking === true) {
       handleUnLike(postid);
-      
     } else {
       handleLike(postid);
-      
     }
   }
 
@@ -67,8 +65,8 @@ export default function FollowersPost() {
         console.log(response);
         liked = true;
       });
-      window.location.reload(false);
-    };
+    window.location.reload(false);
+  };
 
   const handleUnLike = (postid) => {
     console.log("clicked unlike");
@@ -81,11 +79,10 @@ export default function FollowersPost() {
         console.log(response);
         liked = false;
       });
-      window.location.reload(false);
+    window.location.reload(false);
   };
 
-  console.log(followerPost);
- 
+  // console.log(followerPost);
 
   if (followerPost) {
     return followerPost.map((Post, index) => {
@@ -94,7 +91,7 @@ export default function FollowersPost() {
         numberOfLikes = Post.likenumber;
       }
       return (
-        <div className={classes.post}>
+        <div className={classes.post} key={index}>
           <div className={classes.postWrapper}>
             <div className={classes.postTop}>
               <div className={classes.postTopLeft}>
@@ -130,19 +127,15 @@ export default function FollowersPost() {
                 <ThumbUp
                   className={classes.likeIcon}
                   onClick={() => {
-                    // setLikeNumber(Post.likenumber);
-                    // handleUnLike(followerPost[index].postId, Post.likenumber);
-                    
                     isThePostLiked(followerPost[index].postId, Post.likenumber);
-
-     
                   }}
                 />
                 {Post.likenumber === null ? (
-                <span className={classes.postLikeCounter}>No likes yet</span>) : (
-                <span className={classes.postLikeCounter}>
-                  {Post.likenumber} people liked it
-                </span>
+                  <span className={classes.postLikeCounter}>No likes yet</span>
+                ) : (
+                  <span className={classes.postLikeCounter}>
+                    {Post.likenumber} people liked it
+                  </span>
                 )}
               </div>
               <div className={classes.postBottomRight}>

@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 export default function Layout() {
   let loggedin = config().headers.authorization;
-  console.log(loggedin);
+
   return loggedin ? (
     <>
       <main className={classes.main}>

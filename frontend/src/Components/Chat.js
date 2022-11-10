@@ -21,9 +21,8 @@ export default function Chat() {
   const userName = location.state.userName;
   const [newMessage, setNewMessage] = React.useState("");
   // const currentUser = JSON.parse(localStorage.getItem("user"));
-  console.log("userID" + typeof userID);
-
-  console.log(userID);
+  // console.log("userID" + typeof userID);
+  // console.log(userID);
   const [message, getMessage] = React.useState([]);
 
   React.useEffect(() => {
@@ -60,7 +59,7 @@ export default function Chat() {
         } else {
           setMyImg(response.data[0].receiverImg);
           setConversationID(response.data[0].conversationID);
-          console.log(response.data[0].conversationID)
+          // console.log(response.data[0].conversationID);
         }
         // console.log(response.data);
         // let allMsg = response.data;
@@ -78,7 +77,10 @@ export default function Chat() {
       message: newMessage,
       sender: localStorage.getItem("id"),
       receiver: userID.toString(),
-      conversationID: Math.max(localStorage.getItem("id"),userID.toString())+"_"+Math.min(localStorage.getItem("id"),userID.toString()),
+      conversationID:
+        Math.max(localStorage.getItem("id"), userID.toString()) +
+        "_" +
+        Math.min(localStorage.getItem("id"), userID.toString()),
     });
 
     const msg = {
@@ -122,7 +124,7 @@ export default function Chat() {
       <div className={classes.chatUserInfo}>
         <div className={classes.chatUserInfoWrapper}>
           <h1>You are Chatting With...</h1>
-          {(img==="null") ? (
+          {img === "null" ? (
             <img
               src={`http://localhost:3003/auth/images/avatar.png`}
               alt=""

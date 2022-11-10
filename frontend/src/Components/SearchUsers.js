@@ -21,11 +21,9 @@ function SearchUsers(props) {
         config()
       )
       .then((response) => {
-        console.log(response);
         setUsers(response.data);
       });
   };
-  console.log(users.length);
 
   if (users.length !== 0) {
     return users.map((user, index) => {
@@ -33,7 +31,7 @@ function SearchUsers(props) {
         user.profileImgId = "avatar.png";
       }
       return (
-        <>
+        <div key={index}>
           <a
             onClick={() =>
               navigate("/FollowerProfile", { state: { id: user.userID } })
@@ -49,7 +47,7 @@ function SearchUsers(props) {
               {user.firstName} {user.lastName}
             </span>
           </a>
-        </>
+        </div>
       );
     });
   } else {

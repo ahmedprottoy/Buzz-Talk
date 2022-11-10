@@ -49,14 +49,14 @@ export default function UserPost() {
         const allMyPost = response.data;
 
         allMyPost.sort((a, b) => (a.postDate > b.postDate ? 1 : -1));
-        console.log(allMyPost);
+        // console.log(allMyPost);
         setMyPost(allMyPost);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  console.log(myPost);
+  // console.log(myPost);
 
   async function isThePostLiked(postID) {
     console.log(postID);
@@ -104,7 +104,7 @@ export default function UserPost() {
   if (myPost) {
     return myPost.map((Post, index) => {
       return (
-        <div className={classes.post}>
+        <div key={index} className={classes.post}>
           <div className={classes.postWrapper}>
             <div className={classes.postTop}>
               <div className={classes.postTopLeft}>
