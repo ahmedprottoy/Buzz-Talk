@@ -1,10 +1,8 @@
 import React from "react";
 import classes from "../Styles/chat.module.css";
 import Message from "./Message";
-import InsertPhotoRoundedIcon from "@mui/icons-material/InsertPhotoRounded";
 import { useNavigate, useLocation } from "react-router-dom";
 import ChatList from "./ChatList";
-// import { getMessages } from "../../../BackEnd/Controllers/chatController";
 import axios from "axios";
 import config from "../config";
 import io from "socket.io-client";
@@ -116,14 +114,14 @@ export default function Chat() {
             ></textarea>
 
             <button className={classes.chatSubmitButton} onClick={handleSubmit}>
-              Send
+              SEND
             </button>
           </div>
         </div>
       </div>
       <div className={classes.chatUserInfo}>
         <div className={classes.chatUserInfoWrapper}>
-          <h1>You are Chatting With...</h1>
+          <h2>You are Chatting With...</h2>
           {img === "null" ? (
             <img
               src={`http://localhost:3003/auth/images/avatar.png`}
@@ -139,7 +137,7 @@ export default function Chat() {
           )}
 
           <h2>{userName}</h2>
-          <button className={classes.chatUserButton}>View Profile</button>
+          <button className={classes.chatUserButton}>VIEW PROFILE</button>
         </div>
       </div>
     </div>
