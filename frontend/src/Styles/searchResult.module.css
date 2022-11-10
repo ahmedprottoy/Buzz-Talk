@@ -13,4 +13,13 @@
   margin: 20px 0 0 20px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
     rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  display: flex;
+  flex-direction: row;
+}
+.sidebarFriendImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }

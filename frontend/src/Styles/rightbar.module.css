@@ -1,6 +1,6 @@
 .rightbar {
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 550px;
   overflow-y: scroll;
 }

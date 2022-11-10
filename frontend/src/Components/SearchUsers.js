@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classes from "../Styles/sidebar.module.css";
+import classes from "../Styles/searchResult.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "../config";
@@ -21,11 +21,13 @@ function SearchUsers(props) {
         config()
       )
       .then((response) => {
+        console.log(response);
         setUsers(response.data);
       });
   };
+  console.log(users.length);
 
-  if (users) {
+  if (users.length !== 0) {
     return users.map((user, index) => {
       if (user.profileImgId === "null") {
         user.profileImgId = "avatar.png";
@@ -36,21 +38,22 @@ function SearchUsers(props) {
             onClick={() =>
               navigate("/FollowerProfile", { state: { id: user.userID } })
             }
+            className={classes.searchusers}
           >
-            <li className={classes.sidebarFriend}>
-              <img
-                className={classes.sidebarFriendImg}
-                src={`http://localhost:3003/auth/images/${user.profileImgId}`}
-                alt=""
-              />
-              <span className={classes.sidebarFriendName}>
-                {user.firstName} {user.lastName}
-              </span>
-            </li>
+            <img
+              className={classes.sidebarFriendImg}
+              src={`http://localhost:3003/auth/images/${user.profileImgId}`}
+              alt=""
+            />
+            <span className={classes.sidebarFriendName}>
+              {user.firstName} {user.lastName}
+            </span>
           </a>
         </>
       );
     });
+  } else {
+    return <h2>No User Found</h2>;
   }
 }
 
