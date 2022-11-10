@@ -137,7 +137,14 @@ export default function Chat() {
           )}
 
           <h2>{userName}</h2>
-          <button className={classes.chatUserButton}>VIEW PROFILE</button>
+          <button
+            className={classes.chatUserButton}
+            onClick={() =>
+              navigate("/FollowerProfile", { state: { id: userID } })
+            }
+          >
+            VIEW PROFILE
+          </button>
         </div>
       </div>
     </div>

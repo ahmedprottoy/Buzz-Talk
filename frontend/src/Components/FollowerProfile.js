@@ -21,19 +21,39 @@ export default function FollowerProfile() {
   }, [followerID]);
 
   const handleChat = () => {
-    axios.get(`http://localhost:3003/auth/findConvoersation/${followerID}`, config()).then((response) => {
-      if(response.data.length===0) {
-        axios
-        .post(`http://localhost:3003/auth/getconvo/${followerID}`,{}, config())
-        .then((res) => {
-          console.log(res);
-          navigate("/Chat",{ state: { id: followerID,img: followerInfo.profileImgId,userName : followerInfo.userName } });
-        });
-      } else {
-        navigate("/Chat",{ state: { id: followerID,img: followerInfo.profileImgId,userName : followerInfo.userName } });
-      }
-    });
-   
+    axios
+      .get(
+        `http://localhost:3003/auth/findConvoersation/${followerID}`,
+        config()
+      )
+      .then((response) => {
+        if (response.data.length === 0) {
+          axios
+            .post(
+              `http://localhost:3003/auth/getconvo/${followerID}`,
+              {},
+              config()
+            )
+            .then((res) => {
+              console.log(res);
+              navigate("/Chat", {
+                state: {
+                  id: followerID,
+                  img: followerInfo.profileImgId,
+                  userName: followerInfo.userName,
+                },
+              });
+            });
+        } else {
+          navigate("/Chat", {
+            state: {
+              id: followerID,
+              img: followerInfo.profileImgId,
+              userName: followerInfo.userName,
+            },
+          });
+        }
+      });
   };
 
   const getInfo = () => {

@@ -5,7 +5,7 @@
 
 .container {
   width: 95%;
-  margin: 6rem auto;
+  margin: 4.5rem 2rem 0 5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -21,7 +21,7 @@
 }
 
 .right {
-  border: 1px solid #333;
+  border: 1px solid #b0b0b0;
   margin-left: 20px;
   flex: 2;
   padding: 10px;

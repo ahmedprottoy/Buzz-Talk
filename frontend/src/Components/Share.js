@@ -96,7 +96,7 @@ export default function Share() {
         <div className={classes.shareOptions}>
           <div className={classes.shareOption}>
             <PermMedia className={classes.shareIcon} />
-            <label htmlFor="file">Photos</label>
+            <label htmlFor="file">ADD PHOTO</label>
             <input
               type="file"
               id="file"
@@ -104,18 +104,6 @@ export default function Share() {
               accepts="image/*"
               onChange={handleInputChange}
             />
-          </div>
-          <div className={classes.shareOption}>
-            <Label className={classes.shareIcon} />
-            <span className={classes.shareOptionText}>Tag</span>
-          </div>
-          <div className={classes.shareOption}>
-            <Room className={classes.shareIcon} />
-            <span className={classes.shareOptionText}>Location</span>
-          </div>
-          <div className={classes.shareOption}>
-            <EmojiEmotions className={classes.shareIcon} />
-            <span className={classes.shareOptionText}>Feeling</span>
           </div>
         </div>
         <button className={classes.shareButton} onClick={CreatePost}>
