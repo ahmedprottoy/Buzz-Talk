@@ -38,10 +38,8 @@ export default function LogInForm() {
         "accessToken",
         "Bearer " + response.data.accessToken
         // response.data.accessToken
-
       );
       localStorage.setItem("id", response.data.id);
-      
 
       if (response.data.next) {
         setStatus(response.data.msg);
@@ -96,8 +94,11 @@ export default function LogInForm() {
         {status && <p className={classes.status}>{status}</p>}
 
         <div className={classes.info}>
-        Don't have an account? <Link to="/SignUp">Sign Up </Link> first.<br/>
-        Forgot your password?<Link to="/ForgotPassword">click here </Link>
+          Don't have an account? <Link to="/SignUp">Sign Up </Link> first.
+          <br />
+          <br />
+          Forgot your password?
+          <Link to="/ForgotPassword"> Reset Password </Link>
         </div>
       </form>
     </>

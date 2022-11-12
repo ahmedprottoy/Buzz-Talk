@@ -3,8 +3,7 @@ import Illustration2 from "./Illustration2";
 import classes from "../Styles/signup.module.css";
 import LogInForm from "./LogInForm";
 
-
-export default function SignUp() {
+export default function logIn() {
   return (
     <main className={classes.main}>
       <div className={classes.container}>

@@ -42,7 +42,7 @@ export default function SignUpFrom() {
         setStatus(response.data.msg);
         if (response.data.nav) {
           setTimeout(() => {
-            navigate("/");
+            navigate("/login");
           }, 1500);
         }
       });
