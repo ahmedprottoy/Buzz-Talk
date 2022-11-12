@@ -14,6 +14,7 @@ const likeHandler = require("../Controllers/likeController");
 
 
 const router = express.Router();
+const resetHandler = require("../Controllers/forgotPassword");
 //
 //
 //
@@ -135,7 +136,11 @@ router.delete("/unlike/:postID",authentication,likeHandler.unlikePost);
 router.get("/isLike/:postID",authentication,likeHandler.isLiking);
 router.get("/findConvoersation/:userID",authentication,chatHandler.findConversation);
 
+
 router.use("/images", express.static("images"));
+router.post("/forgot", resetHandler.forgotPassword);
+router.post("/recovery", resetHandler.authenticate);
+router.put("/resetPassword", resetHandler.resetPassword);
 
 router.use((req, res) => {
   res.status(404).send("URL doesn't exist.");
