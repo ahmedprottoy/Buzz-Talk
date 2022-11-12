@@ -111,6 +111,7 @@ export default function Chat() {
               value={newMessage}
               placeholder="Type a message..."
               onChange={handleMessageSend}
+              required
             ></textarea>
 
             <button className={classes.chatSubmitButton} onClick={handleSubmit}>

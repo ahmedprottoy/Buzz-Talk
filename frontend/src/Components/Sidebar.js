@@ -44,7 +44,7 @@ export default function Sidebar() {
 
       <hr className={classes.sidebarHr} />
 
-      <span className={classes.followerTitle}>Followers</span>
+      <span className={classes.followerTitle}>FOLLOWING</span>
 
       <ul className={classes.sidebarFriendList}>
         <Followers />

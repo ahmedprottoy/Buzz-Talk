@@ -9,10 +9,10 @@ export default function Navbar() {
         <li>
           <a href="/home" className={classes.brand}>
             <Typewriter
-              words={["Social Media..."]}
+              words={["BUZZ TALK"]}
               loop="false"
               cursor
-              cursorStyle="|"
+              cursorStyle=""
               typeSpeed={70}
               deleteSpeed={50}
               delaySpeed={1000}
