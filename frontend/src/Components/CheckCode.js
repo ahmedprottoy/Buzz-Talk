@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TextInput from "./TextInput";
-
+import Illustration2 from "./Illustration2";
 import classes from "../Styles/signup.module.css";
 import Axios from "axios";
 
@@ -30,27 +30,40 @@ export default function CheckCode() {
 
   return (
     <>
-      <form className={classes.form} onSubmit={submitHandler}>
-        <TextInput
-          type="email"
-          required
-          placeholder="Enter email"
-          icon="alternate_email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextInput
-          type="text"
-          required
-          placeholder="Reset Code"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        />
-        <button type="submit" className={classes.submitButton}>
-          <span>Submit Now</span>
-        </button>
-        {errText && <p className={classes.error}>{errText}</p>}
-      </form>
+      <main className={classes.main}>
+        <div className={classes.container}>
+          <div className={classes.cont}>
+            <div className={classes.left}>
+              <h1>Login to your account</h1>
+              <Illustration2 />
+            </div>
+            <div className={classes.right}>
+              <form className={classes.form} onSubmit={submitHandler}>
+                <TextInput
+                  type="email"
+                  required
+                  placeholder="Enter email"
+                  icon="alternate_email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <TextInput
+                  type="text"
+                  required
+                  placeholder="Reset Code"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                />
+                <button type="submit" className={classes.submitButton}>
+                  <span>Submit Now</span>
+                </button>
+                {errText && <p className={classes.error}>{errText}</p>}
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+      ;
     </>
   );
 }

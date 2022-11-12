@@ -24,7 +24,7 @@ export default function Comments(props) {
       .then((response) => {
         const allComment = response.data;
         // setCnt(cnt+1);
-        console.log("cdi");
+
         setCommentList(allComment);
       })
       .catch((error) => {
@@ -86,7 +86,7 @@ export default function Comments(props) {
           </button>
         </div>
         {commentList.map((comment, index) => (
-          <div className={classes.comment}>
+          <div key={index} className={classes.comment}>
             <img
               src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=300"
               alt=""

@@ -73,7 +73,7 @@ export default function FollowerProfilePost(id) {
     window.location.reload(false);
   };
 
-  // console.log(followerPost);
+  console.log(followerPost);
   if (!followerPost.message) {
     return followerPost.map((Post, index) => {
       if (Post.profileImgId === "null") {

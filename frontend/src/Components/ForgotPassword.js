@@ -12,10 +12,12 @@ export default function ForgotPassword() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log("hey");
     Axios.post("http://localhost:3003/auth/forgot", {
       email: email,
     }).then((response) => {
-      navigate("/CheckhCode");
+      console.log(email);
+      navigate("/ChechkCode");
     });
   };
 

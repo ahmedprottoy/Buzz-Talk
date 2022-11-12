@@ -6,6 +6,7 @@ import Comments from "./Comments";
 import { ThumbUp } from "@material-ui/icons";
 import DropDown from "./DropDown";
 import { useNavigate } from "react-router-dom";
+import noData from "../images/no.svg";
 
 export default function UserPost() {
   const [commentOpen, setCommentOpen] = useState([]);
@@ -100,8 +101,8 @@ export default function UserPost() {
       });
     window.location.reload(false);
   };
-
-  if (myPost) {
+  // console.log(myPost.length);
+  if (myPost.length !== 0) {
     return myPost.map((Post, index) => {
       return (
         <div key={index} className={classes.post}>
@@ -202,5 +203,15 @@ export default function UserPost() {
         </div>
       );
     });
+  } else {
+    return (
+      <div className={classes.noPost}>
+        <div className={classes.postWrapper}>
+          <h2>You Haven't Posted Anything Yet.</h2>
+          <br />
+          <img className={classes.imageNoData} src={noData} alt=" " />
+        </div>
+      </div>
+    );
   }
 }
