@@ -13,6 +13,9 @@ import Chat from "./Chat";
 import "../Styles/app.module.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
+import ForgotPassword from "./ForgotPassword";
+import CheckCode from "./CheckCode";
+import ResetPassword from "./ResetPassword";
 
 export default function App() {
   return (
@@ -21,6 +24,9 @@ export default function App() {
       <Routes>
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/LogIn" element={<LogIn />} />
+        <Route path="/ForgotPassword" element={<ForgotPassword />} />
+        <Route path="/ChechkCode" element={<CheckCode />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
 
         <Route path="/*" element={<Layout />}>
           <Route path="home" element={<Home />} />

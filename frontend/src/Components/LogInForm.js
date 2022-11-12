@@ -96,7 +96,8 @@ export default function LogInForm() {
         {status && <p className={classes.status}>{status}</p>}
 
         <div className={classes.info}>
-          Don't have an account? <Link to="/SignUp">Sign Up </Link> first.
+        Don't have an account? <Link to="/SignUp">Sign Up </Link> first.<br/>
+        Forgot your password?<Link to="/ForgotPassword">click here </Link>
         </div>
       </form>
     </>
