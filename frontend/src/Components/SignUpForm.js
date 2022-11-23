@@ -6,6 +6,7 @@ import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUpFrom() {
+  // const [val, setVal] = useState(true);
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -18,6 +19,87 @@ export default function SignUpFrom() {
   const [status, setStatus] = useState("");
 
   const navigate = useNavigate();
+
+  const [errText, setErrText] = useState();
+  const [firstErr, setFirstErr] = useState();
+  const [lastErr, setLastErr] = useState();
+  const [userErr, setUserErr] = useState();
+
+  const validateEmail = (e) => {
+    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    let emailValue = e.target.value;
+    setEmail(emailValue);
+    if (email.match(pattern)) {
+      setErrText("");
+    } else {
+      setErrText("Email format is not valid");
+    }
+  };
+
+  const validateFirstName = (e) => {
+    let pattern = /^[a-z ,.'-]+$/i;
+    let firstNameValue = e.target.value;
+    setFirstName(firstNameValue);
+    if (firstNameValue.length < 1) {
+      setFirstErr("First Name must not be Empty");
+
+      return;
+    }
+    if (
+      firstNameValue[0] !== firstNameValue[0].toUpperCase() ||
+      firstName.length > 20
+    ) {
+      setFirstErr("First Name must start with an UpperCase Letter");
+
+      return;
+    }
+    if (firstName.match(pattern)) {
+      setFirstErr("");
+    } else {
+      setFirstErr("First Name Should only contain Letters");
+    }
+  };
+
+  const validateLastName = (e) => {
+    let patternLast = /^[a-z ,.'-]+$/i;
+    let lastNameValue = e.target.value;
+    setLastName(lastNameValue);
+    if (lastNameValue.length < 1) {
+      setLastErr("Last Name must not be empty");
+
+      return;
+    }
+    if (
+      lastNameValue[0] !== lastNameValue[0].toUpperCase() ||
+      lastName.length > 20
+    ) {
+      setLastErr("Last Name must start with an UpperCase Letter");
+
+      return;
+    }
+    if (lastName.match(patternLast)) {
+      setLastErr("");
+    } else {
+      setLastErr("Last Name Should only contain Letters");
+    }
+  };
+
+  const validateUserName = (e) => {
+    let userNameValue = e.target.value;
+    setUserName(userNameValue);
+    if (userNameValue.length < 4) {
+      setUserErr("Username must be at least 4 character");
+
+      return;
+    }
+    if (userNameValue[0] >= "0" && userNameValue[0] <= "9") {
+      setUserErr("Username must start with a letter");
+
+      return;
+    } else {
+      setUserErr("");
+    }
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -42,7 +124,7 @@ export default function SignUpFrom() {
         setStatus(response.data.msg);
         if (response.data.nav) {
           setTimeout(() => {
-            navigate("/login");
+            navigate("/LogIn");
           }, 1500);
         }
       });
@@ -62,30 +144,29 @@ export default function SignUpFrom() {
           icon="person"
           required
           value={userName}
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
+          onChange={validateUserName}
         />
+        {userErr && <p className={classes.error}>{userErr}</p>}
+
         <TextInput
           type="text"
           placeholder="Enter First Name"
           icon="person"
           required
           value={firstName}
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
+          onChange={validateFirstName}
         />
+        {firstErr && <p className={classes.error}>{firstErr}</p>}
+
         <TextInput
           type="text"
           placeholder="Enter Last Name"
           icon="person"
           required
           value={lastName}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
+          onChange={validateLastName}
         />
+        {lastErr && <p className={classes.error}>{lastErr}</p>}
 
         <TextInput
           type="email"
@@ -93,8 +174,9 @@ export default function SignUpFrom() {
           placeholder="Enter email"
           icon="alternate_email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={validateEmail}
         />
+        {errText && <p className={classes.error}>{errText}</p>}
 
         <TextInput
           type="password"
