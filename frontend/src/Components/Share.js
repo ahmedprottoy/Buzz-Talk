@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "../Styles/share.module.css";
-import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
+import { PermMedia } from "@material-ui/icons";
 import axios from "axios";
 import { EditorContent, useEditor } from "@tiptap/react";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -25,7 +25,6 @@ export default function Share() {
         placeholder: `What's on your mind...`,
       }),
     ],
-    // content: `hellooo...`,
 
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
@@ -49,7 +48,7 @@ export default function Share() {
     axios
       .get("http://localhost:3003/auth/getImages", configure)
       .then((response) => {
-        if (response.data[0].profileImgId != "null") {
+        if (response.data[0].profileImgId !== "null") {
           setProfileImage(response.data[0].profileImgId);
         } else {
           setProfileImage("avatar.png");
@@ -58,6 +57,7 @@ export default function Share() {
   };
 
   const handleInputChange = (event) => {
+    console.log("image changing");
     setImage({
       ...image,
       file: event.target.files[0],
