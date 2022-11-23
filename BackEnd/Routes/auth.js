@@ -12,7 +12,6 @@ const commentHandler = require("../Controllers/commentController");
 const chatHandler = require("../Controllers/chatController");
 const likeHandler = require("../Controllers/likeController");
 
-
 const router = express.Router();
 const resetHandler = require("../Controllers/forgotPassword");
 //
@@ -128,14 +127,21 @@ router.post(
   commentHandler.postComment
 );
 router.get("/comment/:postID", authentication, commentHandler.getComment);
-router.get("/getconvo",authentication,chatHandler.getConversations);
-router.post("/getconvo/:userID",authentication,chatHandler.createConversation);
-router.get("/getmessage/:userID",authentication,chatHandler.getMessages);
-router.post("/like/:postID",authentication,likeHandler.likePost);
-router.delete("/unlike/:postID",authentication,likeHandler.unlikePost);
-router.get("/isLike/:postID",authentication,likeHandler.isLiking);
-router.get("/findConvoersation/:userID",authentication,chatHandler.findConversation);
-
+router.get("/getconvo", authentication, chatHandler.getConversations);
+router.post(
+  "/getconvo/:userID",
+  authentication,
+  chatHandler.createConversation
+);
+router.get("/getmessage/:userID", authentication, chatHandler.getMessages);
+router.post("/like/:postID", authentication, likeHandler.likePost);
+router.delete("/unlike/:postID", authentication, likeHandler.unlikePost);
+router.get("/isLike/:postID", authentication, likeHandler.isLiking);
+router.get(
+  "/findConvoersation/:userID",
+  authentication,
+  chatHandler.findConversation
+);
 
 router.use("/images", express.static("images"));
 router.post("/forgot", resetHandler.forgotPassword);

@@ -14,7 +14,7 @@ export default function Message(props) {
     return message.map((msg, index) => {
       return (
         <div key={index}>
-          {msg.messageText === "dont_show" ? (
+          {msg.messageText === "dont_show" || msg.messageText === "" ? (
             <div></div>
           ) : (
             <div
