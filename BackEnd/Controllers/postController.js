@@ -137,24 +137,26 @@ postHandler.deletePost = (req, res, next) => {
     if (error) {
       next(error);
     } else {
-        const likeID = Math.max(postID,userID)+"_"+Math.min(postID,userID);
-        const deleteQueryLike = "DELETE FROM socialmedia.like_table WHERE likeID = ?;";
-        db.query(deleteQueryLike, [likeID], (errorLike, results2) => {
-          if(errorLike){
-            next(errorLike);
-          }else{
-            const deleteQueryPost = "DELETE FROM socialmedia.post_table WHERE userID = ? and postID = ?;";
-            db.query(deleteQueryPost, [userID, postID], (err, results2) => {
-                    if (err) {
-                      next(err);
-                    } else {
-                      res.json({ message: "Delete successfull " });
-                    }
-           });
+      const likeID = Math.max(postID, userID) + "_" + Math.min(postID, userID);
+      const deleteQueryLike =
+        "DELETE FROM socialmedia.like_table WHERE postID = ?;";
+      db.query(deleteQueryLike, [postID], (errorLike, results2) => {
+        if (errorLike) {
+          next(errorLike);
+        } else {
+          const deleteQueryPost =
+            "DELETE FROM socialmedia.post_table WHERE userID = ? and postID = ?;";
+          db.query(deleteQueryPost, [userID, postID], (err, results2) => {
+            if (err) {
+              next(err);
+            } else {
+              res.json({ message: "Delete successfull " });
+            }
+          });
         }
-
-    });
-  }});
+      });
+    }
+  });
 };
 
 postHandler.followingUserPost = (req, res, next) => {
