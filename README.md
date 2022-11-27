@@ -13,7 +13,7 @@ An interactive social media platform that connects  People, and helps to interac
 <a href="https://expressjs.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/express-original-wordmark.svg" alt="Express.js" height="50" /></a>  
 <a href="https://www.mysql.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg" alt="MySQL" height="50" /></a>  
 <a href="https://mui.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/mui.png" alt="Material UI" height="50" /></a>  
-<a href="https://www.w3schools.com/css/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50" /></a>  
+<a href="https://www.w3schools.com/css/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50" /></a>  <a href="https://sass-lang.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/sass-original.svg" alt="Sass" height="50" /></a>  
 </div> 
 
 ## The System has these following functionalities :
@@ -25,7 +25,8 @@ An interactive social media platform that connects  People, and helps to interac
 - Follow,Unfollow users that they prefer.
 - Can search for registered users on the platform.
 - Data validations with regex.
-- User Chat system integrated with Socket.io .
+- User Chat system integrated with Socket.io to communicate and share experiences.
+- Implemented headless editor framework - Tiptap  for writting blogs with ease.
 
 
 ## API Documentation
