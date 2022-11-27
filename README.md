@@ -23,6 +23,7 @@ An interactive social media platform that connects  People, and helps to interac
 - Users Authentication and Authorization with jwt.
 - User can read, post, like, comment on their preferred topic.
 - Follow,Unfollow users that they prefer.
+- Can search for registered users on the platform.
 - Data validations with regex.
 - User Chat system integrated with Socket.io .
 
