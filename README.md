@@ -2,7 +2,7 @@
 
 # Buzz Talk
 
-An interactive social media platform for connecting with People, and interacting with each other by exchanging views and ideas.
+An interactive social media platform that connects  People, and helps to interact with each other by exchanging views and ideas.
 
 
 # Technologies Used
